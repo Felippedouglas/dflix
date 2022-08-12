@@ -1,0 +1,87 @@
+.div-atores {
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: auto;
+    max-width: 100%;
+}
+
+.div-atores::-webkit-scrollbar {
+    display: none;
+}
+
+.span-abrir-popup-atores {
+    display: flex;
+    align-items: center;
+    position: sticky;
+    right: -2px;
+    height: 100%;
+    padding: 0 10px 0 25px;
+    background-image: linear-gradient(to left, #101010, #101010b4, #10101000);
+}
+
+.ator {
+    cursor: pointer;
+    display: flex;
+    transition: all .2s ease;
+}
+
+.ator:hover {
+    opacity: .8;
+}
+
+.ator-pop-up {
+    max-width: 500px;
+    position: relative;
+    margin-bottom: .7rem;
+    padding: .3rem;
+    background: #303030;
+    border-radius: 3rem;
+}
+
+.ator img {
+    min-height: 2rem;
+    max-height: 2rem;
+    min-width: 2rem;
+    max-width: 2rem;
+    object-fit: cover;
+    border-radius: 50%;
+    background: #181818;
+}
+
+.ator .section-nome-ator-personagem {
+    display: flex;
+    flex-direction: column;
+    margin: 0 10px;
+}
+
+.ator .section-nome-ator-personagem span {
+    font-size: 12px;
+    white-space: nowrap;
+    max-width: 17ch;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.ator .section-nome-ator-personagem .nome-ator {
+    font-weight: 600;
+}
+
+.ator .section-nome-ator-personagem .nome-personagem {
+    color: #999999;
+}
+
+.seta-hover-pop-up-atores {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    font-size: 15px;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: all .2s ease;
+}
+
+.ator-pop-up:hover .seta-hover-pop-up-atores {
+    opacity: 1;
+}

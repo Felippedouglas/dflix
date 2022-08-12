@@ -1,0 +1,19 @@
+.content-sugestoes {
+    display: flex;
+    flex-direction: column;
+    margin: 1.2rem;
+}
+
+.div-filmes-sugestões {
+    padding: .7rem;
+    margin: 1.5rem 0;
+}
+
+@media (max-width: 600px) {
+
+    .content-sugestões {
+        padding-bottom: 30px;
+        margin-bottom: -10px;
+        background: #f00;
+    }
+}

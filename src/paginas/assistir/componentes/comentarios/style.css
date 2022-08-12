@@ -1,0 +1,99 @@
+.content-comentarios {
+    margin: 1.2rem;
+}
+
+.h2-titulo-sections {
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-left: .7rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+}
+
+.h2-titulo-sections::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -0.7rem;
+    height: 100%;
+    width: 4px;
+    background-color: #fff;
+}
+
+.bt-abrir-popup-comentários {
+    color: #fff;
+    background: none;
+    font-size: .7rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    margin-left: .7rem;
+    transition: all .2s ease;
+}
+
+.bt-abrir-popup-comentários:hover {
+    opacity: .6;
+}
+
+.comentario {
+    margin: 1.5rem 0;
+    padding: .7rem;
+}
+
+.header-detalhes-usuario-comentario {
+    display: flex;
+    align-items: center;
+    margin-bottom: .7rem;
+}
+
+.header-detalhes-usuario-comentario .img-perfil-comentario {
+    max-width: 2.5rem;
+    border-radius: 50%;
+    margin-right: .7rem;
+}
+
+.header-detalhes-usuario-comentario .nome-autor-comentario {
+    font-size: 1.1rem;
+}
+
+.header-detalhes-usuario-comentario .avaliacao-autor-comentario {
+    color: #999999;
+    margin-left: 1rem;
+    font-size: 1rem;
+}
+
+.main-comentario {
+    margin-bottom: 1.2rem;
+}
+
+.comentario footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+@media (max-width: 800px) {
+
+    .header-detalhes-usuario-comentario .img-perfil-comentario {
+        max-width: 2rem;
+    }
+
+    .header-detalhes-usuario-comentario .nome-autor-comentario {
+        font-size: .9rem;
+    }
+
+    .header-detalhes-usuario-comentario .avaliacao-autor-comentario {
+        margin-left: .5rem;
+        font-size: .7rem;
+    }
+
+    .main-comentario {
+        font-size: .8rem;
+    }
+
+    .comentario footer {
+        font-size: .8rem;
+    }
+}

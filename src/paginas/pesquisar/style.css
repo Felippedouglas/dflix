@@ -1,0 +1,414 @@
+.componente-pequisar {
+    display: block;
+    margin-top: 80px;
+}
+
+.header-componente-pesquisar {
+    margin: 1.2rem;
+}
+
+.header-componente-pesquisar .section-input-pesquisar {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+    min-width: 100%;
+}
+
+.header-componente-pesquisar .section-input-pesquisar input {
+    height: 2.8rem;
+    width: 100%;
+    padding: .2rem 0 .2rem 1rem;
+    border-radius: 3rem 0 0  3rem;
+    background-color: #353535;
+    color: #fff;
+    border: none;
+    font-size: 1rem;
+    font-weight: 600;
+    outline: none;
+}
+
+.header-componente-pesquisar .section-input-pesquisar input::placeholder {
+    color: #ccc;
+}
+
+.header-componente-pesquisar .section-input-pesquisar a {
+    background-color: #353535;
+    text-decoration: none;
+    color: #fff;
+    padding: .7rem 1.2rem .7rem .7rem;
+    border-radius: 0 3rem 3rem 0;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+.header-componente-pesquisar .section-input-pesquisar a:hover {
+    background-color: #404040;
+}
+
+.header-componente-pesquisar .section-input-pesquisar a:active {
+    color: #ccc;
+}
+
+.section-limpar-historico {
+    display: flex;
+    justify-content: end;
+    width: 100%;
+    margin: 26px 0 10px 0;
+}
+
+.section-limpar-historico button {
+    padding: 5px 10px;
+    font-size: .8rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 50px;
+    border: 1px solid transparent;
+    color: #fff;
+    background: #222222;
+    cursor: pointer;
+}
+
+.section-limpar-historico button:hover {
+    background: #303030;
+    border: 1px solid #404040;
+}
+
+.section-limpar-historico button:active {
+    background: #404040;
+    border: 1px solid #808080;
+    transition: .5s ease;
+}
+
+.section-item-historico {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.section-item-historico:hover {
+    z-index: 999999999999;
+    background: #181818;
+}
+
+.section-item-historico a {
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 50px;
+    width: 95%;
+    padding: 15px 15px 15px 20px;
+    transition: all .3s ease;
+    cursor: pointer;
+}
+
+.section-item-historico a:hover {
+    background: #222222;
+}
+
+.section-item-historico a:active {
+    background: #303030;
+}
+
+.section-item-historico .nome-item-historico {
+    font-size: 1rem;
+    margin-bottom: 2px;
+    text-transform: capitalize;
+    font-weight: 600;
+    overflow: hidden;
+}
+
+.section-item-historico .data-item-historico {
+    font-size: .7rem;
+    color: #bbb;
+    width: max-content;
+}
+
+.section-item-historico .bt-excluir-item-historico {
+    position: relative;
+    background: unset;
+    border: none;
+    border: 1px solid transparent;
+    color: #fff;
+    min-width: 30px;
+    min-height: 30px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 1;
+    transition: all .3s ease;
+}
+
+.section-item-historico .bt-excluir-item-historico:hover {
+    background: #222222;
+    border: 1px solid #404040;
+}
+
+.section-item-historico .bt-excluir-item-historico:active {
+    background: #303030;
+    border: 1px solid #808080;
+    transition: .5s ease;
+}
+
+.div-movie-pesquisar::-webkit-scrollbar{
+    display: none;
+}
+
+.div-movie-pesquisar::-webkit-scrollbar-track{
+    background-color: #181818;
+}
+
+.div-movie-pesquisar::-webkit-scrollbar-thumb{
+    background-color: #DBD1C4;
+    border-radius: 1.2rem;
+}
+
+.div-movie-pesquisar::-webkit-scrollbar-thumb:hover{
+    background-color: #A69E94;
+}
+
+.div-movie-pesquisar, .div-pessoa-pesquisar {
+    display: none;
+    justify-content: center;
+    position: relative;
+    flex-flow: wrap;
+    border-radius: .7rem;
+    max-width: 100%;
+    margin: 0 .5rem;
+    padding: 1.2rem 0 0 .7rem;
+}
+
+.div-movie-pesquisar {
+    max-width: max-content;
+}
+
+.movie-pesquisar, .pessoa-pesquisar {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 1.9rem 1.9rem 0;
+    border-radius: 1rem;
+    transition: all 0.5s ease;
+}
+
+.movie-pesquisar:hover {
+    transform: scale(1.04);
+}
+
+.section-informacoes-movie-pesquisar, .section-informacoes-pessoa-pesquisar {
+    position: relative;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 2.5rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 .7rem;
+    text-decoration: none;
+    color: #fff;
+    background-image: linear-gradient(to top, #000 60%, transparent);
+    border-radius: 0 0 1rem 1rem;
+}
+
+.section-informacoes-movie-pesquisar span, .section-informacoes-pessoa-pesquisar span {
+    display: flex;
+    align-items: center;
+    margin-top: 0;
+    font-size: .8rem;
+    font-weight: 600;
+}
+
+.section-informacoes-movie-pesquisar span i, .section-informacoes-pessoa-pesquisar span i {
+    font-size: .7rem;
+    margin-right: .1rem;
+}
+
+.section-informacoes-pessoa-pesquisar {
+    justify-content: center;
+}
+
+.movie-pesquisar img, .pessoa-pesquisar img {
+    min-width: 180px;
+    max-width: 180px;
+    min-height: 280px;
+    max-height: 280px;
+    margin-bottom: 1rem;
+    border-radius: .5rem;
+    object-fit: cover;
+}
+
+.titulo-pessoa {
+    text-align: center;
+}
+
+.titulo-movie, .titulo-pessoa {
+    font-weight: bold;
+    text-align: center;
+    max-width: 18ch;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.movie-pesquisar a, .pessoa-pesquisar a {
+    position: relative;
+    max-height: 300px;
+    text-decoration: none;
+}
+
+.span-movie-filme, .span-movie-serie, .span-pessoa {
+    position: absolute;
+    top: -0.2rem;
+    right: -0.3rem;
+    padding: .1rem .3rem;
+    font-size: .9rem;
+    font-weight: bold;
+    border-radius: 3px;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.6);
+}
+
+.span-movie-filme {
+    background: #E50914;
+}
+
+.span-movie-serie {
+    background: #008000;
+}
+
+.span-pessoa {
+    background: #008cff;
+}
+
+.titulo-movie, .titulo-pessoa {
+    font-size: 1rem;
+}
+
+.div-botoes-paginas-pesquisar {
+    display: flex;
+    align-items: center;
+    flex-flow: wrap;
+    margin: 1.2rem;
+    padding: .7rem;
+    border-radius: .7rem;
+}
+
+.div-botoes-paginas-pesquisar .bt-pagina-pesquisar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .95rem;
+    font-weight: 600;
+    margin: .3rem;
+    min-height: 2rem;
+    min-width: 2rem;
+    background: #E50914;
+    color: #fff;
+    text-decoration: none;
+    border: 1px solid transparent;
+    border-radius: 50%;
+}
+
+.div-botoes-paginas-pesquisar .bt-pagina-pesquisar:hover {
+    background: #bd0009;
+}
+
+.div-botoes-paginas-pesquisar .bt-pagina-pesquisar:active {
+    background-color: #ff000d;
+    border: .1rem solid #505050;
+}
+
+.h3-pagina-atual {
+    width: 100%;
+    text-transform: uppercase;
+    font-size: .9rem;
+    margin: .2rem;
+}
+
+@media (max-width: 1000px) {
+
+    .movie-pesquisar, .pessoa-pesquisar {
+        margin-right: .7rem;
+    }
+
+    .movie-pesquisar img, .pessoa-pesquisar img {
+        min-width: 150px;
+        max-width: 150px;
+        min-height: 230px;
+        max-height: 230px;
+    }
+    
+    .titulo-movie {
+        font-size: .8rem;
+        margin-top: -2rem;
+    }
+
+    .titulo-pessoa {
+        font-size: .8rem;
+    }
+}
+
+@media (max-width: 800px) {
+
+    .movie-pesquisar, .titulo-pessoa {
+        margin-right: .7rem;
+    }
+
+    .movie-pesquisar img, .pessoa-pesquisar img {
+        min-width: 130px;
+        max-width: 130px;
+        min-height: 200px;
+        max-height: 200px;
+    }
+
+    .titulo-movie, .titulo-pessoa {
+        font-size: .8rem;
+        margin-top: -2.3rem;
+    }
+    
+    .titulo-movie {
+        font-size: .7rem;
+        margin-top: -2.3rem;
+    }
+
+    .titulo-pessoa {
+        font-size: .7rem;
+        margin-top: -.7rem;
+    }
+}
+
+@media (max-width: 600px) {
+
+    #h2-resultados-encontrados {
+        font-size: 1.1rem;
+    }
+    
+    .div-movie-pesquisar, .div-pessoa-pesquisar {
+        justify-content: center;
+    }
+
+    .movie-pesquisar span {
+        font-size: 85%;
+    }
+
+    .pessoa-pesquisar a {
+        max-height: 210px;
+    }
+
+    .span-movie-filme, .span-movie-serie, .span-pessoa {
+        font-size: .7rem !important;
+    }
+
+    .titulo-movie {
+        max-width: 16ch;
+    }
+
+    .titulo-pessoa {
+        max-width: 14ch;
+    }
+}

@@ -1,0 +1,599 @@
+
+.container-assistir {
+    display: block;
+    background-size: 100%;
+    margin-top: 3.1rem;
+}
+
+.container-assistir .content-movie-assistir {
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: top;
+}
+
+.container-assistir .movie-assistir {
+    position: relative;
+    display: flex;
+    padding: 5rem 2.5rem;
+    background-image: linear-gradient(to top, #181818, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7)  100%);
+}
+
+.container-assistir .div-imagem-movie-assistir #img-movie-assistir {
+    height: 350px;
+    width: 230px;
+    border-radius: 1rem;
+    background: #181818;
+}
+
+.container-assistir .detalhes-movie-assistir {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 2rem;
+    max-width: 65%;
+}
+
+.detalhes-movie-assistir .span-assistir-filmes-series {
+    font-size: 80%;
+    text-transform: uppercase;
+    color: #ccc;
+    letter-spacing: 2px;
+}
+
+.detalhes-movie-assistir .titulo-movie-assistir {
+    margin: .5rem 0 1.1rem 0;
+    font-size: 2rem;
+}
+
+.detalhes-movie-assistir .informacoes-movie-assistir {
+    display: flex;
+    margin: .7rem 0 1.1rem 0;
+    background: #202020;
+    padding: .2rem .9rem;
+    border-radius: 3rem;
+    overflow-x: auto;
+    max-width: 100%;
+}
+
+.detalhes-movie-assistir .informacoes-movie-assistir section {
+    margin-right: .7rem;
+    background: #252525;
+    padding: .2rem .9rem;
+    border-radius: 3rem;
+    font-weight: 600;
+    font-size: .8rem;
+    text-transform: uppercase;
+}
+
+.detalhes-movie-assistir .informacoes-movie-assistir section:last-child {
+    margin-right: 0;
+}
+
+.detalhes-movie-assistir .informacoes-movie-assistir .section-temporadas {
+    display: flex;
+}
+
+.detalhes-movie-assistir .informacoes-movie-assistir section span {
+    white-space: nowrap;
+}
+
+.detalhes-movie-assistir .descricao-movie-assistir {
+    text-transform: capitalize;
+    line-height: 130%;
+    font-size: .9rem;
+    color: #ccc;
+}
+
+.detalhes-movie-assistir .generos-movie-assistir {
+    padding: .7rem 0;
+    max-width: 100%;
+    min-height: min-content;
+    overflow-x: auto;
+    margin: 1.1rem 0 .7rem 0;
+}
+
+.detalhes-movie-assistir .generos-movie-assistir span {
+    font-size: .7rem;
+    margin-right: .7rem;
+    background: #222222;
+    border: 1px solid #707070;
+    text-transform: uppercase;
+    font-weight: 600;
+    transition: all .2s ease;
+    border-radius: 3rem;
+    cursor: pointer;
+    white-space: nowrap;
+    padding: .6rem 1rem;
+}
+
+.detalhes-movie-assistir .generos-movie-assistir span:last-child {
+    margin-right: 0;
+}
+
+.detalhes-movie-assistir .generos-movie-assistir span:hover {
+    color: #ccc;
+    border: 1px solid #fff;
+}
+
+.container-assistir .release-date-assistir {
+    opacity: 0.5;
+}
+
+.div-compartilhar-e-favorito {
+    display: flex;
+    align-items: center;
+}
+
+.botao-favorito {
+    height: 2.4rem;
+    width: 2.4rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+
+.botao-adicionar-favorito {
+    background: #252525;
+    color: #fff;
+    border: 1px solid #707070;
+}
+
+.botao-adicionar-favorito:hover {
+    color: #000;
+    background: #fff;
+    border: 1px solid #fff;
+}
+
+.botao-remover-favorito {
+    color: #fff;
+    background: #f00;
+    border: 1px solid #fff;
+}
+
+.botao-remover-favorito:hover {
+    color: #f00;
+    background: #fff;
+    border: 1px solid #f00;
+}
+
+.div-temporadas-episodios-serie-assistir {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 20px 10px 20px;
+}
+
+.h2-assistir {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 3rem;
+}
+
+.div-temporadas-serie-assistir {
+    margin-bottom: 20px;
+}
+
+.section-temporadas-serie-assistir {
+    position: relative;
+    display: flex;
+    max-width: max-content;
+    overflow: auto;
+    scroll-behavior: smooth;
+}
+
+.bt-slide-section-serie-assitir {
+    position: sticky;
+    background: unset;
+    border: none;
+    color: #fff;
+    height: 55px;
+    font-size: 1.2rem;
+    z-index: 1;
+}
+
+.bt-left-section-serie-assistir {
+    position: sticky;
+    padding: 0 40px 0 10px;
+    background-image: linear-gradient(to right, #181818, #181818eb, #18181800);
+    left: 0;
+    z-index: 1;
+}
+
+.bt-right-section-serie-assistir {
+    padding: 0 10px 0 40px;
+    background-image: linear-gradient(to left, #181818, #181818eb, #18181800);
+    right: -2px;
+}
+
+.bt-slide-section-serie-assitir i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    transition: all .2s ease;
+    cursor: pointer;
+}
+
+.bt-slide-section-serie-assitir i:hover {
+    background: #404040;
+    border: 2px solid #606060;
+}
+
+.h2-titulo-temporada, .h2-titulo-episodio {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    margin: 10px 0 20px 0;
+}
+
+.div-escolher-temporada {
+    position: relative;
+    margin-right: 10px;
+}
+
+.div-escolher-temporada:last-child {
+    margin-right: 0;
+}
+
+.temporada-serie-assistir input {
+    display: none;
+}
+
+.temporada-serie-assistir input:checked ~ label img, .temporada-serie-assistir input:checked ~ label .span-hover-n-temporada {
+    border: #ddd solid 1px;
+    background: #f00;
+    transition: all .3s ease;
+}
+
+.temporada-serie-assistir label img {
+    border-radius: 50%;
+    object-fit: cover;
+    min-height: 55px;
+    max-height: 55px;
+    min-width: 55px;
+    max-width: 55px;
+}
+
+.span-hover-n-temporada {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    inset: 0;
+    max-height: 55px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    font-weight: bold;
+    background: #181818bc;
+    border: rgb(100, 100, 100) solid 1px;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+.section-episodios-serie-assistir, .section-opcoes-video {
+    position: relative;
+    display: flex;
+    overflow: auto;
+    top: -30px;
+    transition: all 1s ease;
+    height: 9;
+    opacity: 0;
+    scroll-behavior: smooth;
+}
+
+.section-episodios-serie-assistir {
+    max-width: max-content;
+}
+
+.section-temporadas-serie-assistir::-webkit-scrollbar, .section-episodios-serie-assistir::-webkit-scrollbar {
+    display: none;
+}
+
+.mostrar-episodios-serie-assistir, .mostrar-opcoes-video {
+    top: 0;
+    opacity: 1;
+    height: min-content;
+}
+
+.episodio-serie-assistir {
+    position: relative;
+    margin-right: 10px;
+}
+
+.episodio-serie-assistir:last-child {
+    margin-right: 0;
+}
+
+.episodio-serie-assistir input {
+    display: none;
+}
+
+.episodio-serie-assistir input:checked ~ label img, .episodio-serie-assistir input:checked ~ label .span-hover-n-episodio {
+    border: #ddd solid 1px;
+    background: #f00;
+    transition: all .3s ease;
+}
+
+.episodio-serie-assistir label img {
+    border-radius: 10px;
+    object-fit: cover;
+    min-height: 55px;
+    max-height: 55px;
+    min-width: 100px;
+    max-width: 100px;
+}
+
+.span-hover-n-episodio {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    max-height: 55px;
+    inset: 0;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    background: #181818bc;
+    border: rgb(100, 100, 100) solid 1px;
+    transition: all .3s ease;
+}
+
+.span-hover-n-episodio:hover, .span-hover-n-temporada:hover {
+    padding-bottom: 8px;
+    font-size: 1.3rem;
+    border: 1px solid #f00;
+}
+
+.div-opcoes-video-assistir {
+    display: flex;
+}
+
+.mostrar-opcoes-video {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.opcao-video-assistir {
+    position: relative;
+    margin-right: 10px;
+    min-height: min-content;
+    min-width: min-content;
+    padding: 25px 0;
+}
+
+.opcao-video-assistir:last-child {
+    margin-right: 0;
+}
+
+.opcao-video-assistir label {
+    cursor: pointer;
+    border-radius: 50px;
+    font-size: .9rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #aaa;
+    border: #aaa solid 1px;
+    background: #202020;
+    padding: 10px 20px;
+    transition: all .3s ease;
+}
+
+.opcao-video-assistir label:hover {
+    opacity: .6;
+}
+
+.opcao-video-assistir input {
+    display: none;
+}
+
+.opcao-video-assistir input:checked ~ label {
+    color: #ffff;
+    border: #f00 solid 1px;
+    background: #f00;
+    transition: all .3s ease;
+}
+
+.span-hover-opcao {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+    inset: 0;
+    border-radius: 10px;
+    font-size: .5rem;
+    font-weight: bold;
+    background: #181818bc;
+    border: rgb(100, 100, 100) solid 1px;
+    transition: all .3s ease;
+}
+
+.section-opcoes-video {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 50px 0 0 0;
+}
+
+.span-informacoes-video-assistir {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+.container-assistir .div-iframe-movie-assistir {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.container-assistir .div-iframe-movie-assistir iframe {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.span-alert-iframe {
+    margin: 0 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+}
+
+.item-slide {
+    background: #f00;
+    min-width: 30px;
+    max-width: 30px;
+    margin-right: 10px;
+}
+
+.slick-slide, .slick-active {
+    width: min-content;
+}
+
+@media (max-width: 1000px) {
+    .div-imagem-movie-assistir #img-movie-assistir {
+        display: none;
+    }
+}
+
+@media (max-width: 800px) {
+    
+    .container-assistir .detalhes-movie-assistir {
+        max-width: 100%;
+        margin-left: 0;
+    }
+    
+    .detalhes-movie-assistir .span-assistir-filmes-series {
+        text-align: center;
+        width: 100%;
+    }
+
+    .container-assistir .detalhes-movie-assistir h1 {
+        font-size: 7vw;
+        text-align: center;
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+
+    .section-serie-finalizada {
+        display: none;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .container-assistir .movie-assistir {
+        padding: 3rem 1rem;
+    }
+
+    .container-assistir .detalhes-movie-assistir h1 {
+        font-size: 8vw;
+        width: 100%;
+    }
+
+    .detalhes-movie-assistir .informacoes-movie-assistir {
+        width: 100%;
+        justify-content: space-between;
+        padding: .1rem .3rem;
+    }
+    
+    .detalhes-movie-assistir .informacoes-movie-assistir section {
+        margin-right: 0;
+        padding: .4rem .4rem;
+        font-size: .7rem;
+    }
+
+    .detalhes-movie-assistir .generos-movie-assistir::-webkit-scrollbar, .detalhes-movie-assistir .informacoes-movie-assistir::-webkit-scrollbar {
+        display: none;
+    }
+
+    .detalhes-movie-assistir .generos-movie-assistir span {
+        font-size: .6rem;
+        margin-right: .5rem;
+    }
+    
+    .botao-favorito {
+        height: 2.2rem;
+        width: 2.2rem;
+    }
+    
+    .bt-slide-section-serie-assitir {
+        display: none;
+    }
+
+    .h2-assistir {
+        font-size: 1rem;
+        margin-bottom: 20px;
+    }
+
+    .h2-titulo-temporada, .h2-titulo-episodio, .span-informacoes-video-assistir {
+        font-size: .9rem;
+    }
+    
+    .section-temporadas-serie-assistir::-webkit-scrollbar, .section-episodios-serie-assistir::-webkit-scrollbar {
+        display: none;
+    }
+
+    .temporada-serie-assistir label img {
+        min-height: 40px;
+        max-height: 40px;
+        min-width: 40px;
+        max-width: 40px;
+    }
+
+    .episodio-serie-assistir label img {
+        min-height: 40px;
+        max-height: 40px;
+        min-width: 70px;
+        max-width: 70px;
+    }
+
+    .episodio-serie-assistir, .div-escolher-temporada {
+        margin-right: .4rem;
+    }
+    
+    .span-hover-n-episodio:hover, .span-hover-n-temporada:hover {
+        padding-bottom: 5px;
+        font-size: 1rem;
+    }
+
+    .span-hover-n-temporada, .span-hover-n-episodio  {
+        max-height: 40px;
+        font-size: .9rem;
+    }
+
+    .opcao-video-assistir {
+        padding: 15px 0;
+    }
+
+    .opcao-video-assistir label {
+        font-size: .8rem;
+        padding: 7px 12px;
+    }
+    
+}
+
+
+.a-episodio-serie {
+    text-decoration: none;
+    color: #fff;
+}
+
+.olho-episodio-visualizado {
+    color: rgb(85, 85, 85);
+    margin-left: 5px;
+}
+
+.a-episodio-serie:visited .olho-episodio-visualizado {
+    color: #fff;
+    opacity: 1;
+}

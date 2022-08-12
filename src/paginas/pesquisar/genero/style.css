@@ -1,0 +1,273 @@
+.div-genero-pesquisado {
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+    margin-top: 80px;
+}
+
+.h2-titulo-generos {
+    position: relative;
+    margin-left: 1.5rem;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+  
+.h2-titulo-generos::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -.7rem;
+    height: 100%;
+    width: 4px;
+    background-color: #fff;
+    border-radius: 50px;
+}
+
+.div-generos {
+    position: sticky;
+    top: 50px;
+    display: flex;
+    align-items: center;
+    overflow: auto;
+    max-width: 100%;
+    margin: 10px 10px 20px 20px;
+    padding: 25px 0 30px 0;
+    background-image: linear-gradient(to bottom, #181818 1%, #181818e6 80%, #18181800 95%);
+    z-index: 2;
+}
+
+.div-generos::-webkit-scrollbar {
+    display: none;
+}
+
+.label-escolher-genero {
+    display: flex;
+    align-items: center;
+    max-width: max-content;
+    margin: 10px;
+}
+
+.label-escolher-genero span, .label-escolher-genero a {
+    text-decoration: none;
+    color: #ccc;
+    font-weight: bold;
+    text-transform: uppercase;
+    white-space: nowrap;
+    padding: 5px 15px;
+    background: #353535;
+    border-radius: 50px;
+    border: 1px solid transparent;
+    transition: all .3s ease;
+}
+
+.label-escolher-genero span:hover, .label-escolher-genero a:hover {
+    color: #fff;
+    background: #454545;
+}
+
+.input-escolher-genero {
+    display: none;
+}
+
+.input-escolher-genero:checked ~ .label-escolher-genero span, .input-escolher-genero:checked ~ .label-escolher-genero a {
+    border: 2px solid #fff;
+    color: #303030;
+    background: #fff;
+}
+
+.div-generos .bt-slide, .div-paginas .bt-slide {
+    position: sticky;
+    background: unset;
+    border: none;
+    color: #fff;
+    max-width: 30px;
+    height: 45px;
+    font-size: 1.2rem;
+}
+
+.div-generos .bt-left-div-generos {
+    display: none;
+    padding: 0 40px 0 60px;
+    background-image: linear-gradient(to right, #181818, #181818, #18181800);
+    left: 0;
+}
+
+.div-generos .bt-right-div-generos {
+    padding-left: 10px;
+    padding: 0 28px 0 40px;
+    background-image: linear-gradient(to left, #181818, #181818b9, #18181800);
+    right: -2px;
+}
+
+.div-generos .bt-slide i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+    cursor: pointer;
+    transition: all .2s ease;
+}
+
+.div-generos .bt-slide i:hover {
+    background: #404040;
+    border: 2px solid #606060;
+}
+
+.div-movie-pesquisar-genero {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    flex-flow: wrap;
+    border-radius: .7rem;
+    max-width: 100%;
+    margin: 0 1.2rem;
+    padding: 1.2rem 0 0 .7rem;
+}
+
+.div-paginas {
+    display: flex;
+    max-width: 94%;
+    margin: 10px;
+    padding: 20px;
+    overflow: auto;
+}
+
+.div-paginas::-webkit-scrollbar {
+    display: none;
+}
+
+.div-bts-paginas-generos {
+    display: flex;
+    margin: 0 20px 0 0;
+    padding: 0;
+}
+
+.div-bts-paginas-generos section {
+    margin-right: 10px;
+}
+
+.input-escolher-pagina {
+    display: none;
+}
+
+.label-escolher-pagina {
+    max-width: max-content;
+    margin: 10px;
+}
+
+.label-escolher-pagina span {
+    text-decoration: none;
+    color: #ccc;
+    white-space: nowrap;
+    padding: 5px 12px;
+    background: #353535;
+    border-radius: 50px;
+    border: 1px solid transparent;
+    transition: all .2s ease;
+}
+
+.label-escolher-pagina span:hover {
+    color: #fff;
+    background: #303030;
+}
+
+.input-escolher-pagina {
+    display: none;
+}
+
+.input-escolher-pagina:checked ~ .label-escolher-pagina span {
+    border: 2px solid #fff;
+    color: #303030;
+    background: #fff;
+}
+
+.div-paginas .bt-left-div-paginas {
+    display: none;
+    padding: 0 40px 0 60px;
+    background-image: linear-gradient(to right, #181818, #181818, #18181800);
+    left: 0;
+}
+
+.div-paginas .bt-right-div-paginas {
+    padding: 0 28px 0 40px;
+    background-image: linear-gradient(to left, #181818, #181818b9, #18181800);
+    right: -20px;
+}
+
+.div-paginas .bt-slide i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+    transition: all .2s ease;
+}
+
+.div-paginas .bt-slide i:hover {
+    background: #404040;
+    border: 2px solid #606060;
+}
+
+.bts-anterior-proximo {
+    justify-content: center;
+}
+
+@media (max-width: 800px) {
+
+    .movie-pesquisar-genero {
+        margin-right: .7rem;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .div-generos {
+        padding: 15px 0 30px 0;
+    }
+    
+    .div-movie-pesquisar-genero {
+        justify-content: center;
+    }
+    .h2-titulo-generos {
+        font-size: 1.2rem;
+    }
+    
+    .label-escolher-genero {
+        margin: 5px;
+        font-size: .7rem;
+    }
+
+    .label-escolher-genero span {
+        padding: 5px 10px;
+    }
+    
+    .label-bt-pagina-genero a {
+        font-size: .9rem;
+    }
+}
+
+@media (max-width: 400px) {
+
+    .h2-titulo-generos {
+        font-size: 1rem;
+    }
+
+    .bts-anterior-proximo {
+        justify-content: center;
+        margin-right: 0;
+    }
+    
+    .bts-anterior-proximo section {
+        margin-right: 0;
+    }
+    
+    .label-bt-pagina-genero a {
+        font-size: .7rem;
+    }
+}

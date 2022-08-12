@@ -1,0 +1,139 @@
+.content-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 30px;
+    transition: all .1s ease;
+    z-index: 99;
+}
+
+.content-nav a:hover {
+    transition: all .3s ease;
+    opacity: .8;
+}
+
+.content-nav .section-img-list-nav {
+    display: flex;
+    align-items: center;
+}
+
+.section-img-list-nav a {
+    height: 30px;
+    margin-top: 3px;
+}
+
+.section-img-list-nav .logo-dflix {
+    height: 30px;
+    width: 100px;
+}
+
+.div-links-nav ul {
+    margin-left: 40px;
+}
+
+.div-links-nav ul a {
+    color: #fff;
+    text-decoration: none;
+    font-size: .8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-right: 12px;
+    opacity: .6;
+    transition: all .3s ease;
+}
+
+.div-links-nav ul a:hover {
+    opacity: 1;
+}
+
+.div-links-nav ul a:last-child {
+    margin-right: 0;
+}
+
+.section-lupa-menu-mobile {
+    display: flex;
+    align-items: center;
+}
+
+.section-lupa-menu-mobile .icone-lupa-pesquisar {
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.div-abrir-pop-up-nav {
+    cursor: pointer;
+    display: none;
+    margin-left: 10px;
+}
+
+.div-fechar-pop-up-nav {
+    cursor: pointer;
+    margin-bottom: 30px;
+    display: flex;
+}
+
+.div-abrir-pop-up-nav, .div-fechar-pop-up-nav {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 35px;
+    width: 35px;
+    font-size: 1.4rem;
+    border-radius: 50%;
+    transition: all .2s ease;
+}
+
+.div-abrir-pop-up-nav:hover, .div-fechar-pop-up-nav:hover {
+    background: #404040;
+    border: 2px solid #606060;
+}
+
+.div-abrir-pop-up-nav:active, .div-fechar-pop-up-nav:active {
+    background: #707070;
+    border: 2px solid #909090;
+}
+
+.ul-menu-hamburguer-nav-mobile a {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 13px 15px;
+    margin-bottom: 5px;
+    border-radius: 50px;
+    opacity: .7;
+}
+
+.ul-menu-hamburguer-nav-mobile a:hover {
+    background: #404040;
+    opacity: 1;
+}
+
+.ul-menu-hamburguer-nav-mobile a i {
+    margin-right: 5px;
+    width: 20px;
+}
+
+@media (max-width: 600px) {
+
+    .content-nav {
+        background: #000;
+        padding: 10px;
+    }
+    
+    .div-links-nav {
+        display: none;
+    }
+
+    .div-abrir-pop-up-nav {
+        display: flex;
+    }
+    
+}

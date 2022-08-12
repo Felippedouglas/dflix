@@ -1,0 +1,27 @@
+.content-erro-404 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.bt-voltar-erro-404 {
+    text-decoration: none;
+    color: #fff;
+    background: #f00;
+    padding: 6px 15px;
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 50px;
+    transition: all .3s ease;
+}
+
+.bt-voltar-erro-404:hover {
+    background: #a10000;
+}

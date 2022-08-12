@@ -1,0 +1,153 @@
+.h2-movies-pessoa {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    margin-left: 2.5rem;
+    position: relative;
+}
+
+.h2-movies-pessoa::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -0.7rem;
+    height: 100%;
+    width: .3rem;
+    background-color: #fff;
+}
+
+.div-movie-pessoa {
+    position: relative;
+    display: flex;
+    flex-flow: wrap;
+    overflow-x: auto;
+    padding: 1.3rem 0 .7rem .7rem;
+    margin: 10px 30px 50px 30px;
+    margin-bottom: 2rem;
+}
+
+.div-movie-pessoa::-webkit-scrollbar {
+    display: none;
+}
+
+.div-movie-pessoa .movie {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 .95rem 2rem 0;
+    border-radius: 1rem;
+    transition: all 0.5s ease;
+}
+
+.div-movie-pessoa .movie:hover {
+    transform: scale(1.04);
+}
+
+.div-movie-pessoa .movie:nth-child(21) {
+    margin-right: -0.7rem;
+}
+
+.div-movie-pessoa .movie .section-informacoes-movie {
+    position: relative;
+    bottom: 3rem;
+    left: 50%;
+    height: 2.5rem;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 .7rem;
+    transform: translateX(-50%);
+    text-decoration: none;
+    color: #fff;
+    background-image: linear-gradient(to top, #000 60%, transparent);
+    border-radius: 0 0 1rem 1rem;
+}
+
+.div-avaliacao-movie {
+    display: flex;
+    flex-direction: row;
+}
+
+.div-movie-pessoa .movie .section-informacoes-movie span {
+    display: flex;
+    align-items: center;
+    margin-top: 0;
+    font-size: .8rem;
+    font-weight: 600;
+}
+
+.div-movie-pessoa .movie .section-informacoes-movie span i {
+    font-size: .7rem;
+    margin-right:.2rem;
+}
+
+.div-movie-pessoa .movie img {
+    min-width: 180px;
+    max-width: 180px;
+    min-height: 260px;
+    max-height: 260px;
+    margin-bottom: 1rem;
+    border-radius: .5rem;
+    background: #222222;
+    object-fit: cover;
+}
+
+.div-movie-pessoa .movie .span-titulo-movie {
+    font-weight: bold;
+    font-size: 1rem;
+    text-align: center;
+    max-width: 18ch;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-top: -1.3rem;
+}
+
+.div-movie-pessoa .movie a {
+    max-height: 300px;
+    text-decoration: none;
+    transition: all 0.5s ease;
+}
+
+@media (max-width: 800px) {
+
+    .div-movie-pessoa .movie {
+        margin-right: .7rem;
+    }
+
+    .div-movie-pessoa .movie img {
+        min-width: 130px;
+        max-width: 130px;
+        min-height: 200px;
+        max-height: 200px;
+        margin-bottom: 1rem;
+        border-radius: .5rem;
+    }
+
+    .div-movie-pessoa .movie .span-titulo-movie {
+        font-size: .8rem;
+        margin-top: -2.5rem;
+    }
+    
+    .h2-movies-pessoa {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .div-movie-pessoa {
+        justify-content: center;
+        margin: 10px 10px 50px 10px;
+    }
+    
+    .h2-movies-pessoa {
+        font-size: 1rem;
+    }
+
+    .div-movie-pessoa .movie {
+        margin-right: .4rem;
+    }
+}

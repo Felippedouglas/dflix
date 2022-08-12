@@ -1,0 +1,138 @@
+.section-pessoa {
+    display: flex;
+    flex-direction: column;
+    height: max-content;
+    border-radius: 5px;
+}
+
+.section-background-pessoa {
+    position: relative;
+    background: #303030;
+    width: 100%;
+    z-index: 0;
+    overflow: hidden;
+    margin-top: 55px;
+}
+
+.link-movie-background {
+    position: absolute;
+    right: 3%;
+    top: 3%;
+    text-decoration: none;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 14px;
+    z-index: 2;
+}
+
+.section-background-pessoa img {
+    min-height: 350px;
+    max-height: 350px;
+    min-width: 100%;
+    object-fit: cover;
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(5px);
+}
+
+.section-background-pessoa::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: linear-gradient(to top, #181818f9, #181818c5, #18181899);
+    z-index: 1;
+}
+
+.section-informacoes-pessoa {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin: 0 30px 30px 30px;
+    margin-top: -200px;
+    z-index: 2;
+}
+
+.section-informacoes-pessoa .img-pessoa {
+    min-width: 200px;
+    max-width: 200px;
+    min-height: 200px;
+    max-height: 200px;
+    margin-bottom: 10px;
+    object-fit: cover;
+    background: #252525;
+    box-shadow: -1px 1px 10px 1px rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+}
+
+.div-sobre-pessoa {
+    display: flex;
+    flex-direction: column;
+    margin-left: 30px;
+}
+
+.nome-pessoa h1 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.div-sobre-pessoa span {
+    font-size: 14px;
+    color: #ccc;
+    white-space: nowrap;
+    margin-bottom: 5px;
+    border-radius: 50px;
+}
+
+.section-biográfia-pessoa {
+    margin: 10px 30px 50px 30px;
+}
+
+.section-biográfia-pessoa h2 {
+    text-transform: uppercase;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.section-biográfia-pessoa span {
+    color: #ccc;
+    font-size: 15px;
+}
+
+@media (max-width: 800px) {
+
+    .section-background-pessoa img {
+        min-height: 300px;
+        max-height: 300px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .section-informacoes-pessoa {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .div-sobre-pessoa {
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 0;
+    }
+    
+    .div-sobre-pessoa .sobre-pessoa {
+        text-align: center;
+    }
+
+    .section-biográfia-pessoa {
+        margin-bottom: 50px !important;
+    }
+
+    .section-biográfia-pessoa h2 {
+        font-size: 1.1rem;
+    }
+}

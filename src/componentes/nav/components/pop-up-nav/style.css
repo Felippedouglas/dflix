@@ -1,0 +1,34 @@
+.container-pop-up-nav {
+    display: flex;
+    justify-content: flex-end;
+    position: fixed;
+    inset: 0;
+    background-color: hsla(0, 0%, 9%, 0.8);
+    z-index: 9;
+}
+
+.pop-up-nav::-webkit-scrollbar-track{
+    background-color: #202020;
+}
+  
+.pop-up-nav {
+    position: relative;
+    background: #202020;
+    padding: 1.1rem 1.3rem 1.1rem 1.1rem;
+    border-radius: 10px;
+    width: 500px;
+    min-width: 150px;
+    max-width: 250px;
+    overflow: auto;
+}
+
+.pop-up-nav::after {
+    content: '';
+    display: block;
+    position: sticky;
+    bottom: -1.1rem;
+    left: 0;
+    width: 100%;
+    height: 3rem;
+    background-image: linear-gradient(to top, #222222, #222222bf, transparent);
+}
