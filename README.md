@@ -9,7 +9,7 @@ Sendo possível encontrar informações de filmes e séries como: Nome e descri�
 
 ## `|Página Inicial`
 
-Na página inicial é possivel encontrar um Filme ou Série principal recomendada, 20 filmes e 20 séries mais populares do momento, sendo possível escolher entre mais populares ou mais bem avaliadas (Féries) e, populares, lançamentos e mais bem avaliados (Filmes).
+Na página inicial é possivel encontrar filmes e séries mais populares do momento, podendo escolher entre mais populares ou mais bem avaliadas (Féries) e, populares, lançamentos e mais bem avaliados (Filmes).
 
 <img src='./assets/imgs/pagina-inicial.png' alt='página inicial' style='margin-bottom: 50px'>
 
@@ -21,14 +21,14 @@ Na página de filme ou série é possivel encontrar as suas principais informaç
 
 ## `|Página 'Pessoa'`
 
-Na página 'pessoa' é possível encontrar informações do(a) ator/atriz, diretores e dubladores. Nome, biográfia, idade, ano de nascimento, cidade natal e filmes/séries participadas.
+Na página 'pessoa' é possível encontrar informações do(a) ator/atriz, diretores e dubladores: Nome, biográfia, idade, ano de nascimento, cidade natal e filmes/séries participadas.
 
 <img src='./assets/imgs/pagina-pessoa.png' alt='página pessoa' style='margin-bottom: 50px'>
 
 
 ## `|Página Pesquisar`
 
-Na página pesquisar é possível obter filmes, séries e pessoas (atores, atrizes, dubladores e diretores). possui histórico de pesquisas e opção de visualizar apenas filme, série, ou pessoa.
+Na página pesquisar é possível pesquisar filmes, séries e pessoas (atores, atrizes, dubladores e diretores). contém histórico de pesquisas e opção de visualizar apenas filme, série, ou pessoa.
 
 <img src='./assets/imgs/pagina-pesquisar.png' alt='página pesquisar'>
 <img src='./assets/imgs/pagina-pesquisar-resultados.png' alt='página pesquisar' style='margin-bottom: 50px'>
