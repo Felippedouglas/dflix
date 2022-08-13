@@ -55,7 +55,7 @@ export default function Nav() {
 
             <PopUpNav popUpNav={popUpNav} setPopUpNav={setPopUpNav}>
                 <div className='div-fechar-pop-up-nav' onClick={()=>fecharNav()}>
-                    <i class="fa-solid fa-bars"></i>
+                    <span><i class="fa-solid fa-bars"></i> Menu</span>
                 </div>
                 <div className="div-menu-hamburguer-mobile">
                     <ul className="ul-menu-hamburguer-nav-mobile">

@@ -78,20 +78,19 @@ export default function Assistir() {
             setIdMovieFavorito(data.id)
             setTipoMovieFavorito(filmeSerie)
             setVoteAverageMovieFavorito(data.vote_average)
-            
-            setTimeout(()=>{
-                if (data.title) {
-                    document.title = `Assistir ${data.title} | DFLIX`;
-                    setNomeMovieFavorito(data.title)
-                } else if (data.name) {
-                    document.title = `Assistir ${data.name} | DFLIX`;
-                    setNomeMovieFavorito(data.name)
-                }
-            }, 100);
         });
         
             
-        }, [id, favoritoIsTrue, favoritos]);
+        setTimeout(()=>{
+            if (movie.title) {
+                document.title = `${movie.title} | DFLIX`;
+                setNomeMovieFavorito(movie.title)
+            } else if (movie.name) {
+                document.title = `${movie.name} | DFLIX`;
+                setNomeMovieFavorito(movie.name)
+            }
+        }, 100);
+    }, [id, favoritoIsTrue, favoritos]);
 
     // id imdb filme e série
     useEffect(() => {
@@ -318,7 +317,7 @@ export default function Assistir() {
                                                             <section className="temporada-serie-assistir">
                                                                 <input type='radio' name='input-escolher-temporada' id={`input-escolher-temporada-${season.season_number}`}/>
                                                                 <label for={`input-escolher-temporada-${season.season_number}`} onClick={()=>definirTemporada(season.season_number)}>
-                                                                    <img src={`${image_path}${season.poster_path}`} alt={season.name}  onError={({ currentTarget }) => {currentTarget.onerror = null; currentTarget.src="https://dflix.netlify.app/imagens/img-avatar.png";}}/>
+                                                                    <img loading="lazy" src={`${image_path}${season.poster_path}`} alt={season.name}  onError={({ currentTarget }) => {currentTarget.onerror = null; currentTarget.src="https://dflix.netlify.app/imagens/img-avatar.png";}}/>
                                                                     <span className="span-hover-n-temporada">{season.season_number}</span>
                                                                 </label>
                                                             </section>
@@ -343,7 +342,7 @@ export default function Assistir() {
                                                         <section className="episodio-serie-assistir">
                                                             <input type='radio' name='input-escolher-episodio' id={`input-escolher-episodio-${ep.episode_number}`}/>
                                                             <label for={`input-escolher-episodio-${ep.episode_number}`} onClick={()=>definirEpisodio(ep.episode_number)}>
-                                                                <img src={`${image_path}${ep.still_path}`} alt={ep.name}  onError={({ currentTarget }) => {currentTarget.onerror = null; currentTarget.src="https://dflix.netlify.app/imagens/img-avatar.png";}}/>
+                                                                <img loading="lazy" src={`${image_path}${ep.still_path}`} alt={ep.name}  onError={({ currentTarget }) => {currentTarget.onerror = null; currentTarget.src="https://dflix.netlify.app/imagens/img-avatar.png";}}/>
                                                                 <Link to={`/assistir=tv&${id}/${temporada}/${ep.episode_number}`}id={`link-escolher-episodio-${ep.episode_number}`}  className="span-hover-n-episodio a-episodio-serie">
                                                                     <span>{ep.episode_number}</span>
                                                                     <Tippy content='Assistido'>

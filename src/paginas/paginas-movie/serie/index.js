@@ -15,6 +15,7 @@ export default function PagPopularSerie(props) {
                 setMovies(data.results)
             })
 
+            document.getElementById("list-movie-serie").scrollTo(0,0)
     }, [props.categoriaSerie])
 
 

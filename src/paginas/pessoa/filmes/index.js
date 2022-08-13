@@ -15,7 +15,6 @@ export default function PessoaFilmeParticipado(props) {
         .then(Response => Response.json())
         .then(data => {
             setFilmesParticipados(data)
-            console.log(data)
             })
     }, [idPessoa])
 

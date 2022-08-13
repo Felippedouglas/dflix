@@ -15,6 +15,7 @@ export default function PagPopularFilme(props) {
             .then(data => {
                 setMovies(data.results)
             })
+            document.getElementById("list-movie-filme").scrollTo(0,0)
         }, [props.categoriaFilme])
         
         

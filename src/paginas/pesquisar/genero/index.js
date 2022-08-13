@@ -12,6 +12,7 @@ export default function PesqusiarGenero() {
     const [ movies, setMovies ] = useState([]);
     const [ totalResultados, setTotalResultados ] = useState();
     const image_path = 'https://image.tmdb.org/t/p/w500';
+    const [ scrollDivGeneros, setScrollDivGeneros ] = useState()
 
     document.title = `${definirFilmeSerie} de ${generoPesquisado} - DFLIX`;
     if(Number(numeroPagina) == 0) {
@@ -51,17 +52,16 @@ export default function PesqusiarGenero() {
     var btLeft = document.getElementById("bt-left-div-generos")
 
     function btGeneroLeftSlide() {
-        divSlider.scrollLeft -= 200;
-        if (divSlider.scrollLeft < 10) {
-            btLeft.style.display = "none";
-        }
+        divSlider.scrollLeft -= 400;
     }
     
     function btGeneroRightSlide() {
-        divSlider.scrollLeft += 200;
-        btLeft.style.display = "block";
-        btLeft.style.left = "-20px";
+        divSlider.scrollLeft += 400;
         btLeft.style.padding = "0 40px 0 20px";
+    }
+    
+    function scrollDiv() {
+        setScrollDivGeneros(document.getElementById("div-generos").scrollLeft);
     }
     
     return(
@@ -76,9 +76,11 @@ export default function PesqusiarGenero() {
             }
         </header>
         {infantil == 'false'  &&
-            <div className="div-generos" id="div-generos">
+            <div className="div-generos" id="div-generos" onScroll={()=>scrollDiv()}>
+            {scrollDivGeneros > 20 && document.body.clientWidth >= 600 &&
                 <button className="bt-slide bt-left-div-generos" id="bt-left-div-generos" onClick={btGeneroLeftSlide}><i class="fas fa-angle-left"></i></button>
-                {generos.map(genero => {
+            }
+            {generos.map(genero => {
                     return (
                         <section className="genero">
                             <input className="input-escolher-genero" type='radio' name='input-radio-genero' id={`input-genero=${genero.id}`}/>

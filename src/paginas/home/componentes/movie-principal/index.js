@@ -2,8 +2,9 @@ import './style.css';
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { APIKey } from '../../../../config/key';
-import logoMoviePrincipal from '../../../../componentes/imgs/logo-movie-principal.png'
-import imgBackgroundMoviePrincipal from '../../../../componentes/imgs/background-video-movie-principal.png'
+import logoMoviePrincipal from '../../../../componentes/imgs/logo-movie-principal.png';
+import imgBackgroundMoviePrincipal from '../../../../componentes/imgs/background-video-movie-principal.png';
+import Trailer from '../../../../componentes/trailer.mp4'
 
 export default function MoviePrincipal() {
 
@@ -29,31 +30,6 @@ export default function MoviePrincipal() {
     const [ runTimeMovieFavorito, setRunTimeMovieFavorito ] = useState();
     const [ voteAverageMovieFavorito, setVoteAverageMovieFavorito ] = useState();
     const [ favoritos, setFavoritos ] = useState()
-
-    
-    setTimeout(()=> {
-        if (filmeSerie == 'movie') {
-            setDefinirFilmeSerie('filme');
-            setNomeMovieFavorito(movie.title)
-            setYearMovieFavorito(movie.release_date.slice(0,4))
-            setRunTimeMovieFavorito(movie.runtime)
-        } else if (filmeSerie == 'tv') {
-            setDefinirFilmeSerie('serie');
-            setNomeMovieFavorito(movie.name)
-            setYearMovieFavorito(movie.first_air_date.slice(0,4))
-            setRunTimeMovieFavorito(movie.episode_run_time[0])
-        }
-
-        setTimeout(()=>{
-            {favoritos.map(favorito => {
-                if (favorito.imdbId == idImdb) {
-                    setFavoritoIsTrue(true)
-                }
-            })
-            }
-        }, 1)
-
-    }, 1);
     
     useEffect(() => {
         fetch(`https://api.themoviedb.org/3/${filmeSerie}/${id}?api_key=${APIKey}&language=pt-BR`)
@@ -79,6 +55,31 @@ export default function MoviePrincipal() {
                 }
             }, 100);
         });
+        
+        setTimeout(()=> {
+            if (filmeSerie == 'movie') {
+                setDefinirFilmeSerie('filme');
+                setNomeMovieFavorito(movie.title)
+                setYearMovieFavorito(movie.release_date.slice(0,4))
+                setRunTimeMovieFavorito(movie.runtime)
+            } else if (filmeSerie == 'tv') {
+                setDefinirFilmeSerie('serie');
+                setNomeMovieFavorito(movie.name)
+                setYearMovieFavorito(movie.first_air_date.slice(0,4))
+                setRunTimeMovieFavorito(movie.episode_run_time[0])
+            }
+
+            setTimeout(()=>{
+                {favoritos.map(favorito => {
+                    if (favorito.imdbId == idImdb) {
+                        setFavoritoIsTrue(true)
+                    }
+                })
+                }
+            }, 10)
+
+        }, 100);
+
     }, [favoritoIsTrue, favoritos]);
     
     // id imdb filme e série
@@ -156,7 +157,7 @@ export default function MoviePrincipal() {
                 <div className="div-video-background">
                     <video
                         id='video-movie-principal'
-                        src="https://imdb-video.media-imdb.com/vi764854809/1434659607842-pgv4ql-1651159417077.mp4?Expires=1660267778&Signature=ql3Mse3hFe50bDec9-jFSWNkCNWgusSt7lCzWlxZ4OLAE0C4Fgo5QWRTH5ReF8iTfSKwttM~xFpVhMuhnJ8SZVz16Lf767ZRtsfMSsu0eNNDGp9P85zcqEHvkAzZJVbOR9x~rGA3YaSjSICTyDef2-W~1XiTjeBP2z1kDLs6B6~5ceKimoNYlbkGjmXopxBvGgfmh4W-ewjlTY9MqMXfnknmYF0oDon88kSacmTezp1C7EromOjKqZkdaRh8f3PHUgcKfABi1Uzo432aJtVhoIaqspVRPoIJbbD7lUyuNuBFCCdIcaA743h0bHv-z47uc7TwZhc1RmNwvpHZB2i3qQ__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA"
+                        src={Trailer}
                         poster={imgBackgroundMoviePrincipal}
                         muted loop autoPlay>
                     </video>

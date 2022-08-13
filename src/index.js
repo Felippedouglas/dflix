@@ -10,6 +10,7 @@ import PesqusiarGenero from './paginas/pesquisar/genero';
 import Pessoa from './paginas/pessoa';
 import $ from 'jquery';
 import './global.css';
+import Footer from './componentes/footer';
 
 setTimeout(()=>{
 
@@ -23,7 +24,7 @@ setTimeout(()=>{
 
   ReactDOM.render(
     <HashRouter>
-    <button onClick={()=>window.scrollTo(0,0)} className='button-topo-pagina' id="button-topo-pagina"><i class="fa-solid fa-circle-chevron-up"></i></button>
+      <button onClick={()=>window.scrollTo(0,0)} className='button-topo-pagina' id="button-topo-pagina"><i class="fa-solid fa-circle-chevron-up"></i></button>
       <BarraNav />
       <Routes>
         <Route path="/" element={<Home/>}/>
@@ -37,6 +38,7 @@ setTimeout(()=>{
         <Route path="/pessoa=:idPessoa/bg=:backgroundMovie/" element={<Pessoa/>}/>
         <Route path="/favoritos/" element={<Favoritos/>}/>
       </Routes>
+      <Footer />
     </HashRouter>,
     document.getElementById('app')
   );

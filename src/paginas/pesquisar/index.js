@@ -89,13 +89,16 @@ export default function Pesquisar() {
                 }, 100)
 
                 setPaginasMovies(data.total_pages);
-                document.getElementById('div-botoes-paginas-pesquisar').innerHTML = `<h3 class="h3-pagina-atual">Página atual: ${numeroPagina}</h3>`
-                for (var i=1; i <= data.total_pages && i <= 10; i++) {
-                    document.getElementById('div-botoes-paginas-pesquisar').innerHTML += `
-                    <a class='bt-pagina-pesquisar' href='/#/pesquisar/search=${filmePesquisado}&pagina=${i}' onclick='setTimeout(()=> {window.scrollTo(0,0)}, 1)'>${i}</a>
-                    `
-                }
-                })
+
+                setTimeout(()=>{
+                    document.getElementById('div-botoes-paginas-pesquisar').innerHTML = `<h3 class="h3-pagina-atual">Página atual: ${numeroPagina}</h3>`
+                    for (var i=1; i <= data.total_pages && i <= 10; i++) {
+                        document.getElementById('div-botoes-paginas-pesquisar').innerHTML += `
+                        <a class='bt-pagina-pesquisar' href='/#/pesquisar/search=${filmePesquisado}&pagina=${i}' onclick='setTimeout(()=> {window.scrollTo(0,0)}, 1)'>${i}</a>
+                        `
+                    }
+                    })
+                }, 1000)
                 document.title = 'Pesqsuisar - DFLIX';
     }, [movieName, numeroPagina, tipoPesquisa])
 
