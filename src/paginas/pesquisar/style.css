@@ -49,6 +49,60 @@
     color: #ccc;
 }
 
+.div-filtro {
+    position: sticky;
+    top: 50px;
+    display: flex;
+    align-items: center;
+    overflow: auto;
+    max-width: 100%;
+    margin: 10px 10px 20px 0;
+    padding: 25px 0 30px 20px;
+    scroll-behavior: smooth;
+    background-image: linear-gradient(to bottom, #181818 1%, #181818e6 80%, #18181800 95%);
+    z-index: 2;
+}
+
+.div-filtro::-webkit-scrollbar {
+    display: none;
+}
+
+.label-escolher-filtro {
+    display: flex;
+    align-items: center;
+    max-width: max-content;
+    margin: 10px;
+}
+
+.label-escolher-filtro span, .label-escolher-filtro a {
+    text-decoration: none;
+    color: #ccc;
+    font-weight: bold;
+    text-transform: uppercase;
+    white-space: nowrap;
+    padding: 5px 15px;
+    background: #353535;
+    border-radius: 50px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+.label-escolher-filtro span:hover, .label-escolher-filtro a:hover {
+    color: #fff;
+    background: #454545;
+}
+
+.input-escolher-filtro {
+    display: none;
+}
+
+.input-escolher-filtro:checked ~ .label-escolher-filtro span, .input-escolher-filtro:checked ~ .label-escolher-filtro a {
+    border: 2px solid #fff;
+    color: #303030;
+    background: #fff;
+}
+
 .section-limpar-historico {
     display: flex;
     justify-content: end;
@@ -77,6 +131,32 @@
     background: #404040;
     border: 1px solid #808080;
     transition: .5s ease;
+}
+
+.section-exibir-historico-pesquisa-desativado {
+    margin: 30px 0 0 10px !important;
+}
+
+.section-salvar-pesquisa-desativado {
+    font-size: .7rem;
+    margin: 0 0 20px 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.section-salvar-pesquisa-desativado a {
+    color: #fff;
+    margin-left: 10px;
+    font-size: .8rem;
+}
+
+.section-salvar-pesquisa-desativado a i {
+    transition: all .3s ease;
+}
+
+.section-salvar-pesquisa-desativado a:hover i {
+    transform: rotate(90deg);
+    opacity: .8;
 }
 
 .section-item-historico {
@@ -179,10 +259,6 @@
     max-width: 100%;
     margin: 0 .5rem;
     padding: 1.2rem 0 0 .7rem;
-}
-
-.div-movie-pesquisar {
-    max-width: max-content;
 }
 
 .movie-pesquisar, .pessoa-pesquisar {
@@ -289,45 +365,19 @@
     font-size: 1rem;
 }
 
-.div-botoes-paginas-pesquisar {
+.div-nenhum-resultado-pesquisar {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    flex-flow: wrap;
-    margin: 1.2rem;
-    padding: .7rem;
-    border-radius: .7rem;
 }
 
-.div-botoes-paginas-pesquisar .bt-pagina-pesquisar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: .95rem;
-    font-weight: 600;
-    margin: .3rem;
-    min-height: 2rem;
-    min-width: 2rem;
-    background: #E50914;
-    color: #fff;
-    text-decoration: none;
-    border: 1px solid transparent;
-    border-radius: 50%;
+.div-nenhum-resultado-pesquisar i {
+    font-size: 3rem;
+    margin-bottom: 10px;
 }
 
-.div-botoes-paginas-pesquisar .bt-pagina-pesquisar:hover {
-    background: #bd0009;
-}
-
-.div-botoes-paginas-pesquisar .bt-pagina-pesquisar:active {
-    background-color: #ff000d;
-    border: .1rem solid #505050;
-}
-
-.h3-pagina-atual {
-    width: 100%;
-    text-transform: uppercase;
-    font-size: .9rem;
-    margin: .2rem;
+.div-nenhum-resultado-pesquisar .span-nenhum-resultado-pesquisar {
+    font-weight: bold;
 }
 
 @media (max-width: 1000px) {
@@ -383,10 +433,6 @@
 }
 
 @media (max-width: 600px) {
-
-    #h2-resultados-encontrados {
-        font-size: 1.1rem;
-    }
     
     .div-movie-pesquisar, .div-pessoa-pesquisar {
         justify-content: center;
@@ -410,5 +456,22 @@
 
     .titulo-pessoa {
         max-width: 14ch;
+    }
+    
+    .label-escolher-filtro {
+        margin: 5px;
+        font-size: .7rem;
+    }
+
+    .label-escolher-filtro span {
+        padding: 5px 10px;
+    }
+
+    .div-nenhum-resultado-pesquisar i {
+        font-size: 2rem;
+    }
+    
+    .div-nenhum-resultado-pesquisar .span-nenhum-resultado-pesquisar {
+        font-size: .8rem;
     }
 }

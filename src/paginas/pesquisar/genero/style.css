@@ -59,6 +59,7 @@
     background: #353535;
     border-radius: 50px;
     border: 1px solid transparent;
+    cursor: pointer;
     transition: all .3s ease;
 }
 
@@ -76,7 +77,7 @@
     color: #303030;
     background: #fff;
 }
-
+/*
 .div-generos .bt-slide, .div-paginas .bt-slide {
     position: sticky;
     background: unset;
@@ -115,7 +116,7 @@
 .div-generos .bt-slide i:hover {
     background: #404040;
     border: 2px solid #606060;
-}
+}*/
 
 .div-movie-pesquisar-genero {
     display: flex;
@@ -216,6 +217,12 @@
 
 .bts-anterior-proximo {
     justify-content: center;
+}
+
+.span-pagina-atual {
+    background: #303030;
+    padding: 5px 10px;
+    border-radius: 50px;
 }
 
 @media (max-width: 800px) {

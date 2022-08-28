@@ -1,13 +1,23 @@
 import { Link } from "react-router-dom"
 import './style.css';
 import $ from 'jquery';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PopUpNav from "./components/pop-up-nav";
 
 
 export default function Nav() {
 
     const [ popUpNav, setPopUpNav ] = useState(false);
+    const [ widthClient, setWidthClient ] = useState();
+    const [ economiaInternet, setEconomiaInternet ] = useState();
+    const [ nomeUsuario, setNomeUsuario ] = useState();
+
+    setInterval(()=>{
+        setWidthClient(document.body.clientWidth);
+        setEconomiaInternet(localStorage.getItem('economia'));
+        setNomeUsuario(localStorage.getItem('nomeUsuario'));
+    }, 1000)
+
 
     $(window).on('scroll', function() {
         if ($(window).scrollTop() >= 1) {
@@ -57,15 +67,24 @@ export default function Nav() {
                 <div className='div-fechar-pop-up-nav' onClick={()=>fecharNav()}>
                     <span><i class="fa-solid fa-bars"></i> Menu</span>
                 </div>
-                <div className="div-menu-hamburguer-mobile">
-                    <ul className="ul-menu-hamburguer-nav-mobile">
-                        <Link to='/' onClick={()=>fecharNav()}><i class="fa-solid fa-house-crack"></i> Início</Link>
-                        <Link to='/tv/genero=10759/Action & Adventure&infantil=false&pagina=1' onClick={()=>fecharNav()}><i class="fa-solid fa-tv"></i> Séries</Link>
-                        <Link to='/movie/genero=28/ação&infantil=false&pagina=1' onClick={()=>fecharNav()}><i class="fa-solid fa-clapperboard"></i> Filmes</Link>
-                        <Link to='/tv/genero=10762/kids&infantil=true&pagina=1' onClick={()=>fecharNav()}><i class="fa-solid fa-child-reaching"></i> Infantil</Link>
-                        <Link to='/favoritos' onClick={()=>fecharNav()}><i className="fa-solid fa-heart"></i> Favoritos</Link>
-                    </ul>
-                </div>
+                    <div className="div-menu-hamburguer-mobile">
+                        <section className="section-menu-hamburguer-nav-mobile">
+                            <ul>
+                                <Link to={`/conta/`} onClick={()=>fecharNav()}><i class="fa-solid fa-user"></i> {nomeUsuario}</Link>
+                                <Link to={`/conta/`} onClick={()=>fecharNav()}><i class="fa-solid fa-gear"></i> Configurações</Link>
+                                <a><i class="fa-solid fa-wifi"></i> uso: {economiaInternet ? 'Reduzido' : 'Alto'}</a>
+                            </ul>
+                            {widthClient <= 600 &&
+                                <ul>
+                                    <Link to='/' onClick={()=>fecharNav()}><i class="fa-solid fa-house-crack"></i> Início</Link>
+                                    <Link to='/tv/genero=10759/Action & Adventure&infantil=false&pagina=1' onClick={()=>fecharNav()}><i class="fa-solid fa-tv"></i> Séries</Link>
+                                    <Link to='/movie/genero=28/ação&infantil=false&pagina=1' onClick={()=>fecharNav()}><i class="fa-solid fa-clapperboard"></i> Filmes</Link>
+                                    <Link to='/tv/genero=10762/kids&infantil=true&pagina=1' onClick={()=>fecharNav()}><i class="fa-solid fa-child-reaching"></i> Infantil</Link>
+                                    <Link to='/favoritos' onClick={()=>fecharNav()}><i className="fa-solid fa-heart"></i> Favoritos</Link>
+                                </ul>
+                            }
+                        </section>
+                    </div>
             </PopUpNav>
         </div>
     )

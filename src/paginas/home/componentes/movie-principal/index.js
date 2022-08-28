@@ -4,17 +4,18 @@ import { Link } from "react-router-dom";
 import { APIKey } from '../../../../config/key';
 import logoMoviePrincipal from '../../../../componentes/imgs/logo-movie-principal.png';
 import imgBackgroundMoviePrincipal from '../../../../componentes/imgs/background-video-movie-principal.png';
-import Trailer from '../../../../componentes/trailer.mp4'
+import Trailer from '../../../../componentes/trailer.mp4';
 
 export default function MoviePrincipal() {
 
     const [ audioVideo, setAudioVideo ] = useState(false);
     const [ movie, setMovie ] = useState({});
-    const [ filmeSerie, setFilmeSerie ] = useState('movie');
+    const [ filmeSerie, setFilmeSerie ] = useState('tv');
+    const [ id, setId ] = useState(94997);
     const [ idImdb, setIdImdb ] = useState();
-    const [ id, setId ] = useState(507086);
     const [ definirFilmeSerie, setDefinirFilmeSerie ] = useState();
     const image_path = 'https://image.tmdb.org/t/p/w500';
+    const [ economiaInternet, setEconomiaInternet ] = useState();
 
 
     // favoritos
@@ -29,7 +30,7 @@ export default function MoviePrincipal() {
     const [ yearMovieFavorito, setYearMovieFavorito ] = useState();
     const [ runTimeMovieFavorito, setRunTimeMovieFavorito ] = useState();
     const [ voteAverageMovieFavorito, setVoteAverageMovieFavorito ] = useState();
-    const [ favoritos, setFavoritos ] = useState()
+    const [ favoritos, setFavoritos ] = useState();
     
     useEffect(() => {
         fetch(`https://api.themoviedb.org/3/${filmeSerie}/${id}?api_key=${APIKey}&language=pt-BR`)
@@ -38,7 +39,7 @@ export default function MoviePrincipal() {
             
             const favoritosLocalStorage = JSON.parse(localStorage.getItem('favoritos') || "[]");
             setFavoritos(favoritosLocalStorage);
-
+            
             setMovie(data);
             setDescriptionMovieFavorito(data.overview)
             setImgMovieFavorito(`${image_path}${data.poster_path}`)
@@ -79,6 +80,8 @@ export default function MoviePrincipal() {
             }, 10)
 
         }, 100);
+        
+        setEconomiaInternet(localStorage.getItem('economia'))
 
     }, [favoritoIsTrue, favoritos]);
     
@@ -145,7 +148,9 @@ export default function MoviePrincipal() {
 
         if (minutos <= 59) {
             return `${textoMinutos}min`;
-        } else {
+        } else if (minutos == 60) {
+            return `${textoHoras }h`;
+        } else if (minutos >= 65) {
             return `${textoHoras }h, ${textoMinutos}min`;
         }
         
@@ -157,14 +162,16 @@ export default function MoviePrincipal() {
                 <div className="div-video-background">
                     <video
                         id='video-movie-principal'
-                        src={Trailer}
+                        src={!economiaInternet && 1 == 2 ? Trailer : ''}
                         poster={imgBackgroundMoviePrincipal}
-                        muted loop autoPlay>
+                        loop muted autoPlay>
                     </video>
                     <section className='section-mute-movie-principal'>
-                        <button className='bt-mute-movie-principal' id='bt-mute-movie-principal' onClick={()=>audioMoviePrincipal()}>{audioVideo?<i class="fa-solid fa-volume-high"></i>:<i class="fa-solid fa-volume-xmark"></i>}</button>
+                        {!economiaInternet && 1 == 2 &&
+                            <button className='bt-mute-movie-principal' id='bt-mute-movie-principal' onClick={()=>audioMoviePrincipal()}>{audioVideo?<i class="fa-solid fa-volume-high"></i>:<i class="fa-solid fa-volume-xmark"></i>}</button>
+                        }
                         <section className='section-classificacao-movie-principal'>
-                            <span className='span-classificacao-movie-principal'>12</span>
+                            <span className='span-classificacao-movie-principal'>16</span>
                         </section>
                     </section>
                 </div>

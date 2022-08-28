@@ -1,0 +1,197 @@
+.content-conta {
+    display: none;
+    justify-content: space-between;
+    margin: 100px 30px;
+    max-width: 1920px;
+}
+
+.div-conta {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 40%;
+    max-width: 40%;
+    padding: 10px;
+    border-right: 1px solid #404040;
+}
+
+.div-informacoes-user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    scroll-padding: 500px;
+    padding-top: 100px;
+}
+
+.img-perfil {
+    max-width: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.input-nome-usuario {
+    height: 30px;
+    text-align: center;
+    margin-top: 10px;
+    text-transform: capitalize;
+    background: #181818;
+    color: #fff;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #252525;
+    transition: all .3s ease;
+}
+
+.input-nome-usuario:focus {
+    border-bottom: 1px solid #909090;
+}
+
+.label-edit-nome-usuario i {
+    border-radius: 50%;
+    padding: 5px 6px 7px 7px;
+    transition: .3s ease;
+    cursor: pointer;
+}
+
+.label-edit-nome-usuario i:hover {
+    background: #303030;
+    transition: .3s ease;
+}
+
+.label-edit-nome-usuario i:active {
+    background: #606060;
+    transition: .1s ease;
+}
+
+.div-configuracoes {
+    display: flex;
+    flex-direction: column;
+    min-width: 55%;
+    max-width: 55%;
+    padding: 0 10px 10px 10px;
+}
+
+.h2-titulo-configuracoes {
+    margin-bottom: 20px;
+}
+
+.div-configuracoes ul {
+    padding: 20px 10px;
+    margin-bottom: 20px;
+    background: #202020;
+    border-radius: 5px;
+    transition: all .3s ease;
+}
+
+.div-configuracoes ul:hover {
+    background: #303030;
+    z-index: 5;
+}
+
+.header-ul-configuracao {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.nome-configuracao {
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.descricao-configuracao {
+    color: #ddd;
+    font-size: .9rem;
+}
+
+.bt-ativar-desativar-configuracao {
+    position: relative;
+    width: 40px;
+    height: 20px;
+    border-radius: 50px;
+    border: none;
+    background: #505050;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: all .3s ease;
+}
+
+.bt-ativar-desativar-configuracao div {
+    position: absolute;
+    top: 2.5px;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    background: #ccc;
+    margin: 0 2px;
+    transition: all .3s ease;
+}
+
+.bt-ativar-configuracao div {
+    left: 1px;
+}
+
+.bt-desativar-configuracao {
+    background: #f00;
+}
+
+.bt-desativar-configuracao div {
+    left: 20px;
+    background: #fff;
+}
+
+@media (max-width: 800px) {
+    
+    .content-conta {
+        flex-direction: column;
+        align-items: center;
+        margin: 100px 10px;
+    }
+
+    .div-conta, .div-configuracoes {
+        min-width: 100%;
+    }
+
+    .div-conta {
+        margin-bottom: 50px;
+        border: none;
+    }
+    
+    .div-informacoes-user {
+        position: relative;
+        padding-top: 10px;
+    }
+
+    .img-perfil {
+        max-width: 150px;
+    }
+
+    .div-configuracoes {
+        padding: 0;
+    }
+
+    .nome-configuracao {
+        font-size: 1rem;
+    }
+    
+    .descricao-configuracao {
+        font-size: .8rem;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+  .nome-configuracao {
+      font-size: .9rem;
+  }
+  
+  .descricao-configuracao {
+      font-size: .8rem;
+  }
+}

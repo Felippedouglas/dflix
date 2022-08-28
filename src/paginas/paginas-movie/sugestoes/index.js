@@ -1,7 +1,8 @@
 import { APIKey } from "../../../config/key";
-import { useState, useEffect } from "react";
+import { React, useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import './sugestoes.css';
+
 
 export default function Sugestao(props) {
     
@@ -16,8 +17,7 @@ export default function Sugestao(props) {
             .then(data => {
                 setMovies(data.results);
             })
-
-    }, [])
+    }, [props.idmovie])
 
     var divSlider = document.getElementById("list-movie-sugestoes");
     var btLeft = document.getElementById("bt-left-slide-sugestoes");
@@ -31,12 +31,6 @@ export default function Sugestao(props) {
         btLeft.style.padding = "0 40px 0 20px";
     }
 
-    function recarregar() {
-        setTimeout(()=>{
-            window.location.reload();
-        }, 100)
-    }
-
     setTimeout(()=>{
         if (movies.total_results == 0) {
             document.getElementById("list-movie-sugestoes").innerHTML = 'Não há sugestões!';
@@ -47,19 +41,24 @@ export default function Sugestao(props) {
         setScrollDivSugestoes(document.getElementById("list-movie-sugestoes").scrollLeft)
     }
 
+    /*function scroll() {
+        window.scrollTo(0,0);
+        document.getElementById("list-movie-sugestoes").scrollTo(0,0);
+    }*/
+
     return(
         <div className="content-movies content-sugestoes" id="content-sugestoes">
             <h2 className="h2-sugestoes h2-titulo-sections">SUGESTÕES</h2>
             <div className="div-movies div-filmes-sugestões" id="list-movie-sugestoes" onScroll={()=>scrollDiv()}>
+            
                 {scrollDivSugestoes > 50 && document.body.clientWidth >= 600 &&
                     <button className="bt-slide bt-left-slide" id="bt-left-slide-sugestoes" onClick={btLeftSlideSugestoes}><i class="fas fa-angle-left"></i></button>
                 }
                 {movies.map(movie => {
                         return (
-                        <>
                             <div className="movie movies-sugestoes" key={movie.id} title={filmeSerie == 'movie' ? movie.title : movie.name}>
 
-                                <Link to={`/assistir=${filmeSerie}&${movie.id}`} onClick={()=>recarregar()}>
+                                <Link to={`/assistir=${filmeSerie}&${movie.id}`} onClick={()=>setTimeout(()=>{window.location.reload()},10)} /* onClick={()=>scroll()} */>
                                     <img loading="lazy" src={`${image_path}${movie.poster_path}`} alt={movie.title} onError={({ currentTarget }) => {currentTarget.onerror = null; currentTarget.src="https://dflix.netlify.app/imagens/img-erro-exclamacao.png";}}/>
                                     <section className="section-informacoes-movie">
                                         <div class="div-avaliacao-movie">
@@ -78,7 +77,6 @@ export default function Sugestao(props) {
                                 </Link>
                                 <span className="span-titulo-movie">{movie.title}{movie.name}</span>
                             </div>
-                        </>
                         )
                     })
                 }

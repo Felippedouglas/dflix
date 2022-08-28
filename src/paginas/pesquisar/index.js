@@ -14,6 +14,10 @@ export default function Pesquisar() {
     const [ filmePesquisado, setFilmePesquisado] = useState(movieName);
     const [ data] = useState(new Date);
     const image_path = 'https://image.tmdb.org/t/p/w500';
+    const [ totalResultadosMovies, setTotalResultadosMovies ] = useState();
+    const [ totalResultadosPessoas, setTotalResultadosPessoas ] = useState();
+    const [ salvarHistorico, setSalvarHistorico ] = useState();
+    const [ exibirHistorico, setExibirHistorico ] = useState();
 
     const [ historico, setHistorico ] = useState([]);
     const [ itemHistoritoTrue, setItemHistoritoTrue ] = useState(false);
@@ -21,23 +25,53 @@ export default function Pesquisar() {
     useEffect(() => {
         const historicoLocalStorage = JSON.parse(localStorage.getItem('historico') || "[]");
         setHistorico(historicoLocalStorage);
-        if(movieName) {
-            salvaHistorico(movieName)
-        };
-    }, [numeroPagina, movieName]);
+        setSalvarHistorico(localStorage.getItem('salvarHistorico'));
+        setExibirHistorico(localStorage.getItem('exibirHistorico'));
+
+    }, [numeroPagina]);
     
+    useEffect(() => {
+        fetch(`https://api.themoviedb.org/3/search/${tipoPesquisa}?api_key=${APIKey}&language=pt-BR&page=${numeroPagina}&adult=false&query=${movieName}`)
+            .then(Response => Response.json())
+            .then(data => {
+                setMovies(data.results);
+
+                setTimeout(()=>{
+                    if (tipoPesquisa == 'multi') {
+                        document.getElementById('label-escolher-tipo-pesquisa-multi').click();
+                    }
+                }, 100)
+                setPaginasMovies(data.total_pages);
+            })
+
+            var divMovies = document.getElementById("div-movie-pesquisar")
+            var divpessoas = document.getElementById("div-pessoa-pesquisar")
+    
+            setInterval(()=>{
+                if (divMovies) {
+                    setTotalResultadosMovies(divMovies.childElementCount);
+                }
+    
+                else if (divpessoas) {
+                    setTotalResultadosPessoas(divpessoas.childElementCount);
+                }
+            }, 100)
+
+            document.title = 'Pesqsuisar - DFLIX';
+    }, [movieName, numeroPagina, tipoPesquisa])
+
     function salvaHistorico(e) {
         let historico = JSON.parse(localStorage.getItem('historico') || "[]")
         
         setTimeout(()=>{
             historico.map((itemHistorico)=>{
                 if (e == itemHistorico.name) {
-                    setItemHistoritoTrue(true)
+                    setItemHistoritoTrue('true')
                 }
             })
 
             setTimeout(()=>{
-                if(!itemHistoritoTrue) {
+                if(itemHistoritoTrue != 'true' && salvarHistorico == 'true') {
                     let addItemHistorico = {
                         name: e,
                         data: `${String(data.getDate()).padStart(2, '0')}/${String(data.getMonth() + 1).padStart(2, '0')}/${String(data.getFullYear()).padStart(2, '0')}`,
@@ -76,32 +110,6 @@ export default function Pesquisar() {
         setName(movieName)
     }
 
-    useEffect(() => {
-        fetch(`https://api.themoviedb.org/3/search/${tipoPesquisa}?api_key=${APIKey}&language=pt-BR&page=${numeroPagina}&adult=false&query=${movieName}`)
-            .then(Response => Response.json())
-            .then(data => {
-                setMovies(data.results);
-
-                setTimeout(()=>{
-                    if (tipoPesquisa == 'multi') {
-                        document.getElementById('label-escolher-tipo-pesquisa-multi').click();
-                    }
-                }, 100)
-
-                setPaginasMovies(data.total_pages);
-
-                setTimeout(()=>{
-                    document.getElementById('div-botoes-paginas-pesquisar').innerHTML = `<h3 class="h3-pagina-atual">Página atual: ${numeroPagina}</h3>`
-                    for (var i=1; i <= data.total_pages && i <= 10; i++) {
-                        document.getElementById('div-botoes-paginas-pesquisar').innerHTML += `
-                        <a class='bt-pagina-pesquisar' href='/#/pesquisar/search=${filmePesquisado}&pagina=${i}' onclick='setTimeout(()=> {window.scrollTo(0,0)}, 1)'>${i}</a>
-                        `
-                    }
-                    })
-                }, 1000)
-                document.title = 'Pesqsuisar - DFLIX';
-    }, [movieName, numeroPagina, tipoPesquisa])
-
     document.addEventListener('keydown', function(e) {
         switch (e.keyCode) {
             case 13:
@@ -109,7 +117,6 @@ export default function Pesquisar() {
                 break;
         }
     }, false);
-    
                 
     function definirFilmePesquisado(props) {
         setFilmePesquisado(props);
@@ -119,15 +126,19 @@ export default function Pesquisar() {
     function settingsPesquisa(tipoPesquisa) {
         setTipoPesquisa(tipoPesquisa)
         setFilmeSeriePessoa(tipoPesquisa)
+        window.location.href = `/#/pesquisar/search=${movieName}&pagina=1`
     }
  
     const inputPesquisar = document.getElementById("input-pesquisar");
 
     function recarregarPagina() {
-        if(inputPesquisar.value && inputPesquisar.value.length >= 3) {
-            window.location.href = `/#/pesquisar/search=${filmePesquisado}&pagina=1`;
-            inputPesquisar.blur()
-        }/* else if (inputPesquisar.value.length <= 3) {
+        salvaHistorico(filmePesquisado)
+        setTimeout(()=>{
+            if(inputPesquisar.value && inputPesquisar.value.length >= 3) {
+                window.location.href = `/#/pesquisar/search=${filmePesquisado}&pagina=1`;
+                inputPesquisar.blur()
+            }
+        }, 10)/* else if (inputPesquisar.value.length <= 3) {
             alert('digite um valor maior que 3');
         } else {
             alert('digite um valor');
@@ -143,6 +154,14 @@ export default function Pesquisar() {
 
     }, 1);
 
+    
+            /*{numeroPagina && movieName && !totalResultadosMovies != 0 && !totalResultadosPessoas != 0 &&
+                <div className="div-nenhum-resultado-pesquisar">
+                    <i class="fa-regular fa-face-sad-cry"></i>
+                    <span className="span-nenhum-resultado-pesquisar">Nenhum resultado encontrado!</span>
+                </div>
+            }*/
+
     return (
         <div className="componente-pequisar" id="componente-pequisar">
             <header className="header-componente-pesquisar">
@@ -150,11 +169,23 @@ export default function Pesquisar() {
                     <input autoComplete="off" minLength={3} maxLength={30} autoFocus type='text' id="input-pesquisar" value={name} placeholder='Pesquise por filmes e séries' onChange={(e)=>definirFilmePesquisado(e.target.value)}/>
                     <a onClick={()=>recarregarPagina()} id='bt-pequisar-movie'><i className="fas fa-search"></i></a>
                 </section>
-                {!numeroPagina &&
+                {!numeroPagina && !exibirHistorico &&
+                    <section className="section-salvar-pesquisa-desativado section-exibir-historico-pesquisa-desativado">
+                        <span>Exibição do histórico de pesquisas está desativado</span>
+                        <Link to='/conta'><i class="fa-solid fa-gear"></i></Link>
+                    </section>
+                }
+                {!numeroPagina && exibirHistorico == 'true' &&
                     <section className="section-itens-historico" id="section-itens-historico">
                         {historico.length >= 1 &&
                             <section className="section-limpar-historico">
                                 <button onClick={()=>limparHistorico()}><i class="fa-solid fa-trash-can"></i> Limpar tudo</button>
+                            </section>
+                        }
+                        {!salvarHistorico &&
+                            <section className="section-salvar-pesquisa-desativado">
+                                <span>salvar pesquisas está desativado</span>
+                                <Link to='/conta'><i class="fa-solid fa-gear"></i></Link>
                             </section>
                         }
                         {historico.slice(0).reverse().map((e)=>{
@@ -173,28 +204,28 @@ export default function Pesquisar() {
                 }
             </header>
             {numeroPagina &&
-                <div className="div-generos">
+                <div className="div-filtro">
                     <section>
-                        <input className="input-escolher-genero" type='radio' name='input-radio-tipo-pesquisa' id={`input-tipo-pesquisa=1`}/>
-                        <label className="label-escolher-genero" id="label-escolher-tipo-pesquisa-multi" htmlFor={`input-tipo-pesquisa=1`}>
+                        <input className="input-escolher-filtro" type='radio' name='input-radio-tipo-pesquisa' id={`input-tipo-pesquisa=1`}/>
+                        <label className="label-escolher-filtro" id="label-escolher-tipo-pesquisa-multi" htmlFor={`input-tipo-pesquisa=1`}>
                             <span onClick={()=>settingsPesquisa('multi')}>Tudo</span>
                         </label>
                     </section>
                     <section>
-                        <input className="input-escolher-genero" type='radio' name='input-radio-tipo-pesquisa' id={`input-tipo-pesquisa=2`}/>
-                        <label className="label-escolher-genero" htmlFor={`input-tipo-pesquisa=2`}>
+                        <input className="input-escolher-filtro" type='radio' name='input-radio-tipo-pesquisa' id={`input-tipo-pesquisa=2`}/>
+                        <label className="label-escolher-filtro" htmlFor={`input-tipo-pesquisa=2`}>
                             <span onClick={()=>settingsPesquisa('movie')}>Filmes</span>
                         </label>
                     </section>
                     <section>
-                        <input className="input-escolher-genero" type='radio' name='input-radio-tipo-pesquisa' id={`input-tipo-pesquisa=3`}/>
-                        <label className="label-escolher-genero" htmlFor={`input-tipo-pesquisa=3`}>
+                        <input className="input-escolher-filtro" type='radio' name='input-radio-tipo-pesquisa' id={`input-tipo-pesquisa=3`}/>
+                        <label className="label-escolher-filtro" htmlFor={`input-tipo-pesquisa=3`}>
                             <span onClick={()=>settingsPesquisa('tv')}>Séries</span>
                         </label>
                     </section>
                     <section>
-                        <input className="input-escolher-genero" type='radio' name='input-radio-tipo-pesquisa' id={`input-tipo-pesquisa=4`}/>
-                        <label className="label-escolher-genero" htmlFor={`input-tipo-pesquisa=4`}>
+                        <input className="input-escolher-filtro" type='radio' name='input-radio-tipo-pesquisa' id={`input-tipo-pesquisa=4`}/>
+                        <label className="label-escolher-filtro" htmlFor={`input-tipo-pesquisa=4`}>
                             <span onClick={()=>settingsPesquisa('person')}>Pessoas</span>
                         </label>
                     </section>
@@ -202,6 +233,7 @@ export default function Pesquisar() {
             }
             {numeroPagina && movieName != '' &&
                 <>
+                {tipoPesquisa != 'person' &&
                     <div className="div-movie-pesquisar" id="div-movie-pesquisar">
                         {movies.map(movie => {
                             return (
@@ -236,6 +268,7 @@ export default function Pesquisar() {
                             })
                         }
                     </div>
+                    }
                     <div className="div-pessoa-pesquisar" id="div-pessoa-pesquisar">
                         {movies.map(movie => {
                             return (
@@ -258,13 +291,29 @@ export default function Pesquisar() {
                     </div>
                 </>
             }
-            {!numeroPagina || numeroPagina <= 0 &&
-                <div className="div-movie-pesquisar">
-                    <span></span>
+            {numeroPagina && paginasMovie > 1 &&
+            <div className="div-generos bts-anterior-proximo">
+                <div id="div-bts-paginas-generos" className="div-bts-paginas-generos div-generos">
+                    {Number(numeroPagina) > 1 && 
+                        <section>
+                            <label className="label-escolher-genero label-bt-pagina-genero" id="label-paginas-generos=1" for="input-paginas-genero=1">
+                                <Link onClick={()=>window.scrollTo(0,0)} to={`/pesquisar/search=${movieName}&pagina=${Number(numeroPagina) - 1}`} className="bt-pagina-pesquisar"><i class="fa-solid fa-angle-left"></i> Anterior: {Number(numeroPagina) - 1}</Link>
+                            </label>
+                        </section>
+                    }
+                    {numeroPagina > 1 &&
+                        <section>
+                            <span className="span-pagina-atual">{numeroPagina}</span>
+                        </section>
+                    }
+                    <section>
+                        <input className="input-escolher-genero" type="radio" name="input-radio-genero" id="input-paginas-genero=2"/>
+                        <label className="label-escolher-genero label-bt-pagina-genero" id="label-paginas-generos=2" for="input-paginas-genero=2">
+                            <Link onClick={()=>window.scrollTo(0,0)} to={`/pesquisar/search=${movieName}&pagina=${Number(numeroPagina) + 1}`} className="bt-pagina-pesquisar">{numeroPagina == 1 ? 'Ver mais' : `Próximo: ${Number(numeroPagina) + 1}`} <i class="fa-solid fa-angle-right"></i></Link>
+                        </label>
+                    </section>
                 </div>
-            }
-            {numeroPagina && movies.length != 0 && paginasMovie >= 2 &&
-                <div id="div-botoes-paginas-pesquisar" className="div-botoes-paginas-pesquisar"></div>
+            </div>
             }
         </div>
     )

@@ -7,7 +7,7 @@
     padding: 5rem .5rem 0 .5rem;
     background-color: hsla(0, 0%, 9%, 0.8);
     transition: all .3s ease;
-    z-index: 19;
+    z-index: 10;
 }
 
 .pop-up-movie::-webkit-scrollbar-track {

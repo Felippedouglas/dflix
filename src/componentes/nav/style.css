@@ -66,8 +66,8 @@
 }
 
 .div-abrir-pop-up-nav {
+    display: flex;
     cursor: pointer;
-    display: none;
     align-items: center;
     justify-content: center;
     flex-direction: column;
@@ -105,7 +105,16 @@
     border: 2px solid #909090;
 }
 
-.ul-menu-hamburguer-nav-mobile a {
+.section-menu-hamburguer-nav-mobile ul {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #505050;
+}
+
+.section-menu-hamburguer-nav-mobile ul:last-child {
+    border: none;
+}
+
+.section-menu-hamburguer-nav-mobile ul a {
     display: block;
     color: #fff;
     text-decoration: none;
@@ -118,12 +127,16 @@
     opacity: .7;
 }
 
-.ul-menu-hamburguer-nav-mobile a:hover {
+.section-menu-hamburguer-nav-mobile ul a:last-child {
+    margin-bottom: 10px;
+}
+
+.section-menu-hamburguer-nav-mobile ul a:hover {
     background: #404040;
     opacity: 1;
 }
 
-.ul-menu-hamburguer-nav-mobile a i {
+.section-menu-hamburguer-nav-mobile ul a i {
     margin-right: 5px;
     width: 20px;
 }
@@ -137,10 +150,6 @@
     
     .div-links-nav {
         display: none;
-    }
-
-    .div-abrir-pop-up-nav {
-        display: flex;
     }
     
 }

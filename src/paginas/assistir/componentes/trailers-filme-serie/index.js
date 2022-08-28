@@ -1,6 +1,14 @@
-import { useEffect, useState } from "react"
-import { APIKey } from "../../../../config/key"
-import './style.css'
+import { useEffect, useState } from "react";
+import { APIKey } from "../../../../config/key";
+import './style.css';
+
+
+//swiper slide
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/pagination";
+import { FreeMode } from "swiper";
 
 export default function VideosFilmeSerie(props) {
     
@@ -12,14 +20,16 @@ export default function VideosFilmeSerie(props) {
             .then(data => {
                 setVideosFilmesSerie(data.results)
         })
-    }, [])
+    }, [props.id])
 
     const mapVideosFilmesSerie = videosFilmesSerie.map((videoFilmesSerie)=> {
         return (
-            <section className="div-trailer-movie" title={videoFilmesSerie.name}>
-                <iframe src={`https://www.youtube.com/embed/${videoFilmesSerie.key}`} allowfullscreen="allowfullscreen" frameBorder="0"></iframe>
-                <span className="span-titulo-trailer">{videoFilmesSerie.name}</span>
-            </section>
+            <SwiperSlide>
+                <section className="div-trailer-movie" title={videoFilmesSerie.name}>
+                    <iframe src={`https://www.youtube.com/embed/${videoFilmesSerie.key}`} allowfullscreen="allowfullscreen" frameBorder="0"></iframe>
+                    <span className="span-titulo-trailer">{videoFilmesSerie.name}</span>
+                </section>
+            </SwiperSlide>
         )
     })
 
@@ -27,7 +37,21 @@ export default function VideosFilmeSerie(props) {
         <div className="content-trailers">
             <h2 className="h2-trailers h2-titulo-sections" id="trailers">Trailers</h2>
             <div className="div-trailers-movie">
-                {mapVideosFilmesSerie}
+                {videosFilmesSerie.length != 0 &&
+                    <Swiper
+                        slidesPerView={'auto'}
+                        spaceBetween={10}
+                        freeMode={false}
+                        pagination={{
+                        clickable: true,
+                        }}
+                        modules={[FreeMode]}
+                        className="mySwiper"
+                        id="swiper-slide"
+                    >
+                        {mapVideosFilmesSerie}
+                    </Swiper>
+                }
                 {videosFilmesSerie.length == 0 &&
                     <span>Não há trailers disponíveis!</span>
                 }

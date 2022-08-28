@@ -1,8 +1,9 @@
 
 .container-assistir {
-    display: block;
     background-size: 100%;
     margin-top: 3.1rem;
+    max-width: 1920px;
+    margin: 0 auto;
 }
 
 .container-assistir .content-movie-assistir {
@@ -14,8 +15,8 @@
 .container-assistir .movie-assistir {
     position: relative;
     display: flex;
-    padding: 5rem 2.5rem;
-    background-image: linear-gradient(to top, #181818, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7)  100%);
+    padding: 6rem 2.5rem 5rem 2.5rem;
+    background-image: linear-gradient(to top, #181818, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.8)  100%);
 }
 
 .container-assistir .div-imagem-movie-assistir #img-movie-assistir {
@@ -47,22 +48,26 @@
 
 .detalhes-movie-assistir .informacoes-movie-assistir {
     display: flex;
-    margin: .7rem 0 1.1rem 0;
+    margin: 1rem 0 1.1rem 0;
     background: #202020;
-    padding: .2rem .9rem;
+    padding: .5rem .5rem;
     border-radius: 3rem;
     overflow-x: auto;
     max-width: 100%;
 }
 
 .detalhes-movie-assistir .informacoes-movie-assistir section {
-    margin-right: .7rem;
-    background: #252525;
-    padding: .2rem .9rem;
+    padding: .1rem .5rem;
     border-radius: 3rem;
     font-weight: 600;
     font-size: .8rem;
     text-transform: uppercase;
+    cursor: default;
+    transition: all .3s ease;
+}
+
+.detalhes-movie-assistir .informacoes-movie-assistir section:hover {
+    opacity: .7;
 }
 
 .detalhes-movie-assistir .informacoes-movie-assistir section:last-child {
@@ -77,11 +82,45 @@
     white-space: nowrap;
 }
 
+.span-classificacao-indicativa {
+    padding: 2px 3px 2px 2px;
+    border-radius: 3px;
+    font-weight: 600;
+    border: 1px solid transparent;
+}
+
+.span-classificacao-indicativa-L {
+    background: #009D4B;    
+    padding: 2px 7px 2px 8px;
+}
+
+.span-classificacao-indicativa-10 {
+    background: #00A2E5;
+}
+
+.span-classificacao-indicativa-12 {
+    background: #F2BF09;
+    color: #000;
+}
+
+.span-classificacao-indicativa-14 {
+    background: #EA7C1E;
+}
+
+.span-classificacao-indicativa-16 {
+    background: #E21C21;
+}
+
+.span-classificacao-indicativa-18 {
+    background: #000;
+}
+
 .detalhes-movie-assistir .descricao-movie-assistir {
     text-transform: capitalize;
     line-height: 130%;
     font-size: .9rem;
     color: #ccc;
+    margin-bottom: 1rem;
 }
 
 .detalhes-movie-assistir .generos-movie-assistir {
@@ -89,7 +128,7 @@
     max-width: 100%;
     min-height: min-content;
     overflow-x: auto;
-    margin: 1.1rem 0 .7rem 0;
+    margin-bottom: .7rem;
 }
 
 .detalhes-movie-assistir .generos-movie-assistir span {
@@ -124,7 +163,7 @@
     align-items: center;
 }
 
-.botao-favorito {
+.botao-favorito, .bt-assitir-preview-movie {
     height: 2.4rem;
     width: 2.4rem;
     border-radius: 50px;
@@ -145,22 +184,49 @@
     border: 1px solid #fff;
 }
 
-.botao-remover-favorito {
+.botao-remover-favorito, .bt-assitir-preview-movie {
     color: #fff;
     background: #f00;
     border: 1px solid #fff;
 }
 
-.botao-remover-favorito:hover {
+.botao-remover-favorito:hover, .bt-assitir-preview-movie:hover {
     color: #f00;
     background: #fff;
     border: 1px solid #f00;
+}
+
+.bt-assitir-preview-movie {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    margin-left: 15px;
+}
+
+.bt-assitir-preview-movie i {
+    margin-left: 2px;
 }
 
 .div-temporadas-episodios-serie-assistir {
     display: flex;
     flex-direction: column;
     margin: 15px 20px 10px 20px;
+}
+
+.a-episodio-serie {
+    text-decoration: none;
+    color: #fff;
+}
+
+.olho-episodio-visualizado {
+    color: rgb(85, 85, 85);
+    margin-left: 5px;
+}
+
+.a-episodio-serie:visited .olho-episodio-visualizado {
+    color: #fff;
+    opacity: 1;
 }
 
 .h2-assistir {
@@ -494,7 +560,7 @@
 @media (max-width: 600px) {
 
     .container-assistir .movie-assistir {
-        padding: 3rem 1rem;
+        padding: 5rem 1rem 3rem 1rem;
     }
 
     .container-assistir .detalhes-movie-assistir h1 {
@@ -503,8 +569,6 @@
     }
 
     .detalhes-movie-assistir .informacoes-movie-assistir {
-        width: 100%;
-        justify-content: space-between;
         padding: .1rem .3rem;
     }
     
@@ -523,9 +587,13 @@
         margin-right: .5rem;
     }
     
-    .botao-favorito {
+    .botao-favorito, .bt-assitir-preview-movie {
         height: 2.2rem;
         width: 2.2rem;
+    }
+
+    .bt-assitir-preview-movie {
+        margin-left: 7px;
     }
     
     .bt-slide-section-serie-assitir {
@@ -582,20 +650,4 @@
         padding: 7px 12px;
     }
     
-}
-
-
-.a-episodio-serie {
-    text-decoration: none;
-    color: #fff;
-}
-
-.olho-episodio-visualizado {
-    color: rgb(85, 85, 85);
-    margin-left: 5px;
-}
-
-.a-episodio-serie:visited .olho-episodio-visualizado {
-    color: #fff;
-    opacity: 1;
 }

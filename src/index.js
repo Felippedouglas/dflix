@@ -9,8 +9,12 @@ import Pesquisar from './paginas/pesquisar';
 import PesqusiarGenero from './paginas/pesquisar/genero';
 import Pessoa from './paginas/pessoa';
 import $ from 'jquery';
-import './global.css';
 import Footer from './componentes/footer';
+import Conta from './paginas/conta';
+import './global.css';
+
+// eslint-disable-next-line
+import "swiper/css/bundle";
 
 setTimeout(()=>{
 
@@ -28,6 +32,9 @@ setTimeout(()=>{
       <BarraNav />
       <Routes>
         <Route path="/" element={<Home/>}/>
+        <Route path="/home" element={<Home/>}/>
+        <Route path="/conta" element={<Conta/>}/>
+        <Route path="/:preview/:filmeSerie&:id/" element={<Home/>}/>
         <Route path="/assistir=:filmeSerie&:id/" element={<Assistir/>}/>
         <Route path="/assistir=:filmeSerie&:id/:temporada/:episodio" element={<Assistir/>}/>
         <Route path="/comentarios:popUpComentarios/:filmeSerie&:id/" element={<Assistir/>}/>

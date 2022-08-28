@@ -1,23 +1,31 @@
 import { React, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import './style.css'
+import './style.css';
+import backgroundErro from '../../componentes/imgs/img-erro-background-pessoa.png';
 
 export default function Favoritos() {
     
     document.title = 'Meus Favoritos - DLFIX';
 
     const [ favoritos, setFavoritos ] = useState([]);
+    const [ favoritosLength, setFavoritosLength ] = useState();
+    const [ economiaInternet, setEconomiaInternet ] = useState();
     
     useEffect(() => {
         const favoritosLocalStorage = JSON.parse(localStorage.getItem('favoritos') || "[]");
         setFavoritos(favoritosLocalStorage);
-    }, [favoritos]);
+        document.getElementById("content-favoritos").style.display = 'block';
+        setFavoritosLength(JSON.parse(localStorage.getItem('favoritos') || "[]").length)
+    
+        setEconomiaInternet(localStorage.getItem('economia'))
+    }, [favoritosLength]);
 
     function removerFavoritos(e) {
       let favoritos = JSON.parse(localStorage.getItem('favoritos'));
       if (favoritos != '') {
         favoritos.splice(e,1)
         localStorage.setItem('favoritos', JSON.stringify(favoritos));
+        setFavoritosLength(favoritosLength - 1)
       }
     }
     
@@ -36,11 +44,11 @@ export default function Favoritos() {
     };
 
     return (
-        <div className="content-favoritos">
+        <div className="content-favoritos" id="content-favoritos">
         <h2 className="h2-titulo-generos">favoritos</h2>
         {favoritos.map(favorito => {
             return (
-                <div className="div-favoritos" style={{backgroundImage: `url(${favorito.imgBackground})`}}>
+                <div className="div-favoritos" style={{backgroundImage: !economiaInternet ? `url(${favorito.imgBackground})` : `url(${backgroundErro})`}}>
                     <div className="favoritos">
                         <section className="section-img-favoritos">
                             <img src={favorito.img} alt={favorito.name}/>

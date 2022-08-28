@@ -64,7 +64,7 @@ html {
   font-size: 30px;
   cursor: pointer;
   transition: all .3s ease;
-  z-index: 8;
+  z-index: 2;
 }
 
 .button-topo-pagina:hover {
@@ -77,6 +77,7 @@ html {
   text-transform: uppercase;
   font-size: 1.2rem;
   font-weight: bold;
+  z-index: 9;
 }
 
 .h2-titulo-sections::after {
@@ -90,6 +91,20 @@ html {
   border-radius: 50px;
 }
 
+.swiper {
+    width: 100%;
+    height: max-content;
+}
+
+.swiper-slide {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    max-width: max-content;
+    margin-right: 10px;
+}
+
 @media (max-width: 800px) {
     
     .h2-titulo-sections {
@@ -99,10 +114,6 @@ html {
 }
 
 @media (max-width: 600px) {
-
-  .bt-slide {
-    display: none;
-  }
     
   .h2-titulo-sections {
       font-size: .9rem;

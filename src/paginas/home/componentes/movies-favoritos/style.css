@@ -1,0 +1,74 @@
+.content-movies-favoritos {
+    margin-top: 20px;
+}
+
+.div-movies-favoritos {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+}
+
+#list-movie-favoritos:first-child {
+    display: flex;
+    margin-bottom: 0;
+}
+
+.div-bts-movies-favoritos {
+    display: flex;
+    margin-left: 20px;
+}
+
+.div-bts-movies-favoritos button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    width: 30px;
+    color: #f00;
+    border: 1px solid transparent;
+    font-size: 1.2rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: .3s ease;
+}
+
+.div-bts-movies-favoritos button:hover {
+    background: #f00;
+    color: #fff;
+    transition: .3s ease;
+}
+
+.div-bts-movies-favoritos button:active {
+    border: 1px solid #fff;
+    transition: .1s ease;
+}
+
+.div-bts-movies-favoritos button:first-child {
+    margin-right: 10px;
+}
+
+.link-conta-movies-favoritos {
+    color: #fff;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.link-conta-movies-favoritos i {
+    transition: all .3s ease;
+}
+
+.link-conta-movies-favoritos:hover i {
+    transform: rotate(90deg);
+    opacity: .8;
+}
+
+@media (max-width: 600px) {
+
+    .div-movies-favoritos {
+        margin-bottom: 20px;
+    }
+
+    .div-bts-movies-favoritos {
+        display: none;
+    }
+}

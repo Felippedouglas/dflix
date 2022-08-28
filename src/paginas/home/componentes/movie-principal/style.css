@@ -43,7 +43,7 @@
     position: absolute;
     top: 65px;
     right: 3px;
-    z-index: 3;
+    z-index: 2;
 }
 
 .section-mute-movie-principal .bt-mute-movie-principal {
@@ -79,7 +79,7 @@
 }
 
 .section-classificacao-movie-principal .span-classificacao-movie-principal {
-    background: #fdc200;
+    background: #f00;
     border-radius: 2px;
     font-size: 14px;
     font-weight: bold;
@@ -198,7 +198,7 @@
 
     .content-movie-principal .div-detalhes-movie-principal img {
         max-width: 300px;
-        height: 200px;
+        height: 150px;
     }
     
     .content-movie-principal .div-detalhes-movie-principal span {
@@ -271,7 +271,7 @@
 
     .content-movie-principal .div-detalhes-movie-principal img {
         max-width: 250px;
-        height: 150px;
+        height: 120px;
     }
 
     .informacoes-movie-principal {
@@ -284,6 +284,11 @@
     .botao-favorito-movie-principal, .section-bts-assistir-movie-principal a {
         padding: 8px 10px;
         font-size: 12px;
+    }
+
+    .content-movie-principal .div-detalhes-movie-principal img {
+        max-width: 70%;
+        height: auto;
     }
 }
 

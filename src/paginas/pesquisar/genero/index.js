@@ -4,6 +4,14 @@ import { useEffect, useState } from "react";
 import { APIKey } from "../../../config/key";
 
 
+//swiper slide
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/pagination";
+import { FreeMode } from "swiper";
+
+
 export default function PesqusiarGenero() {
 
     const { generoPesquisado, idGenero, numeroPagina, filmeSerie, infantil } = useParams();
@@ -76,22 +84,32 @@ export default function PesqusiarGenero() {
             }
         </header>
         {infantil == 'false'  &&
-            <div className="div-generos" id="div-generos" onScroll={()=>scrollDiv()}>
-            {scrollDivGeneros > 20 && document.body.clientWidth >= 600 &&
-                <button className="bt-slide bt-left-div-generos" id="bt-left-div-generos" onClick={btGeneroLeftSlide}><i class="fas fa-angle-left"></i></button>
-            }
-            {generos.map(genero => {
-                    return (
-                        <section className="genero">
-                            <input className="input-escolher-genero" type='radio' name='input-radio-genero' id={`input-genero=${genero.id}`}/>
-                            <label className="label-escolher-genero" id={`label-genero=${genero.id}`} htmlFor={`input-genero=${genero.id}`}>
-                                <Link onClick={()=>window.scrollTo(0,0)} to={`/${filmeSerie}/genero=${genero.id}/${genero.name}&infantil=${infantil}&pagina=1`}>{genero.name}</Link>
-                            </label>
-                        </section>
-                    )
-                    })
-                }
-                <button className="bt-slide bt-right-div-generos" id="bt-right-div-generos" onClick={btGeneroRightSlide}><i class="fas fa-angle-right"></i></button>
+            <div className="div-generos" id="div-generos">
+                <Swiper
+                    slidesPerView={'auto'}
+                    spaceBetween={10}
+                    freeMode={false}
+                    pagination={{
+                    clickable: true,
+                    }}
+                    modules={[FreeMode]}
+                    className="mySwiper"
+                    id="swiper-slide"
+                >
+                {generos.map(genero => {
+                        return (
+                            <SwiperSlide>
+                                <section className="genero">
+                                    <input className="input-escolher-genero" type='radio' name='input-radio-genero' id={`input-genero=${genero.id}`}/>
+                                    <label className="label-escolher-genero" id={`label-genero=${genero.id}`} htmlFor={`input-genero=${genero.id}`}>
+                                        <Link onClick={()=>window.scrollTo(0,0)} to={`/${filmeSerie}/genero=${genero.id}/${genero.name}&infantil=${infantil}&pagina=1`}>{genero.name}</Link>
+                                    </label>
+                                </section>
+                            </SwiperSlide>
+                        )
+                        })
+                    }
+                </Swiper>
             </div>
         }
         {filmeSerie =='movie' &&
@@ -156,15 +174,20 @@ export default function PesqusiarGenero() {
                     <section>
                         <input className="input-escolher-genero" type="radio" name="input-radio-genero" id="input-paginas-genero=1"/>
                         <label className="label-escolher-genero label-bt-pagina-genero" id="label-paginas-generos=1" for="input-paginas-genero=1">
-                            <Link onClick={()=>window.scrollTo(0,0)} to={`/${filmeSerie}/genero=${idGenero}/${generoPesquisado}&infantil=${infantil}&pagina=${Number(numeroPagina) - 1}`} className="bt-pagina-pesquisar"><i class="fa-solid fa-angle-left"></i> Anterior</Link>
+                            <Link onClick={()=>window.scrollTo(0,0)} to={`/${filmeSerie}/genero=${idGenero}/${generoPesquisado}&infantil=${infantil}&pagina=${Number(numeroPagina) - 1}`} className="bt-pagina-pesquisar"><i class="fa-solid fa-angle-left"></i>  Anterior: {Number(numeroPagina) - 1}</Link>
                         </label>
+                    </section>
+                }
+                {numeroPagina > 1 &&
+                    <section>
+                        <span className="span-pagina-atual">{numeroPagina}</span>
                     </section>
                 }
                 {Number(numeroPagina) < totalResultados && 
                     <section>
                         <input className="input-escolher-genero" type="radio" name="input-radio-genero" id="input-paginas-genero=2"/>
                         <label className="label-escolher-genero label-bt-pagina-genero" id="label-paginas-generos=2" for="input-paginas-genero=2">
-                            <Link onClick={()=>window.scrollTo(0,0)} to={`/${filmeSerie}/genero=${idGenero}/${generoPesquisado}&infantil=${infantil}&pagina=${Number(numeroPagina) + 1}`} className="bt-pagina-pesquisar">Ver mais <i class="fa-solid fa-angle-right"></i></Link>
+                            <Link onClick={()=>window.scrollTo(0,0)} to={`/${filmeSerie}/genero=${idGenero}/${generoPesquisado}&infantil=${infantil}&pagina=${Number(numeroPagina) + 1}`} className="bt-pagina-pesquisar">{numeroPagina == 1 ? 'Ver mais' : `Próximo: ${Number(numeroPagina) + 1}`} <i class="fa-solid fa-angle-right"></i></Link>
                         </label>
                     </section>
                 }

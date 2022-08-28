@@ -3,10 +3,12 @@ import { useState } from 'react';
 import 'tippy.js/dist/tippy.css';
 import copy from "copy-to-clipboard";
 import './style.css';
+import { Link, useParams } from 'react-router-dom';
 
 export default function Compartilhar() {
 
 
+    const { filmeSerie, id, preview } = useParams();
     const [copyText, setCopyText] = useState(document.location.href);
     
     const copyToClipboard = () => {
