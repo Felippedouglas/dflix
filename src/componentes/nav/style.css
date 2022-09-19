@@ -84,8 +84,8 @@
     flex-direction: row;
     cursor: pointer;
     margin-bottom: 30px;
-    border-radius: 50px;
-    padding: 5px 15px;
+    border-radius: 50%;
+    padding: 5px 10px;
     border: 2px solid transparent;
     width: max-content;
 }

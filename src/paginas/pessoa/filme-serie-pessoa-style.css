@@ -99,10 +99,13 @@
     font-weight: bold;
     font-size: 1rem;
     text-align: center;
-    max-width: 18ch;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    max-width: 170px;
     margin-top: -1.3rem;
 }
 
@@ -130,6 +133,7 @@
     .div-movie-pessoa .movie .span-titulo-movie {
         font-size: .8rem;
         margin-top: -2.5rem;
+        max-width: 120px;
     }
     
     .h2-movies-pessoa {

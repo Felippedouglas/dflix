@@ -58,10 +58,9 @@
 .ator .section-nome-ator-personagem span {
     font-size: 12px;
     white-space: nowrap;
-    max-width: 17ch;
+    max-width: 15ch;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
 }
 
 .ator .section-nome-ator-personagem .nome-ator {

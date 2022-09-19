@@ -12,6 +12,7 @@ export default function Nav() {
     const [ economiaInternet, setEconomiaInternet ] = useState();
     const [ nomeUsuario, setNomeUsuario ] = useState();
 
+
     setInterval(()=>{
         setWidthClient(document.body.clientWidth);
         setEconomiaInternet(localStorage.getItem('economia'));
@@ -65,12 +66,12 @@ export default function Nav() {
 
             <PopUpNav popUpNav={popUpNav} setPopUpNav={setPopUpNav}>
                 <div className='div-fechar-pop-up-nav' onClick={()=>fecharNav()}>
-                    <span><i class="fa-solid fa-bars"></i> Menu</span>
+                    <span><i class="fa-solid fa-bars"></i></span>
                 </div>
                     <div className="div-menu-hamburguer-mobile">
                         <section className="section-menu-hamburguer-nav-mobile">
                             <ul>
-                                <Link to={`/conta/`} onClick={()=>fecharNav()}><i class="fa-solid fa-user"></i> {nomeUsuario}</Link>
+                                <Link to={`/conta/`} onClick={()=>fecharNav()}><i class="fa-solid fa-user"></i> { nomeUsuario ? nomeUsuario : 'user404'}</Link>
                                 <Link to={`/conta/`} onClick={()=>fecharNav()}><i class="fa-solid fa-gear"></i> Configurações</Link>
                                 <a><i class="fa-solid fa-wifi"></i> uso: {economiaInternet ? 'Reduzido' : 'Alto'}</a>
                             </ul>

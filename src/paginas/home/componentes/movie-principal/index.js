@@ -162,12 +162,12 @@ export default function MoviePrincipal() {
                 <div className="div-video-background">
                     <video
                         id='video-movie-principal'
-                        src={!economiaInternet && 1 == 2 ? Trailer : ''}
+                        src={!economiaInternet ? Trailer : ''}
                         poster={imgBackgroundMoviePrincipal}
                         loop muted autoPlay>
                     </video>
                     <section className='section-mute-movie-principal'>
-                        {!economiaInternet && 1 == 2 &&
+                        {!economiaInternet &&
                             <button className='bt-mute-movie-principal' id='bt-mute-movie-principal' onClick={()=>audioMoviePrincipal()}>{audioVideo?<i class="fa-solid fa-volume-high"></i>:<i class="fa-solid fa-volume-xmark"></i>}</button>
                         }
                         <section className='section-classificacao-movie-principal'>

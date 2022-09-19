@@ -2,8 +2,17 @@ import { APIKey } from "../../config/key";
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import './style.css';
+import Alert from "../../componentes/alert";
+import backgroundErro from '../../componentes/imgs/img-erro-background-pessoa.png';
 
 export default function Pesquisar() {
+    
+    const [ alert, setAlert ] = useState(false);
+    const [ alertTitle, setAlertTitle ] = useState();
+    const [ alertMessage, setAlertMessage ] = useState();
+
+    const [ exibirListaSugestoesPesquisar, setExibirListaSugestoesPesquisar ] = useState();
+    const [ sugestoesNomesPesquisar, setSugestoesNomesPesquisar] = useState([]);
     
     const { numeroPagina, movieName } = useParams();
     const [ name, setName] = useState(movieName);
@@ -14,8 +23,6 @@ export default function Pesquisar() {
     const [ filmePesquisado, setFilmePesquisado] = useState(movieName);
     const [ data] = useState(new Date);
     const image_path = 'https://image.tmdb.org/t/p/w500';
-    const [ totalResultadosMovies, setTotalResultadosMovies ] = useState();
-    const [ totalResultadosPessoas, setTotalResultadosPessoas ] = useState();
     const [ salvarHistorico, setSalvarHistorico ] = useState();
     const [ exibirHistorico, setExibirHistorico ] = useState();
 
@@ -43,19 +50,6 @@ export default function Pesquisar() {
                 }, 100)
                 setPaginasMovies(data.total_pages);
             })
-
-            var divMovies = document.getElementById("div-movie-pesquisar")
-            var divpessoas = document.getElementById("div-pessoa-pesquisar")
-    
-            setInterval(()=>{
-                if (divMovies) {
-                    setTotalResultadosMovies(divMovies.childElementCount);
-                }
-    
-                else if (divpessoas) {
-                    setTotalResultadosPessoas(divpessoas.childElementCount);
-                }
-            }, 100)
 
             document.title = 'Pesqsuisar - DFLIX';
     }, [movieName, numeroPagina, tipoPesquisa])
@@ -88,7 +82,7 @@ export default function Pesquisar() {
     function removerDoHistorico(e) {
       let historico = JSON.parse(localStorage.getItem('historico'));
       if (historico != '') {
-        historico.splice(e,1)
+        historico.splice(e,1);
         localStorage.setItem('historico', JSON.stringify(historico));
       }
       document.getElementById("item-historico-" + e).style.display = 'none'
@@ -100,14 +94,15 @@ export default function Pesquisar() {
     }
 
     function moviePesquisar(e) {
-        setName(e)
+        setName(e);
         setFilmePesquisado(e);
-        document.getElementById('input-pesquisar').focus()
+        document.getElementById('input-pesquisar').focus();
     }
 
     function pesquisarMovieHistorico(e, movieName) {
         window.location.href = e;
-        setName(movieName)
+        setName(movieName);
+        window.scrollTo(0,0);
     }
 
     document.addEventListener('keydown', function(e) {
@@ -117,10 +112,28 @@ export default function Pesquisar() {
                 break;
         }
     }, false);
+
+    const inputPesquisar = document.getElementById("input-pesquisar");
                 
     function definirFilmePesquisado(props) {
         setFilmePesquisado(props);
         setName(props);
+
+        if (!inputPesquisar.value) {
+            esconderListaSugestoesNomesPesquisar();
+        }
+
+        if (props.length >= 5) {
+            fetch(`https://api.themoviedb.org/3/search/${tipoPesquisa}?api_key=${APIKey}&language=pt-BR&page=${numeroPagina}&adult=false&query=${props}`)
+                .then(Response => Response.json())
+                .then(data => {
+                    if (data) {
+                        console.log(data)
+                        setSugestoesNomesPesquisar(data.results);
+                    }
+            })
+            exibirListaSugestoesNomesPesquisar();
+        }
     }
     
     function settingsPesquisa(tipoPesquisa) {
@@ -129,45 +142,117 @@ export default function Pesquisar() {
         window.location.href = `/#/pesquisar/search=${movieName}&pagina=1`
     }
  
-    const inputPesquisar = document.getElementById("input-pesquisar");
 
     function recarregarPagina() {
-        salvaHistorico(filmePesquisado)
         setTimeout(()=>{
             if(inputPesquisar.value && inputPesquisar.value.length >= 3) {
+                salvaHistorico(filmePesquisado);
                 window.location.href = `/#/pesquisar/search=${filmePesquisado}&pagina=1`;
-                inputPesquisar.blur()
+                inputPesquisar.blur();
             }
-        }, 10)/* else if (inputPesquisar.value.length <= 3) {
-            alert('digite um valor maior que 3');
-        } else {
-            alert('digite um valor');
-        }*/
-    };
-    
-    setTimeout(() => {
-
-        if (movieName != '') {
-            document.getElementById('div-movie-pesquisar').style.display = 'flex';
-            document.getElementById('div-pessoa-pesquisar').style.display = 'flex';
+        }, 10)
+        
+        if (inputPesquisar.value.length > 0 && inputPesquisar.value.length <= 3) {
+        
+            if (!alert) {
+                setAlert(true)
+                setTimeout(()=>{
+                    setAlert(false)
+                }, 5000)
+            }
+            setAlertTitle('Pesquisar')
+            setAlertMessage(`Digite um valor maior que 2 dígitos`);
+        } else if (inputPesquisar.value.length == 0) {
+        
+            setAlert(true)
+            setTimeout(()=>{
+                setAlert(false)
+            }, 5000)
+            setAlertTitle('Pesquisar')
+            setAlertMessage(`Digite algum nome de filme ou série para pesquisar`);
         }
-
-    }, 1);
+    };
 
     
-            /*{numeroPagina && movieName && !totalResultadosMovies != 0 && !totalResultadosPessoas != 0 &&
-                <div className="div-nenhum-resultado-pesquisar">
-                    <i class="fa-regular fa-face-sad-cry"></i>
-                    <span className="span-nenhum-resultado-pesquisar">Nenhum resultado encontrado!</span>
-                </div>
-            }*/
+    function exibirListaSugestoesNomesPesquisar() {
+        if (inputPesquisar.value.length >= 5) {
+            setExibirListaSugestoesPesquisar(true);
+        }
+    }
+    
+    function esconderListaSugestoesNomesPesquisar() {
+
+        setTimeout(() => {
+            setExibirListaSugestoesPesquisar(false);
+        }, 250);
+    }
+
+    function redirecionarMovieSugeridoPesquisar(mediaType, id) {
+        window.location.href = `/#/assistir=${mediaType}&${id}`;
+    }
 
     return (
         <div className="componente-pequisar" id="componente-pequisar">
+
+            <Alert alert={alert} alertTitle={alertTitle} alertMessage={alertMessage}/>
+
             <header className="header-componente-pesquisar">
-                <section className="section-input-pesquisar">
-                    <input autoComplete="off" minLength={3} maxLength={30} autoFocus type='text' id="input-pesquisar" value={name} placeholder='Pesquise por filmes e séries' onChange={(e)=>definirFilmePesquisado(e.target.value)}/>
-                    <a onClick={()=>recarregarPagina()} id='bt-pequisar-movie'><i className="fas fa-search"></i></a>
+                <section className="section-pesquisar">
+                    <div className="section-input-pesquisar">
+                        <input autoComplete="off" minLength={3} maxLength={40} onFocus={()=>exibirListaSugestoesNomesPesquisar()} onBlur={()=>esconderListaSugestoesNomesPesquisar()} autoFocus type='text' id="input-pesquisar" value={name} placeholder='Pesquise por filmes e séries' onChange={(e)=>definirFilmePesquisado(e.target.value)}/>
+                        <a onClick={()=>recarregarPagina()} id='bt-pequisar-movie'><i className="fas fa-search"></i></a>
+                    </div>
+                    {exibirListaSugestoesPesquisar &&
+                    <div className="div-sugestoes-pesquisar">
+                        {
+                            <ul>
+                                {sugestoesNomesPesquisar.map((sugestao)=>{
+                                    return (
+                                            <li className="li-movie-sugestao-pesquisar" onClick={()=>redirecionarMovieSugeridoPesquisar(sugestao.media_type, sugestao.id)}>
+                                                <section className="section-img-movie-sugetao-pesquisar">
+                                                    {sugestao.media_type == 'tv' &&
+                                                        <img src={`${image_path}${sugestao.poster_path}`} onError={({ currentTarget }) => {currentTarget.onerror = null; currentTarget.src="https://dflix.netlify.app/imagens/img-avatar.png";}}/>
+                                                    }
+                                                    {sugestao.media_type == 'movie' &&
+                                                        <img src={`${image_path}${sugestao.poster_path}`} onError={({ currentTarget }) => {currentTarget.onerror = null; currentTarget.src="https://dflix.netlify.app/imagens/img-avatar.png";}}/>
+                                                    }
+                                                    {sugestao.media_type == 'person' &&
+                                                        <img src={`${image_path}${sugestao.profile_path}`} onError={({ currentTarget }) => {currentTarget.onerror = null; currentTarget.src="https://dflix.netlify.app/imagens/img-avatar.png";}}/>
+                                                    }
+                                                </section>
+                                                <section className="section-informacoes-movie-sugetao-pesquisar">
+                                                    <span>{sugestao.title ? sugestao.title : sugestao.name}</span>
+                                                    <section className="section-ano-sugestao-pesquisar">
+                                                        {sugestao.vote_average && sugestao.vote_average != 0 &&
+                                                            <span className="span-avaliacao-sugestao-pesquisar"><i class="fas fa-star"></i> {sugestao.vote_average.toFixed(1)}</span>
+                                                        }
+                                                        {sugestao.first_air_date &&
+                                                            <span>{sugestao.first_air_date.slice(0,4)}</span>
+                                                        }
+                                                        {sugestao.release_date &&
+                                                            <span>{sugestao.release_date.slice(0,4)}</span>
+                                                        }
+                                                    </section>
+                                                    <span>{sugestao.media_type == 'movie' ? 
+                                                        <span className='span-tipo-sugestao-pesquisar span-filme-sugestao-pesquisar'>Filme</span>
+                                                        : sugestao.media_type == 'tv' ? <span className='span-tipo-sugestao-pesquisar span-serie-sugestao-pesquisar'>Série</span>
+                                                        : 
+                                                        <span className='span-tipo-sugestao-pesquisar span-pessoa-sugestao-pesquisar'>Pessoa</span>
+                                                    }</span>
+                                                </section>
+                                            </li>
+                                    )
+                                })}
+                            </ul>
+                        }
+                        {sugestoesNomesPesquisar.length >= 3 &&
+                            <div className="div-link-pesquisar-sugestao-movie">
+                                <Link className="link-pesquisar-sugestao-movie" to={`/pesquisar/search=${filmePesquisado}&pagina=1`}><i class="fa-solid fa-plus"></i> Ver tudo</Link>
+                            </div>
+                        }
+                    </div>
+                    }
+
                 </section>
                 {!numeroPagina && !exibirHistorico &&
                     <section className="section-salvar-pesquisa-desativado section-exibir-historico-pesquisa-desativado">
@@ -243,7 +328,7 @@ export default function Pesquisar() {
                                             <Link to={`/assistir=${tipoPesquisa == 'multi'? movie.media_type : filmeSeriePessoa}&${movie.id}`}>
                                                 <img loading="lazy" src={`${image_path}${movie.poster_path}`} alt={movie.name} onError={({ currentTarget }) => {currentTarget.onerror = null; currentTarget.src="https://dflix.netlify.app/imagens/img-erro-exclamacao.png";}}/>
                                                 <section className="section-informacoes-movie-pesquisar">
-                                                    <span><i class="fas fa-star"></i>{movie.vote_average.toFixed(1)}</span>
+                                                    <span><i class="fas fa-star"></i> {movie.vote_average.toFixed(1)}</span>
                                                     {movie.first_air_date &&
                                                         <span>{movie.first_air_date.slice(0,4)}</span>
                                                     }

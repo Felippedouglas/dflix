@@ -11,16 +11,22 @@ import 'tippy.js/dist/tippy.css';
 import './style.css';
 import backgroundErro from '../../componentes/imgs/img-erro-background-pessoa.png';
 
-
 //swiper slide
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
 import { FreeMode } from "swiper";
+import PopUp from "../../componentes/pop-up";
+import Alert from "../../componentes/alert";
 
 export default function Assistir() {
 
+    const [ alert, setAlert ] = useState(false);
+    const [ alertTitle, setAlertTitle ] = useState();
+    const [ alertMessage, setAlertMessage ] = useState();
+
+    const [ popUp, setPopUp ] = useState(false);
     const { filmeSerie, id, preview } = useParams();
     const [ movie, setMovie ] = useState({});
     const [ classificacaoIndicativa, setClassificacaoIndicativa ] = useState();
@@ -35,7 +41,6 @@ export default function Assistir() {
     const [ scrollDivTemporadas, setScrollDivTemporadas ] = useState();
     const [ scrollDivEpisodios, setScrollDivEpisodios ] = useState();
     const [ economiaInternet, setEconomiaInternet ] = useState();
-    
 
     // favoritos
     const [ favoritoIsTrue, setFavoritoIsTrue ] = useState(false);
@@ -210,6 +215,13 @@ export default function Assistir() {
     
         favoritos.push(favorito)
         localStorage.setItem('favoritos', JSON.stringify(favoritos))
+       
+        setAlert(true)
+        setTimeout(()=>{
+            setAlert(false)
+        }, 5000)
+        setAlertTitle('Favoritos')
+        setAlertMessage(`${definirFilmeSerie == 'filme' ? 'O Filme ' : 'A Série '} "${nomeMovieFavorito}" foi adicionado aos favoritos`);
     }
   
     function removerFavoritos(e) {
@@ -277,6 +289,37 @@ export default function Assistir() {
     
     return(
         <>
+            <Alert alert={alert} alertTitle={alertTitle} alertMessage={alertMessage}/>
+
+            <PopUp popUp={popUp} setPopUp={setPopUp}>
+
+                <h2 className='h2-titulo-popup'>
+                    <span><i class="fa-solid fa-ban"></i> Anuncios</span>
+                    <button className='bt-fechar-popup' onClick={()=>setPopUp(false)}><i class="fa-solid fa-xmark"></i></button>
+                </h2>
+
+                <div className="div-bloquear-anuncios-assistir">
+                    <header>
+                        <img src="https://brave.com/static-assets/images/brave-logo.svg"/>
+                    </header>
+                    <main>
+                        <span>O navegador Brave te permite assistir aos filmes e séries sem anuncios e de graça, disponível para desktop, android, ios e mais.</span>
+                        <span className="span-verifique-politicas-privacidade">*Verifique as políticas de privacidade!</span>
+                    </main>
+                    <footer>
+                        <a href='https://play.google.com/store/apps/details?id=com.brave.browser&hl=en' target="_Blank">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/768px-Google_Play_Store_badge_EN.svg.png?20190913154415"/>
+                        </a>
+                        <a href='https://apps.apple.com/us/app/brave-private-web-browser/id1052879175?mt=8&ign-mpt=uo%3D4' target="_Blank">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg"/>
+                        </a>
+                        <a href='https://brave.com' target="_Blank">
+                            <img className="logo-brave" src="https://brave.com/static-assets/images/brave-logo.svg"/>
+                        </a>
+                    </footer>
+                </div>
+
+            </PopUp>
             {movie.id &&
                 <div className="container-assistir" id="container-assistir">
                     <div className="all-content-assistir">
@@ -321,7 +364,7 @@ export default function Assistir() {
                                                     </section>
                                                 </SwiperSlide>
                                             }
-                                            {movie.vote_average != 0 &&
+                                            {movie.vote_average && movie.vote_average != 0 &&
                                                 <SwiperSlide>
                                                     <section title={`Avaliação: ${(movie.vote_average).toFixed(1)}`}>
                                                         <span><i className="fas fa-star"></i> {(movie.vote_average).toFixed(1)}</span>
@@ -352,7 +395,9 @@ export default function Assistir() {
                                             }
                                         </Swiper>
                                     </div>
-                                    <span className="descricao-movie-assistir">{movie.overview}</span>
+                                    {movie.overview &&
+                                        <span className="descricao-movie-assistir">{movie.overview}</span>
+                                    }
                                     <div className="generos-movie-assistir">
                                         <Swiper
                                             slidesPerView={'auto'}
@@ -383,8 +428,8 @@ export default function Assistir() {
                                             <Compartilhar />
                                         }
                                         <Tippy content={favoritoIsTrue ? 'Remover favorito' : 'Adicionar favorito'}>
-                                            {favoritoIsTrue ? <button className="botao-favorito botao-remover-favorito" onClick={()=>removerFavoritos(favoritos.findIndex( (element) => element.imdbId == idImdb))}><i class="fa-solid fa-heart"></i></button>
-                                            : <button className="botao-favorito botao-adicionar-favorito" onClick={()=>salvarFavoritos()}><i class="fa-solid fa-heart-crack"></i></button>
+                                            {favoritoIsTrue ? <button className="botao-favorito botao-remover-favorito" onClick={()=>removerFavoritos(favoritos.findIndex( (element) => element.imdbId == idImdb))}><i class="fa-solid fa-heart-circle-plus"></i></button>
+                                            : <button className="botao-favorito botao-adicionar-favorito" onClick={()=>salvarFavoritos()}><i class="fa-regular fa-heart"></i></button>
                                             }
                                         </Tippy>
                                         {preview &&
@@ -440,7 +485,7 @@ export default function Assistir() {
                                                                 <section className="episodio-serie-assistir">
                                                                     <input type='radio' name='input-escolher-episodio' id={`input-escolher-episodio-${ep.episode_number}`}/>
                                                                     <label for={`input-escolher-episodio-${ep.episode_number}`} onClick={()=>definirEpisodio(ep.episode_number)}>
-                                                                        <img loading="lazy" src={!economiaInternet ? `${image_path}${ep.still_path}` : `${backgroundErro}`} alt={ep.name}  onError={({ currentTarget }) => {currentTarget.onerror = null; currentTarget.src="https://dflix.netlify.app/imagens/img-avatar.png";}}/>
+                                                                        <img loading="lazy" src={!economiaInternet ? `${image_path}${ep.still_path}` : `${backgroundErro}`} alt={ep.name}  onError={({ currentTarget }) => {currentTarget.onerror = null; currentTarget.src="https://dflix.netlify.app/imagens/img-erro-background-pessoa.png";}}/>
                                                                         <Link to={`/assistir=tv&${id}/${temporada}/${ep.episode_number}`}id={`link-escolher-episodio-${ep.episode_number}`}  className="span-hover-n-episodio a-episodio-serie">
                                                                             <span>{ep.episode_number}</span>
                                                                             <Tippy content='Assistido'>
@@ -457,22 +502,27 @@ export default function Assistir() {
                                             </div>
                                         }
                                         <section className={`section-opcoes-video ${episodio ? 'mostrar-opcoes-video' : ''}`}>
-                                            <span className="span-informacoes-video-assistir">Assistir {temporada}° temporada / ep. {episodio}</span>
                                             {episodio &&
-                                                <div className="div-opcoes-video-assistir">
-                                                    <section className="opcao-video-assistir">
-                                                        <input type='radio' name='input-escolher-opcao-video' id={`input-escolher-opcao-video-1`}/>
-                                                        <label for={`input-escolher-opcao-video-1`} id='label-escolher-opcao-video-1' onClick={()=>setOpcaoAssistir(1)}>
-                                                            <span className="span-hover-opcao-video">opção 1</span>
-                                                        </label>
-                                                    </section>
-                                                    <section className="opcao-video-assistir">
-                                                        <input type='radio' name='input-escolher-opcao-video' id={`input-escolher-opcao-video-2`}/>
-                                                        <label for={`input-escolher-opcao-video-2`} id='label-escolher-opcao-video-2' onClick={()=>setOpcaoAssistir(2)}>
-                                                            <span className="span-hover-opcao-video">opção 2</span>
-                                                        </label>
-                                                    </section>
-                                                </div>
+                                                <>
+                                                <span className="span-informacoes-video-assistir">Assistir {temporada}° temporada / ep. {episodio}</span>
+                                                    <div className="div-opcoes-video-assistir">
+                                                        <section className="opcao-video-assistir">
+                                                            <input type='radio' name='input-escolher-opcao-video' id={`input-escolher-opcao-video-1`}/>
+                                                            <label for={`input-escolher-opcao-video-1`} id='label-escolher-opcao-video-1' onClick={()=>setOpcaoAssistir(1)}>
+                                                                <span className="span-hover-opcao-video">opção 1</span>
+                                                            </label>
+                                                        </section>
+                                                        <section className="opcao-video-assistir">
+                                                            <input type='radio' name='input-escolher-opcao-video' id={`input-escolher-opcao-video-2`}/>
+                                                            <label for={`input-escolher-opcao-video-2`} id='label-escolher-opcao-video-2' onClick={()=>setOpcaoAssistir(2)}>
+                                                                <span className="span-hover-opcao-video">opção 2</span>
+                                                            </label>
+                                                        </section>
+                                                    </div>
+                                                    <div className="div-abrir-pop-up-bloquear-anuncios">  
+                                                        <button onClick={()=>setPopUp(true)}><i class="fa-solid fa-ban"></i> Bloquear Anuncios</button>
+                                                    </div>
+                                                </>
                                             }
                                         </section>
                                     </div>
@@ -497,6 +547,9 @@ export default function Assistir() {
                                                 </section>
                                             </div>
                                         }
+                                        <div className="div-abrir-pop-up-bloquear-anuncios">  
+                                            <button onClick={()=>setPopUp(true)}><i class="fa-solid fa-ban"></i> Bloquear Anuncios</button>
+                                        </div>
                                     </section>
                                 }
                             </>
@@ -528,6 +581,12 @@ export default function Assistir() {
                             </>
                         }
                     </div>
+        
+                    {window.scrollY >= 200 && !preview &&
+                        <div className={window.scrollY >= 800 ? "nome-movie-scroll-ativado" : "nome-movie-scroll-desativado"}>
+                            <span><i class="fa-solid fa-eye"></i> {movie.name ? movie.name : movie.title}</span>
+                        </div>
+                    }
                 </div>
 
             }

@@ -46,12 +46,10 @@ export default function PagPopularSerie(props) {
     }
     
     function abrirMovie() {
-        //document.getElementById("container-home").style.overflow = 'hidden';
         setPopUpMovie(!popUpMovie);
     }
     
     function fecharMovie() {
-        //document.getElementById("container-home").style.overflow = 'auto';
         setTimeout(()=>{
             document.title = 'DFLIX';
             setPopUpMovie(!popUpMovie);
@@ -85,23 +83,23 @@ export default function PagPopularSerie(props) {
                 }
                 {movies.map(movie => {
                     return (
-                        <div className="movie" key={movie.id}>
+                        <div className="movie" key={movie.id} title={movie.name}>
                             <Link to={`/preview/tv&${movie.id}`} onClick={()=>abrirMovie()}>
                                 <img loading="lazy" src={`${image_path}${movie.poster_path}`} alt={movie.title} onError={({ currentTarget }) => {currentTarget.onerror = null; currentTarget.src="https://dflix.netlify.app/imagens/img-erro-exclamacao.png"; currentTarget.height='50px'}}/>
                                 <section className="section-informacoes-movie">
-                                    <div class="div-avaliacao-movie">
-                                        <span class="span-estrela-movie"><i class="fas fa-star"></i></span>
-                                        <span>{movie.vote_average.toFixed(1)} </span>
-                                    </div>
-                                    {movie.first_air_date &&
-                                        <span>{movie.first_air_date.slice(0,4)}</span>
-                                    }
-                                    {movie.release_date &&
-                                        <span>{movie.release_date.slice(0,4)}</span>
-                                    }
+                                        <div class="div-avaliacao-movie">
+                                            <span class="span-estrela-movie"><i class="fas fa-star"></i></span>
+                                            <span>{movie.vote_average.toFixed(1)} </span>
+                                        </div>
+                                        {movie.first_air_date &&
+                                            <span>{movie.first_air_date.slice(0,4)}</span>
+                                        }
+                                        {movie.release_date &&
+                                            <span>{movie.release_date.slice(0,4)}</span>
+                                        }
                                 </section>
                             </Link>
-                            <span className="span-titulo-movie">{movie.name}</span>
+                            <span className="span-titulo-movie span-titulo-movie1">{movie.name}</span>
                         </div>
                         )
                     })

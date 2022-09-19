@@ -99,7 +99,7 @@ export default function PagPopularFilme(props) {
                 }
                 {movies.map(movie => {
                         return (
-                            <div className="movie" key={movie.id}>
+                            <div className="movie" key={movie.id} title={movie.title}>
                                 <Link to={`/preview/movie&${movie.id}`} onClick={()=>abrirMovie()}>
                                     <img loading="lazy" src={`${image_path}${movie.poster_path}`} alt={movie.title} onError={({ currentTarget }) => {currentTarget.onerror = null; currentTarget.src="https://dflix.netlify.app/imagens/img-erro-exclamacao.png";}}/>
                                     <section className="section-informacoes-movie">

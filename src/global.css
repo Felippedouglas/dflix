@@ -64,11 +64,43 @@ html {
   font-size: 30px;
   cursor: pointer;
   transition: all .3s ease;
-  z-index: 2;
+  z-index: 3;
 }
 
 .button-topo-pagina:hover {
   opacity: .6;
+}
+
+.alert-ativado, .alert-desativado {
+  position: fixed;
+  left: 10px;
+  background: #fff;
+  color: #181818;
+  border-radius: 5px;
+  min-width: 200px;
+  max-width: 400px;
+  padding: 5px 10px;
+  z-index: 99;
+  transition: .5s;
+}
+
+.alert-desativado {
+  bottom: -100px;
+}
+
+.alert-ativado {
+  bottom: 25px;
+}
+
+.alert-ativado h2, .alert-desativado h2 {
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.alert-ativado p, .alert-desativado p {
+  font-size: .8rem;
+  font-weight: 600;
 }
 
 .h2-titulo-sections {
@@ -110,12 +142,27 @@ html {
     .h2-titulo-sections {
         font-size: 1rem;
     }
-
 }
 
 @media (max-width: 600px) {
     
-  .h2-titulo-sections {
+  .h2-titulo-sections, .alert-ativado h2, .alert-desativado h2 {
       font-size: .9rem;
   }
+
+  .alert-ativado p, .alert-desativado p {
+    font-size: .7rem;
+  }
+
+  .alert-ativado, .alert-desativado {
+    left: 10px;
+    margin-right: 50px;
+    min-width: 95%;
+    max-width: 95%;
+  }
+
+  .alert-ativado {
+    bottom: 10px;
+  }
+
 }

@@ -1,3 +1,81 @@
+.nome-movie-scroll-ativado, .nome-movie-scroll-desativado {
+    position: fixed;
+    padding: 8px 10px;
+    left: 10px;
+    text-align: center;
+    border-radius: 5px;
+    background: #fff;
+    color: #181818;
+    max-width: 100%;
+    transition: all .3s ease;
+    white-space: nowrap;
+    max-width: 35ch;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    z-index: 9;
+}
+
+.nome-movie-scroll-ativado {
+    bottom: 25px;
+}
+
+.nome-movie-scroll-desativado {
+    bottom: -100px;
+}
+
+.div-bloquear-anuncios-assistir {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.div-bloquear-anuncios-assistir header {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0 20px 0;
+}
+
+.div-bloquear-anuncios-assistir img {
+    width: 60%;
+}
+
+.div-bloquear-anuncios-assistir main {
+    display: flex;
+    flex-direction: column;
+}
+
+.span-verifique-politicas-privacidade {
+    font-size: .8rem;
+    margin-top: 10px;
+    color: #ccc;
+}
+
+.div-bloquear-anuncios-assistir footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: wrap;
+    margin-top: 20px;
+}
+
+.div-bloquear-anuncios-assistir footer img {
+    min-width: 150px;
+    max-width: 150px;
+    margin: 0 5px;
+    transition: all .3s ease;
+}
+
+.div-bloquear-anuncios-assistir footer img:hover {
+    opacity: .5;
+}
+
+.logo-brave {
+    border-radius: 5px;
+    padding: 5px 10px 3px 10px;
+    border: 1px solid #aaa;
+    background: #000;
+}
 
 .container-assistir {
     background-size: 100%;
@@ -22,7 +100,7 @@
 .container-assistir .div-imagem-movie-assistir #img-movie-assistir {
     height: 350px;
     width: 230px;
-    border-radius: 1rem;
+    border-radius: .5rem;
     background: #181818;
 }
 
@@ -217,11 +295,17 @@
 .a-episodio-serie {
     text-decoration: none;
     color: #fff;
+    cursor: pointer;
 }
 
 .olho-episodio-visualizado {
     color: rgb(85, 85, 85);
-    margin-left: 5px;
+    margin-left: 8px;
+}
+
+.lock-episodio-visualizado {
+    margin-left: 8px;
+    color: rgb(254, 29, 29);
 }
 
 .a-episodio-serie:visited .olho-episodio-visualizado {
@@ -370,6 +454,7 @@
 .episodio-serie-assistir {
     position: relative;
     margin-right: 10px;
+    cursor: pointer;
 }
 
 .episodio-serie-assistir:last-child {
@@ -496,6 +581,25 @@
     text-align: center;
 }
 
+.div-abrir-pop-up-bloquear-anuncios {
+    margin-top: 20px;
+}
+
+.div-abrir-pop-up-bloquear-anuncios button {
+    padding: 5px 15px;
+    background: #fff;
+    font-weight: bold;
+    font-size: .8rem;
+    border-radius: 50px;
+    border: 2px solid #fff;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+.div-abrir-pop-up-bloquear-anuncios button:hover {
+    opacity: .5;
+}
+
 .container-assistir .div-iframe-movie-assistir {
     display: flex;
     flex-direction: column;
@@ -509,7 +613,7 @@
 }
 
 .span-alert-iframe {
-    margin: 0 20px;
+    margin: 20px 20px 0 20px;
     font-size: 1rem;
     font-weight: bold;
     text-align: center;
@@ -558,6 +662,10 @@
 }
 
 @media (max-width: 600px) {
+
+    .nome-movie-scroll-ativado {
+        bottom: 10px;
+    }
 
     .container-assistir .movie-assistir {
         padding: 5rem 1rem 3rem 1rem;

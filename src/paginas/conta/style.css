@@ -35,6 +35,7 @@
 .input-nome-usuario {
     height: 30px;
     text-align: center;
+    font-weight: 600;
     margin-top: 10px;
     text-transform: capitalize;
     background: #181818;

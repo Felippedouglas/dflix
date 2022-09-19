@@ -172,6 +172,11 @@
 
 .botao-adicionar-favorito-movie-principal {
     background: #18181879;
+    transition: all .3s ease;
+}
+
+.botao-adicionar-favorito-movie-principal:hover {
+    opacity: .5;
 }
 
 .botao-remover-favorito-movie-principal {

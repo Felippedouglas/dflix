@@ -1,10 +1,15 @@
 import { useState, useEffect, React } from "react";
 import './style.css';
 import ImgAvatar from '../../componentes/imgs/img-avatar.png'
+import Alert from "../../componentes/alert";
 
 
 export default function Conta() {
     
+    const [ alert, setAlert ] = useState(false);
+    const [ alertTitle, setAlertTitle ] = useState('Configurações');
+    const [ alertMessage, setAlertMessage ] = useState();
+
     const [ economiaInternet, setEconomiaInternet ] = useState();
     const [ favoritosHome, setFavoritosHome ] = useState();
     const [ salvarHistorico, setSalvarHistorico ] = useState();
@@ -23,40 +28,77 @@ export default function Conta() {
     }, [favoritosHome, economiaInternet, nomeUsuario])
 
     function favoritoHome(e) {
+        if (!alert) {
+            setAlert(true)
+            setTimeout(()=>{
+                setAlert(false)
+            }, 5000)
+        }
+
         if (e == 'ativar') {
             localStorage.setItem('FavoritoHome', true)
+            setAlertMessage('Favoritos Home foi ATIVADO!');
+         
         } else {
             localStorage.removeItem('FavoritoHome')
+            setAlertMessage('Favoritos Home foi DESATIVADO!');
         }
         
         setFavoritosHome(!favoritosHome)
     }
     
     function economia(e) {
+        if (!alert) {
+            setAlert(true)
+            setTimeout(()=>{
+                setAlert(false)
+            }, 5000)
+        }
+
         if (e == 'ativar') {
             localStorage.setItem('economia', true)
+            setAlertMessage('A Economia de dados foi ATIVADA!');
         } else {
             localStorage.removeItem('economia')
+            setAlertMessage('A Economia de dados foi DESATIVADA!');
         }
 
         setEconomiaInternet(!economiaInternet)
     }
 
     function functionSalvarHistorico(e) {
+        if (!alert) {
+            setAlert(true)
+            setTimeout(()=>{
+                setAlert(false)
+            }, 5000)
+        }
+
         if (e == 'ativar') {
             localStorage.setItem('salvarHistorico', true)
+            setAlertMessage('Salvar Histórico de pesquisas foi ATIVADO!');
         } else {
             localStorage.removeItem('salvarHistorico')
+            setAlertMessage('Salvar Histórico de pesquisas foi DESATIVADO!');
         }
 
         setSalvarHistorico(!salvarHistorico)
     }
 
     function functionExibirHistorico(e) {
+        if (!alert) {
+            setAlert(true)
+            setTimeout(()=>{
+                setAlert(false)
+            }, 5000)
+        }
+
         if (e == 'ativar') {
             localStorage.setItem('exibirHistorico', true)
+            setAlertMessage('Exibir Histórico de pesquisa foi ATIVADO');
         } else {
             localStorage.removeItem('exibirHistorico')
+            setAlertMessage('Exibir Histórico de pesquisa foi DESATIVADO');
         }
 
         setExibirHistorico(!exibirHistorico)
@@ -73,10 +115,20 @@ export default function Conta() {
             localStorage.setItem('nomeUsuario', 'user' + numero)
             setNomeUsuario('nomeUsuario', 'user' + numero)
         }
+        if (!alert) {
+            setAlert(true)
+            setAlertMessage('Nome alterado com sucesso!');
+            setTimeout(()=>{
+                setAlert(false)
+            }, 5000)
+        }
     }
 
     return(
         <div className="content-conta" id="content-conta">
+
+            <Alert alert={alert} alertTitle={alertTitle} alertMessage={alertMessage}/>
+            
             <div className="div-conta">
                 <div className="div-informacoes-user">
                     <img className="img-perfil" src={ImgAvatar} alt="img-perfil" />

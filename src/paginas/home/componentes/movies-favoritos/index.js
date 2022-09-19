@@ -41,7 +41,6 @@ export default function PagMoviesFavoritos() {
     }
 
     return(
-        
         <div className="content-movies content-movies-favoritos">
             <div className="div-name-categoria-movie">
                 <h2 className="h2-filme-serie-titulo-categoria">Favoritos <Link to='/conta' className="link-conta-movies-favoritos"><i class="fa-solid fa-gear"></i></Link></h2>
@@ -58,11 +57,8 @@ export default function PagMoviesFavoritos() {
                                             <span class="span-estrela-movie"><i class="fas fa-star"></i></span>
                                             <span>{movie.vote_average.toFixed(1)} </span>
                                         </div>
-                                        {movie.first_air_date &&
-                                            <span>{movie.first_air_date.slice(0,4)}</span>
-                                        }
-                                        {movie.release_date &&
-                                            <span>{movie.release_date.slice(0,4)}</span>
+                                        {movie.year &&
+                                            <span>{movie.year}</span>
                                         }
                                     </section>
                                 </Link>
@@ -72,10 +68,12 @@ export default function PagMoviesFavoritos() {
                         })
                     }
                 </div>
-                <div className="div-bts-movies-favoritos">
-                    <button className="bt-slide bt-left-slide" onClick={btLeftSlideSerie}><i class="fas fa-angle-left"></i></button>
-                    <button className="bt-slide bt-right-slide" onClick={btRightSlideSerie}><i class="fas fa-angle-right"></i></button>
-                </div>
+                {favoritos.length >= 4 && 
+                    <div className="div-bts-movies-favoritos">
+                        <button className="bt-slide bt-left-slide" onClick={btLeftSlideSerie}><i class="fas fa-angle-left"></i></button>
+                        <button className="bt-slide bt-right-slide" onClick={btRightSlideSerie}><i class="fas fa-angle-right"></i></button>
+                    </div>
+                }
             </div>
         </div>
     )
