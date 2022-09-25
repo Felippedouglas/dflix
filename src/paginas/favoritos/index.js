@@ -67,8 +67,8 @@ export default function Favoritos() {
             <h2 className="h2-titulo-generos">favoritos</h2>
             {favoritos.map(favorito => {
                 return (
-                    <div className="div-favoritos" style={{backgroundImage: !economiaInternet ? `url(${favorito.imgBackground})` : `url(${backgroundErro})`}}>
-                        <div className="favoritos">
+                    <div className="div-favoritos" style={{backgroundImage: !economiaInternet ? `url(${favorito.imgBackground})` : `url('')`}}>
+                        <div className="favoritos" style={{backgroundImage: economiaInternet && `linear-gradient(to right, #181818, #252525)`}}>
                             <section className="section-img-favoritos">
                                 <img src={favorito.img} alt={favorito.name}/>
                             </section>
@@ -82,7 +82,7 @@ export default function Favoritos() {
                                 </section>
                                 <section className="section-bts-assistir-remover">
                                     <Link to={`/assistir=${favorito.type}&${favorito.id}`}><i class="fa-solid fa-play"></i></Link>
-                                    <button onClick={()=>removerFavoritos(favoritos.findIndex( (element) => element.imdbId == favorito.imdbId))}><i class="fa-solid fa-heart-crack"></i></button>
+                                    <button onClick={()=>removerFavoritos(favoritos.findIndex( (element) => element.imdbId == favorito.imdbId))}><i class="fa-solid fa-trash"></i></button>
                                 </section>
                             </section>
                         </div>

@@ -121,7 +121,7 @@ export default function Assistir() {
             }, 10)
             });
 
-            setEconomiaInternet(localStorage.getItem('economia'))
+            setEconomiaInternet(localStorage.getItem('economia'));
 
     }, [id]);
 

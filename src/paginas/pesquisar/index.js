@@ -25,6 +25,7 @@ export default function Pesquisar() {
     const image_path = 'https://image.tmdb.org/t/p/w500';
     const [ salvarHistorico, setSalvarHistorico ] = useState();
     const [ exibirHistorico, setExibirHistorico ] = useState();
+    const [ economiaInternet, setEconomiaInternet ] = useState();
 
     const [ historico, setHistorico ] = useState([]);
     const [ itemHistoritoTrue, setItemHistoritoTrue ] = useState(false);
@@ -50,6 +51,8 @@ export default function Pesquisar() {
                 }, 100)
                 setPaginasMovies(data.total_pages);
             })
+
+            setEconomiaInternet(localStorage.getItem('economia'));
 
             document.title = 'Pesqsuisar - DFLIX';
     }, [movieName, numeroPagina, tipoPesquisa])
@@ -128,7 +131,6 @@ export default function Pesquisar() {
                 .then(Response => Response.json())
                 .then(data => {
                     if (data) {
-                        console.log(data)
                         setSugestoesNomesPesquisar(data.results);
                     }
             })
@@ -202,7 +204,7 @@ export default function Pesquisar() {
                         <input autoComplete="off" minLength={3} maxLength={40} onFocus={()=>exibirListaSugestoesNomesPesquisar()} onBlur={()=>esconderListaSugestoesNomesPesquisar()} autoFocus type='text' id="input-pesquisar" value={name} placeholder='Pesquise por filmes e séries' onChange={(e)=>definirFilmePesquisado(e.target.value)}/>
                         <a onClick={()=>recarregarPagina()} id='bt-pequisar-movie'><i className="fas fa-search"></i></a>
                     </div>
-                    {exibirListaSugestoesPesquisar &&
+                    {exibirListaSugestoesPesquisar && !economiaInternet &&
                     <div className="div-sugestoes-pesquisar">
                         {
                             <ul>
@@ -233,10 +235,10 @@ export default function Pesquisar() {
                                                             <span>{sugestao.release_date.slice(0,4)}</span>
                                                         }
                                                     </section>
-                                                    <span>{sugestao.media_type == 'movie' ? 
+                                                    <span>{sugestao.media_type == 'movie' ?
                                                         <span className='span-tipo-sugestao-pesquisar span-filme-sugestao-pesquisar'>Filme</span>
                                                         : sugestao.media_type == 'tv' ? <span className='span-tipo-sugestao-pesquisar span-serie-sugestao-pesquisar'>Série</span>
-                                                        : 
+                                                        :
                                                         <span className='span-tipo-sugestao-pesquisar span-pessoa-sugestao-pesquisar'>Pessoa</span>
                                                     }</span>
                                                 </section>
@@ -324,7 +326,7 @@ export default function Pesquisar() {
                             return (
                                 <>
                                     {((movie.release_date || movie.first_air_date) && movie.poster_path) &&
-                                        <div className='movie-pesquisar' title={movie.title? movie.title : movie.name}>
+                                        <div className='movie-pesquisar'>
                                             <Link to={`/assistir=${tipoPesquisa == 'multi'? movie.media_type : filmeSeriePessoa}&${movie.id}`}>
                                                 <img loading="lazy" src={`${image_path}${movie.poster_path}`} alt={movie.name} onError={({ currentTarget }) => {currentTarget.onerror = null; currentTarget.src="https://dflix.netlify.app/imagens/img-erro-exclamacao.png";}}/>
                                                 <section className="section-informacoes-movie-pesquisar">
@@ -345,7 +347,7 @@ export default function Pesquisar() {
                                             movie.media_type == 'tv' &&
                                                 <span className='span-movie-serie'>Série</span>
                                             }
-                                            <span className="titulo-movie">{movie.title}{movie.name}</span>
+                                            <span className="titulo-movie" title={movie.title? movie.title : movie.name}>{movie.title}{movie.name}</span>
                                         </div>
                                     }
                                 </>

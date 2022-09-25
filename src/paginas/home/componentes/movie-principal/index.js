@@ -11,7 +11,7 @@ export default function MoviePrincipal() {
     const [ audioVideo, setAudioVideo ] = useState(false);
     const [ movie, setMovie ] = useState({});
     const [ filmeSerie, setFilmeSerie ] = useState('tv');
-    const [ id, setId ] = useState(94997);
+    const [ id, setId ] = useState(110316);
     const [ idImdb, setIdImdb ] = useState();
     const [ definirFilmeSerie, setDefinirFilmeSerie ] = useState();
     const image_path = 'https://image.tmdb.org/t/p/w500';
@@ -140,6 +140,9 @@ export default function MoviePrincipal() {
       })
     }
 
+    //<i class="fa-regular fa-rectangle-history-circle-plus"></i>
+    //<i class="fa-solid fa-rectangle-history-circle-plus"></i>
+
     const converter = (minutos) => {
         const horas = Math.floor(minutos/ 60);
         const min = minutos % 60;
@@ -164,18 +167,18 @@ export default function MoviePrincipal() {
                         id='video-movie-principal'
                         src={!economiaInternet ? Trailer : ''}
                         poster={imgBackgroundMoviePrincipal}
-                        loop muted autoPlay>
+                        loop>
                     </video>
                     <section className='section-mute-movie-principal'>
                         {!economiaInternet &&
                             <button className='bt-mute-movie-principal' id='bt-mute-movie-principal' onClick={()=>audioMoviePrincipal()}>{audioVideo?<i class="fa-solid fa-volume-high"></i>:<i class="fa-solid fa-volume-xmark"></i>}</button>
                         }
                         <section className='section-classificacao-movie-principal'>
-                            <span className='span-classificacao-movie-principal'>16</span>
+                            <span className='span-classificacao-movie-principal'>18</span>
                         </section>
                     </section>
                 </div>
-                <div className="div-detalhes-movie-principal">
+                <div className="div-detalhes-movie-principal" id='div-detalhes-movie-principal'>
                     <img src={logoMoviePrincipal} alt='img movie'/>
                     <section class="informacoes-movie-principal">
                         {movie.first_air_date &&
@@ -192,11 +195,14 @@ export default function MoviePrincipal() {
                         }
                         <span><i class="fas fa-star"></i> {Number(movie.vote_average).toFixed(1)}/10</span>
                     </section>
+                    <secion className='secion-avisos-movie-principal'>
+                        <span className='span-avisos-movie-principal'><i class="fa-solid fa-circle-exclamation"></i> temporada 2 em dezembro</span>
+                    </secion>
                     <section className='section-bts-assistir-movie-principal'>
                         <Link to={`/assistir=${filmeSerie}&${movie.id}`} className='bt-assistir-movie-principal'><i class='fas fa-play'></i>Assistir</Link>
-                        {favoritoIsTrue ? <button className="botao-favorito-movie-principal botao-remover-favorito-movie-principal" onClick={()=>removerFavoritos(favoritos.findIndex( (element) => element.imdbId == idImdb))}><i class="fa-solid fa-heart"></i> Favoritos</button>
-                        : <button className="botao-favorito-movie-principal botao-adicionar-favorito-movie-principal" onClick={()=>salvarFavoritos()}><i class="fa-solid fa-heart-crack"></i> Favoritos</button>
-                        }
+                        {favoritoIsTrue ? <button className="botao-favorito-movie-principal botao-remover-favorito-movie-principal" onClick={()=>removerFavoritos(favoritos.findIndex( (element) => element.imdbId == idImdb))}><i class="fa-solid fa-heart-circle-plus"></i> Favoritos</button>
+                        : <button className="botao-favorito-movie-principal botao-adicionar-favorito-movie-principal" onClick={()=>salvarFavoritos()}><i class="fa-regular fa-heart"></i> Favoritos</button>
+                    }
                     </section>
                 </div>
             </div>

@@ -35,6 +35,8 @@ export default function PesqusiarGenero() {
                 setMovies(data.results);
                 setTotalResultados(data.total_pages);
             })
+
+            window.scrollTo(0,0);
     }, [numeroPagina, generoPesquisado, filmeSerie, infantil])
 
     // lista de generos dos filmes e séries
@@ -102,7 +104,7 @@ export default function PesqusiarGenero() {
                                 <section className="genero">
                                     <input className="input-escolher-genero" type='radio' name='input-radio-genero' id={`input-genero=${genero.id}`}/>
                                     <label className="label-escolher-genero" id={`label-genero=${genero.id}`} htmlFor={`input-genero=${genero.id}`}>
-                                        <Link onClick={()=>window.scrollTo(0,0)} to={`/${filmeSerie}/genero=${genero.id}/${genero.name}&infantil=${infantil}&pagina=1`}>{genero.name}</Link>
+                                        <Link to={`/${filmeSerie}/genero=${genero.id}/${genero.name}&infantil=${infantil}&pagina=1`}>{genero.name}</Link>
                                     </label>
                                 </section>
                             </SwiperSlide>
@@ -118,7 +120,7 @@ export default function PesqusiarGenero() {
                     {movies.map(movie => {
                         return (
                             <>
-                                <div className='movie-pesquisar' title={movie.title}>
+                                <div className='movie-pesquisar'>
                                     <Link to={`/assistir=${filmeSerie}&${movie.id}`}>
                                         <img loading="lazy" src={`${image_path}${movie.poster_path}`} alt={movie.title} onError={({ currentTarget }) => {currentTarget.onerror = null; currentTarget.src="https://dflix.netlify.app/imagens/img-erro-exclamacao.png";}}/>
                                         <section className="section-informacoes-movie-pesquisar">
@@ -131,7 +133,7 @@ export default function PesqusiarGenero() {
                                             }
                                         </section>
                                     </Link>
-                                    <span className="titulo-movie">{movie.title}</span>
+                                    <span className="titulo-movie" title={movie.title}>{movie.title}</span>
                                 </div>
                             </>
                             )
@@ -146,7 +148,7 @@ export default function PesqusiarGenero() {
                     {movies.map(movie => {
                         return (
                             <>
-                                <div className='movie-pesquisar' title={movie.name}>
+                                <div className='movie-pesquisar'>
                                     <Link to={`/assistir=${filmeSerie}&${movie.id}`}>
                                         <img loading="lazy" src={`${image_path}${movie.poster_path}`} alt={movie.name} onError={({ currentTarget }) => {currentTarget.onerror = null; currentTarget.src="https://dflix.netlify.app/imagens/img-erro-exclamacao.png";}}/>
                                         <section className="section-informacoes-movie-pesquisar">
@@ -159,7 +161,7 @@ export default function PesqusiarGenero() {
                                                     }
                                         </section>
                                     </Link>
-                                    <span className="titulo-movie">{movie.name}</span>
+                                    <span className="titulo-movie" title={movie.name}>{movie.name}</span>
                                 </div>
                             </>
                             )
@@ -174,7 +176,7 @@ export default function PesqusiarGenero() {
                     <section>
                         <input className="input-escolher-genero" type="radio" name="input-radio-genero" id="input-paginas-genero=1"/>
                         <label className="label-escolher-genero label-bt-pagina-genero" id="label-paginas-generos=1" for="input-paginas-genero=1">
-                            <Link onClick={()=>window.scrollTo(0,0)} to={`/${filmeSerie}/genero=${idGenero}/${generoPesquisado}&infantil=${infantil}&pagina=${Number(numeroPagina) - 1}`} className="bt-pagina-pesquisar"><i class="fa-solid fa-angle-left"></i>  Anterior: {Number(numeroPagina) - 1}</Link>
+                            <Link to={`/${filmeSerie}/genero=${idGenero}/${generoPesquisado}&infantil=${infantil}&pagina=${Number(numeroPagina) - 1}`} className="bt-pagina-pesquisar"><i class="fa-solid fa-angle-left"></i>  Anterior: {Number(numeroPagina) - 1}</Link>
                         </label>
                     </section>
                 }
@@ -187,7 +189,7 @@ export default function PesqusiarGenero() {
                     <section>
                         <input className="input-escolher-genero" type="radio" name="input-radio-genero" id="input-paginas-genero=2"/>
                         <label className="label-escolher-genero label-bt-pagina-genero" id="label-paginas-generos=2" for="input-paginas-genero=2">
-                            <Link onClick={()=>window.scrollTo(0,0)} to={`/${filmeSerie}/genero=${idGenero}/${generoPesquisado}&infantil=${infantil}&pagina=${Number(numeroPagina) + 1}`} className="bt-pagina-pesquisar">{numeroPagina == 1 ? 'Ver mais' : `Próximo: ${Number(numeroPagina) + 1}`} <i class="fa-solid fa-angle-right"></i></Link>
+                            <Link to={`/${filmeSerie}/genero=${idGenero}/${generoPesquisado}&infantil=${infantil}&pagina=${Number(numeroPagina) + 1}`} className="bt-pagina-pesquisar">{numeroPagina == 1 ? 'Ver mais' : `Próximo: ${Number(numeroPagina) + 1}`} <i class="fa-solid fa-angle-right"></i></Link>
                         </label>
                     </section>
                 }

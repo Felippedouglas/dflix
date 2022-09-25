@@ -83,7 +83,7 @@ export default function PagPopularSerie(props) {
                 }
                 {movies.map(movie => {
                     return (
-                        <div className="movie" key={movie.id} title={movie.name}>
+                        <div className="movie" key={movie.id}>
                             <Link to={`/preview/tv&${movie.id}`} onClick={()=>abrirMovie()}>
                                 <img loading="lazy" src={`${image_path}${movie.poster_path}`} alt={movie.title} onError={({ currentTarget }) => {currentTarget.onerror = null; currentTarget.src="https://dflix.netlify.app/imagens/img-erro-exclamacao.png"; currentTarget.height='50px'}}/>
                                 <section className="section-informacoes-movie">
@@ -99,7 +99,7 @@ export default function PagPopularSerie(props) {
                                         }
                                 </section>
                             </Link>
-                            <span className="span-titulo-movie span-titulo-movie1">{movie.name}</span>
+                            <span className="span-titulo-movie span-titulo-movie1" title={movie.name}>{movie.name}</span>
                         </div>
                         )
                     })

@@ -56,7 +56,7 @@ export default function Sugestao(props) {
                 }
                 {movies.map(movie => {
                         return (
-                            <div className="movie movies-sugestoes" key={movie.id} title={filmeSerie == 'movie' ? movie.title : movie.name}>
+                            <div className="movie movies-sugestoes" key={movie.id}>
 
                                 <Link to={`/assistir=${filmeSerie}&${movie.id}`} onClick={()=>setTimeout(()=>{window.location.reload()},10)} /* onClick={()=>scroll()} */>
                                     <img loading="lazy" src={`${image_path}${movie.poster_path}`} alt={movie.title} onError={({ currentTarget }) => {currentTarget.onerror = null; currentTarget.src="https://dflix.netlify.app/imagens/img-erro-exclamacao.png";}}/>
@@ -75,7 +75,7 @@ export default function Sugestao(props) {
                                             }   
                                     </section>
                                 </Link>
-                                <span className="span-titulo-movie">{movie.title}{movie.name}</span>
+                                <span className="span-titulo-movie" title={filmeSerie == 'movie' ? movie.title : movie.name}>{movie.title}{movie.name}</span>
                             </div>
                         )
                     })

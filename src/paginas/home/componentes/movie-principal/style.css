@@ -79,7 +79,7 @@
 }
 
 .section-classificacao-movie-principal .span-classificacao-movie-principal {
-    background: #f00;
+    background: #000;
     border-radius: 2px;
     font-size: 14px;
     font-weight: bold;
@@ -120,6 +120,20 @@
 
 .content-movie-principal .div-detalhes-movie-principal span {
     max-width: 600px;
+}
+
+.secion-avisos-movie-principal {
+    margin: 5px 0 15px 0;
+}
+
+.span-avisos-movie-principal {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: .8rem;
+    background: hsla(0, 0%, 9%, 0.4);
+    padding: 5px 10px;
+    border-radius: 50px;
+    text-align: center;
 }
 
 .section-bts-assistir-movie-principal {
@@ -202,7 +216,7 @@
 @media (max-width: 1000px) {
 
     .content-movie-principal .div-detalhes-movie-principal img {
-        max-width: 300px;
+        max-width: 350px;
         height: 150px;
     }
     
@@ -275,7 +289,7 @@
     }
 
     .content-movie-principal .div-detalhes-movie-principal img {
-        max-width: 250px;
+        max-width: 270px;
         height: 120px;
     }
 

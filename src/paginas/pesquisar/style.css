@@ -136,18 +136,6 @@ a {
     margin-right: 20px;
 }
 
-.span-serie-sugestao-pesquisar {
-    background: #E50914;
-}
-
-.span-filme-sugestao-pesquisar {
-    background: #008000;
-}
-
-.span-pessoa-sugestao-pesquisar {
-    background: #008cff;
-}
-
 .div-link-pesquisar-sugestao-movie::before {
     content: '';
     display: block;
@@ -486,15 +474,15 @@ a {
     transition: all .3s ease;
 }
 
-.span-movie-filme {
+.span-movie-filme, .span-filme-sugestao-pesquisar {
     background: #E50914;
 }
 
-.span-movie-serie {
+.span-movie-serie, .span-serie-sugestao-pesquisar {
     background: #008000;
 }
 
-.span-pessoa {
+.span-pessoa, .span-pessoa-sugestao-pesquisar {
     background: #008cff;
 }
 
