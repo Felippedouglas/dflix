@@ -14,8 +14,8 @@ export default function Footer() {
     })
 
     return(
-        <footer class="footer" id='footer'>
-            <div class="div-creditos-apis">
+        <footer className="footer" id='footer'>
+            <div className="div-creditos-apis">
                 <a href="https://www.themoviedb.org/" target="_blank">
                     <img src={ImgTmdb} alt="tmdb"/>
                 </a>
@@ -23,19 +23,19 @@ export default function Footer() {
                     <img src={ImgWarez} alt="warez cdn"/>
                 </a>
             </div>
-            <div class="div-creditos-felippe-footer">
+            <div className="div-creditos-felippe-footer">
                 <section>
-                    <span class="span-felippe">© Felippe douglas - 2022</span>
+                    <span className="span-felippe">© Felippe douglas - 2022</span>
                 </section>
-                <section class="section-links-redes-sociais-footer">
+                <section className="section-links-redes-sociais-footer">
                     <a href="https://github.com/Felippedouglas" target="_blank">
-                        <button><i class="fa-brands fa-github"></i></button>
+                        <button><i className="fa-brands fa-github"></i></button>
                     </a>
                     <a href="https://www.linkedin.com/in/felippe-douglas-01956321b/" target="_blank">
-                        <button><i class="fa-brands fa-linkedin"></i></button>
+                        <button><i className="fa-brands fa-linkedin"></i></button>
                     </a>
                     <a href="https://www.felippedouglas.tech" target="_blank">
-                        <button><i class="fa-solid fa-user"></i></button>
+                        <button><i className="fa-solid fa-user"></i></button>
                     </a>
                 </section>
             </div>

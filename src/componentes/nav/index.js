@@ -49,38 +49,53 @@ export default function Nav() {
                 <Link to="/"><img className="logo-dflix" src="https://dflix.netlify.app/icones/dflix.svg" alt="logo-dflix" /></Link>
                 <div className="div-links-nav">
                     <ul>
-                        <Link to='/'>Início</Link>
-                        <Link to='/tv/genero=10759/Action & Adventure&infantil=false&pagina=1'>Séries</Link>
-                        <Link to='/movie/genero=28/ação&infantil=false&pagina=1'>Filmes</Link>
-                        <Link to='/tv/genero=10762/kids&infantil=true&pagina=1'>Infantil</Link>
-                        <Link to={`/favoritos/`} className='icone-favoritos-pesquisar'>Favoritos</Link>
+                        <Link to='/'>
+                            <i class="fa-solid fa-house-crack"></i>
+                            <span>Início</span>
+                        </Link>
+                        <Link to='/tv/genero=10759/Action & Adventure&infantil=false&pagina=1'>
+                            <i class="fa-solid fa-tv"></i>
+                            <span>Séries</span>
+                        </Link>
+                        <Link to='/movie/genero=28/ação&infantil=false&pagina=1'>
+                            <i class="fa-solid fa-clapperboard"></i>
+                            <span>Filmes</span>
+                        </Link>
+                        <Link id="link-infatil-desabilitar-mobile" to='/tv/genero=10762/kids&infantil=true&pagina=1'>
+                            <i class="fa-solid fa-child-reaching"></i>
+                            <span>Infantil</span>
+                        </Link>
+                        <Link to={`/favoritos/`} className='icone-favoritos-pesquisar'>
+                            <i class="fa-solid fa-heart"></i>
+                            <span>Favoritos</span>
+                        </Link>
                     </ul>
                 </div>
             </section>
             <section className="section-lupa-menu-mobile">
                 <Link to={`/pesquisar/`} className='icone-lupa-pesquisar'><i className="fas fa-search"></i></Link>
                 <div className='div-abrir-pop-up-nav' onClick={()=>abrirNav()}>
-                    <i class="fa-solid fa-bars"></i>
+                    <i className="fa-solid fa-bars"></i>
                 </div>
             </section>
 
             <PopUpNav popUpNav={popUpNav} setPopUpNav={setPopUpNav}>
                 <div className='div-fechar-pop-up-nav' onClick={()=>fecharNav()}>
-                    <span><i class="fa-solid fa-bars"></i></span>
+                    <span><i className="fa-solid fa-bars"></i></span>
                 </div>
                     <div className="div-menu-hamburguer-mobile">
                         <section className="section-menu-hamburguer-nav-mobile">
                             <ul>
-                                <Link to={`/conta/`} onClick={()=>fecharNav()}><i class="fa-solid fa-user"></i> { nomeUsuario ? nomeUsuario : 'user404'}</Link>
-                                <Link to={`/conta/`} onClick={()=>fecharNav()}><i class="fa-solid fa-gear"></i> Configurações</Link>
-                                <a><i class="fa-solid fa-wifi"></i> uso: {economiaInternet ? 'Reduzido' : 'Alto'}</a>
+                                <Link to={`/conta/`} onClick={()=>fecharNav()}><i className="fa-solid fa-user"></i> { nomeUsuario ? nomeUsuario : 'user404'}</Link>
+                                <Link to={`/conta/`} onClick={()=>fecharNav()}><i className="fa-solid fa-gear"></i> Configurações</Link>
+                                <a><i className="fa-solid fa-wifi"></i> uso: {economiaInternet ? 'Reduzido' : 'Alto'}</a>
                             </ul>
                             {widthClient <= 600 &&
                                 <ul>
-                                    <Link to='/' onClick={()=>fecharNav()}><i class="fa-solid fa-house-crack"></i> Início</Link>
-                                    <Link to='/tv/genero=10759/Action & Adventure&infantil=false&pagina=1' onClick={()=>fecharNav()}><i class="fa-solid fa-tv"></i> Séries</Link>
-                                    <Link to='/movie/genero=28/ação&infantil=false&pagina=1' onClick={()=>fecharNav()}><i class="fa-solid fa-clapperboard"></i> Filmes</Link>
-                                    <Link to='/tv/genero=10762/kids&infantil=true&pagina=1' onClick={()=>fecharNav()}><i class="fa-solid fa-child-reaching"></i> Infantil</Link>
+                                    <Link to='/' onClick={()=>fecharNav()}><i className="fa-solid fa-house-crack"></i> Início</Link>
+                                    <Link to='/tv/genero=10759/Action & Adventure&infantil=false&pagina=1' onClick={()=>fecharNav()}><i className="fa-solid fa-tv"></i> Séries</Link>
+                                    <Link to='/movie/genero=28/ação&infantil=false&pagina=1' onClick={()=>fecharNav()}><i className="fa-solid fa-clapperboard"></i> Filmes</Link>
+                                    <Link to='/tv/genero=10762/kids&infantil=true&pagina=1' onClick={()=>fecharNav()}><i className="fa-solid fa-child-reaching"></i> Infantil</Link>
                                     <Link to='/favoritos' onClick={()=>fecharNav()}><i className="fa-solid fa-heart"></i> Favoritos</Link>
                                 </ul>
                             }

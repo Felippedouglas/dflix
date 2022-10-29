@@ -1,6 +1,5 @@
 import './style.css';
 import { useParams } from "react-router-dom";
-import $ from 'jquery';
 
 export default function PopUpMovie(props) {
 
