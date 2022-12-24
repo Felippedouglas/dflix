@@ -1,6 +1,36 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
 body {
     overflow: auto;
     height: 100%;
+}
+
+.div-noscript {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.div-noscript span {
+	position: fixed;
+	top: 20px;
+	left: 50%;
+	min-width: min-content;
+	transform: translateX(-50%);
+	padding: 10px 15px;
+	background: #fff;
+	border-radius: 50px;
+	color: #181818;
+	font-size: 1rem;
+	font-weight: 600;
+	white-space: nowrap;
 }
 
 .loader-container {
@@ -9,6 +39,7 @@ body {
     align-items: center;
     justify-content: center;
 	height: 100vh;
+	background: #000;
 }
 
 .loader {
@@ -46,5 +77,12 @@ body {
 		width: 58px;
 		height: 58px;
 		opacity: 0;
+	}
+}
+
+@media (max-width: 500px) {
+
+	.div-noscript span {
+		font-size: 3vw;
 	}
 }

@@ -21,7 +21,7 @@ a {
     justify-content: center;
     margin-bottom: 1rem;
     min-width: 100%;
-    z-index: 4;
+    z-index: 6;
 }
 
 .header-componente-pesquisar .section-input-pesquisar:before {
@@ -80,7 +80,7 @@ a {
     padding-top: 30px;
     max-height: 70vh;
     overflow-y: hidden;
-    z-index: 3;
+    z-index: 5;
 }
 
 .div-sugestoes-pesquisar ul {
@@ -100,11 +100,11 @@ a {
     background-color: #404040;
 }
 
-.section-img-movie-sugetao-pesquisar {
+.section-img-movie-sugestao-pesquisar {
     margin-right: 10px;
 }
 
-.section-img-movie-sugetao-pesquisar img {
+.section-img-movie-sugestao-pesquisar img {
     background: #101010;
     width: 70px;
     height: 110px;
@@ -181,7 +181,7 @@ a {
     overflow: auto;
     max-width: 100%;
     margin: 10px 10px 20px 0;
-    padding: 25px 0 30px 20px;
+    padding: 20px 0 20px 20px;
     scroll-behavior: smooth;
     background-image: linear-gradient(to bottom, #181818 1%, #181818e6 80%, #18181800 95%);
     z-index: 2;
@@ -292,7 +292,7 @@ a {
 }
 
 .section-item-historico:hover {
-    z-index: 999999999999;
+    z-index: 4;
     background: #181818;
 }
 

@@ -34,6 +34,7 @@
     width: 500px;
     min-width: 250px;
     max-width: 800px;
+    max-height: 1000px;
     overflow: auto;
 }
 
@@ -58,6 +59,7 @@
     width: 100%;
     height: 3rem;
     background-image: linear-gradient(to top, #222222, #222222bf, transparent);
+    z-index: 2;
 }
 
 .bt-fechar-popup {
@@ -65,7 +67,14 @@
     width: 2.2rem;
     height: 2.2rem;
     border: none;
+    cursor: pointer;
+    transition: all .3s ease;
     z-index: 2;
+}
+
+.bt-fechar-popup:hover {
+    background: #f00;
+    color: #fff;
 }
 
 .h2-titulo-popup {

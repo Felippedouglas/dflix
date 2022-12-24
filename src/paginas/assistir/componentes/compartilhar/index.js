@@ -12,6 +12,12 @@ export default function Compartilhar() {
     const [ alertMessage, setAlertMessage ] = useState();
     const [copyText, setCopyText] = useState(document.location.href);
 
+    const [ idioma, setIdioma ] = useState();
+
+    useEffect(()=>{
+        var idioma = localStorage.getItem('idioma') || 'portugues';
+        setIdioma(idioma);
+    })
     
     const copyToClipboard = () => {
        copy(copyText);
@@ -21,8 +27,8 @@ export default function Compartilhar() {
                setAlert(false)
            }, 5000)
        }
-       setAlertTitle('Link copiado')
-       setAlertMessage('Link copiado para área de transferência!');
+       setAlertTitle(idioma == 'portugues' ? 'Link copiado' : 'Link copied')
+       setAlertMessage(idioma == 'portugues' ? 'Link copiado para área de transferência!' : 'Link copied to clipboard!');
     }
     
     function redirecionar(e) {
@@ -37,8 +43,8 @@ export default function Compartilhar() {
                 setAlert(false)
             }, 5000)
         }
-        setAlertTitle('Compartilhar');
-        setAlertMessage(`Você será redirecionado para uma nova página!`);
+        setAlertTitle(idioma == 'portugues' ? 'Compartilhar' : 'Share');
+        setAlertMessage(idioma == 'portugues' ? 'Você será redirecionado para uma nova página!' : 'You will be redirected to a new page!');
     }
 
     return (
@@ -48,19 +54,19 @@ export default function Compartilhar() {
             <Alert alert={alert} alertTitle={alertTitle} alertMessage={alertMessage}/>
 
             <div className='content-compartilhar-assisitr-redes-sociais'>
-                <Tippy content='Copiar Link'>
+                <Tippy content={idioma == 'portugues' ? 'Copiar Link' : 'Copy Link'}>
                     <section>
-                        <a onClick={copyToClipboard}><i class="fa-solid fa-link"></i></a>
+                        <a onClick={copyToClipboard}><i className="fa-solid fa-link"></i></a>
                     </section>
                 </Tippy>
-                <Tippy content='Compartilhar no WhatsApp'>
+                <Tippy content={idioma == 'portugues' ? 'Compartilhar no WhatsApp' : 'Share on WhatsApp'}>
                     <section>
-                        <a onClick={()=>redirecionar(`https://api.whatsapp.com/send?text=${window.location.href}`)} target='_blank'><i class="fa-brands fa-whatsapp"></i></a>
+                        <a onClick={()=>redirecionar(`https://api.whatsapp.com/send?text="${copyText}"`)} target='_blank'><i className="fa-brands fa-whatsapp"></i></a>
                     </section>
                 </Tippy>
-                <Tippy content='Compartilhar no Facebook'>
+                <Tippy content={idioma == 'portugues' ? 'Compartilhar no Facebook' : 'Share on Facebook'}>
                     <section>
-                        <a onClick={()=>redirecionar(`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`)}><i class="fa-brands fa-facebook-f"></i></a>
+                        <a onClick={()=>redirecionar(`https://www.facebook.com/sharer/sharer.php?u="${copyText}"`)}><i className="fa-brands fa-facebook-f"></i></a>
                     </section>
                 </Tippy>
             </div>

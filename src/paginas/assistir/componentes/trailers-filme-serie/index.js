@@ -24,9 +24,9 @@ export default function VideosFilmeSerie(props) {
 
     const mapVideosFilmesSerie = videosFilmesSerie.map((videoFilmesSerie)=> {
         return (
-            <SwiperSlide>
+            <SwiperSlide key={`${videoFilmesSerie.name}-${videoFilmesSerie.key}`}>
                 <section className="div-trailer-movie" title={videoFilmesSerie.name}>
-                    <iframe src={`https://www.youtube.com/embed/${videoFilmesSerie.key}`} allowfullscreen="allowfullscreen" frameBorder="0"></iframe>
+                    <iframe src={`https://www.youtube.com/embed/${videoFilmesSerie.key}`} allowFullScreen frameBorder="0"></iframe>
                     <span className="span-titulo-trailer">{videoFilmesSerie.name}</span>
                 </section>
             </SwiperSlide>

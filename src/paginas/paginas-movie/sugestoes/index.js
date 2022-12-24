@@ -2,22 +2,31 @@ import { APIKey } from "../../../config/key";
 import { React, useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import './sugestoes.css';
+import $ from 'jquery';
 
 
 export default function Sugestao(props) {
     
-    const image_path = 'https://image.tmdb.org/t/p/w500';
+    const image_path = 'https://image.tmdb.org/t/p/w200';
     const [movies, setMovies] = useState([]);
     const { filmeSerie } = useParams();
     const [ scrollDivSugestoes, setScrollDivSugestoes ] = useState()
 
+    const [ idioma, setIdioma ] = useState();
+
     useEffect(() => {
-        fetch(`https://api.themoviedb.org/3/${filmeSerie}/${props.idmovie}/recommendations?api_key=${APIKey}&language=pt-BR&page=1`)
-            .then(Response => Response.json())
-            .then(data => {
-                setMovies(data.results);
+        if (filmeSerie && props.idmovie) {
+
+            var idioma = localStorage.getItem('idioma') || 'portugues';
+            setIdioma(idioma);
+
+            fetch(`https://api.themoviedb.org/3/${filmeSerie}/${props.idmovie}/recommendations?api_key=${APIKey}&language=${idioma == 'portugues' ? 'pt-BR' : 'en-US'}&page=1`)
+                .then(Response => Response.json())
+                .then(data => {
+                    setMovies(data.results);
             })
-    }, [props.idmovie])
+        }
+    }, [props.idmovie], idioma)
 
     var divSlider = document.getElementById("list-movie-sugestoes");
     var btLeft = document.getElementById("bt-left-slide-sugestoes");
@@ -28,7 +37,6 @@ export default function Sugestao(props) {
     
     function btRightSlideSugestoes() {
         divSlider.scrollLeft += 380;
-        btLeft.style.padding = "0 40px 0 20px";
     }
 
     setTimeout(()=>{
@@ -41,29 +49,22 @@ export default function Sugestao(props) {
         setScrollDivSugestoes(document.getElementById("list-movie-sugestoes").scrollLeft)
     }
 
-    /*function scroll() {
-        window.scrollTo(0,0);
-        document.getElementById("list-movie-sugestoes").scrollTo(0,0);
-    }*/
-
     return(
         <div className="content-movies content-sugestoes" id="content-sugestoes">
-            <h2 className="h2-sugestoes h2-titulo-sections">SUGESTÕES</h2>
-            <div className="div-movies div-filmes-sugestões" id="list-movie-sugestoes" onScroll={()=>scrollDiv()}>
-            
+            <h2 className="h2-sugestoes h2-titulo-sections" id="h2-sugestoes">{idioma == 'portugues' ? 'Sugestões' : 'suggestions'}</h2>
+            <div className="div-movies div-filmes-sugestões" id="list-movie-sugestoes" onScroll={()=>scrollDiv()}>           
                 {scrollDivSugestoes > 50 && document.body.clientWidth >= 600 &&
-                    <button className="bt-slide bt-left-slide" id="bt-left-slide-sugestoes" onClick={btLeftSlideSugestoes}><i class="fas fa-angle-left"></i></button>
+                    <button className="bt-slide bt-left-slide" id="bt-left-slide-sugestoes" onClick={btLeftSlideSugestoes}><i className="fas fa-angle-left"></i></button>
                 }
                 {movies.map(movie => {
                         return (
                             <div className="movie movies-sugestoes" key={movie.id}>
-
-                                <Link to={`/assistir=${filmeSerie}&${movie.id}`} onClick={()=>setTimeout(()=>{window.location.reload()},10)} /* onClick={()=>scroll()} */>
+                                <Link to={`/assistir=${filmeSerie}&${movie.id}`} onClick={()=>setTimeout(()=>{window.location.reload()},10)} >
                                     <img loading="lazy" src={`${image_path}${movie.poster_path}`} alt={movie.title} onError={({ currentTarget }) => {currentTarget.onerror = null; currentTarget.src="https://dflix.netlify.app/imagens/img-erro-exclamacao.png";}}/>
                                     <section className="section-informacoes-movie">
-                                        <div class="div-avaliacao-movie">
-                                            <span class="span-estrela-movie">
-                                                <i class="fas fa-star"></i>
+                                        <div className="div-avaliacao-movie">
+                                            <span className="span-estrela-movie">
+                                                <i className="fas fa-star"></i>
                                             </span>
                                             <span>{movie.vote_average.toFixed(1)}</span>
                                         </div>
@@ -80,7 +81,12 @@ export default function Sugestao(props) {
                         )
                     })
                 }
-                <button className="bt-slide bt-right-slide" id="bt-right-slide-sugestoes" onClick={btRightSlideSugestoes}><i class="fas fa-angle-right"></i></button>
+                {movies.length > 0 &&
+                    <button className="bt-slide bt-right-slide" id="bt-right-slide-sugestoes" onClick={btRightSlideSugestoes}><i className="fas fa-angle-right"></i></button>
+                }
+                {!movies.length > 0 &&
+                    <span className="span-nao-ha-sugestao">{idioma == 'portugues' ? 'Não há sugestões!' : 'No suggestions!'}</span>
+                }
             </div>
         </div>
     )

@@ -13,7 +13,6 @@
     min-width: 40%;
     max-width: 40%;
     padding: 10px;
-    border-right: 1px solid #404040;
 }
 
 .div-informacoes-user {
@@ -23,48 +22,88 @@
     position: sticky;
     top: 0;
     scroll-padding: 500px;
-    padding-top: 100px;
+    padding: 100px 0 50px 0;
+    width: 105%;
+    height: 100%;
+    border-radius: 10px 10px 0 0;
+    background: #404040;
+    background: linear-gradient(180deg, #303030 0%, rgba(24,24,24,1) 100%, rgba(24,24,24,0) 100%);
 }
 
 .img-perfil {
     max-width: 200px;
     border-radius: 50%;
     object-fit: cover;
+    transition: all 1s ease;
 }
 
-.input-nome-usuario {
-    height: 30px;
+.nome-usuario {
     text-align: center;
+}
+
+.span-email-usuario {
+    display: flex;
+    align-items: center;
+    font-size: .9rem;
+    color: #ddd;
+}
+
+.bt-login-conta {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background: #fff;
+    color: #181818;
+    text-decoration: none;
     font-weight: 600;
     margin-top: 10px;
-    text-transform: capitalize;
-    background: #181818;
-    color: #fff;
-    border: none;
-    outline: none;
-    border-bottom: 1px solid #252525;
+    cursor: pointer;
     transition: all .3s ease;
 }
 
-.input-nome-usuario:focus {
-    border-bottom: 1px solid #909090;
+.bt-login-conta:hover {
+    background: #ccc;
 }
 
-.label-edit-nome-usuario i {
-    border-radius: 50%;
-    padding: 5px 6px 7px 7px;
-    transition: .3s ease;
-    cursor: pointer;
+.logo-google {
+    width: 20px;
+    margin-right: 5px;
 }
 
-.label-edit-nome-usuario i:hover {
+.logo-google-email {
+    width: 12px;
+    margin-right: 5px;
+}
+
+.bt-sair-conta {
+    padding: 5px 20px;
+    margin-top: 10px;
+    border-radius: 50px;
     background: #303030;
-    transition: .3s ease;
+    color: #fff;
+    border: 1px solid #606060;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all .3s ease;
 }
 
-.label-edit-nome-usuario i:active {
-    background: #606060;
-    transition: .1s ease;
+.bt-sair-conta:hover {
+    background: #505050;
+}
+
+.bt-sair-conta i {
+    margin-right: 2px;
+}
+
+.div-idioma-configuracoes {
+    margin-top: 30px;
+    width: 80%;
+}
+
+.div-idioma-configuracoes i {
+    margin-right: 5px;
 }
 
 .div-configuracoes {
@@ -146,12 +185,62 @@
     background: #fff;
 }
 
+.div-idiomas-conta {
+    margin-top: 10px;
+    display: flex;
+    flex-flow: wrap;
+}
+
+.span-beta {
+    background: rgb(0, 126, 189);
+    border-radius: 50px;
+    font-weight: 700;
+    padding: 3px 10px;
+}
+
+.div-idiomas-conta button {
+    display: flex;
+    align-items: center;
+    margin: 2px;
+    padding: 5px;
+    border-radius: 5px;
+    background: #505050;
+    color: #fff;
+    border: 1px solid #aaa;
+    cursor: pointer;
+    transition: all .2s ease;
+}
+
+.div-idiomas-conta button:hover {
+    background: #fff;
+    color: #181818;
+}
+
+.div-idiomas-conta button:active {
+    background: #ccc;
+}
+
+.div-idiomas-conta button img {
+    max-width: 25px;
+    margin-right: 5px;
+    border: 1px solid #aaa;
+    border-radius: 50px;
+}
+
+.div-idiomas-conta button i {
+    margin-left: 5px;
+}
+
+.div-idiomas-conta button:last-child {
+    margin-right: 0;
+}
+
 @media (max-width: 800px) {
     
     .content-conta {
         flex-direction: column;
         align-items: center;
-        margin: 100px 10px;
+        margin: -20px 0 100px 0;
     }
 
     .div-conta, .div-configuracoes {
@@ -159,13 +248,15 @@
     }
 
     .div-conta {
-        margin-bottom: 50px;
         border: none;
+        background: linear-gradient(180deg, #303030 0%, rgba(24,24,24,1) 100%, rgba(24,24,24,0) 100%);
     }
     
     .div-informacoes-user {
         position: relative;
-        padding-top: 10px;
+        padding-top: 150px;
+        background: unset;
+        width: 100%;
     }
 
     .img-perfil {
@@ -173,7 +264,7 @@
     }
 
     .div-configuracoes {
-        padding: 0;
+        padding: 10px;
     }
 
     .nome-configuracao {
@@ -182,6 +273,10 @@
     
     .descricao-configuracao {
         font-size: .8rem;
+    }
+
+    .div-idioma-configuracoes {
+        width: 100%;
     }
 
 }

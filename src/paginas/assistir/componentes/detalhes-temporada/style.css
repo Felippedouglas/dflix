@@ -1,0 +1,261 @@
+.container-detalhes-temporada {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background: #18181888;
+    z-index: 6;
+}
+
+.div-background-detalhes-temporada {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    min-height: 90%;
+    max-height: 90%;
+    min-width: 90%;
+    max-width: 90%;
+}
+
+.section-background-detalhes-temporada {
+    position: relative;
+    min-width: 2000px;
+    min-height: 2000px;
+    filter: blur(150px);
+    border-radius: 10px;
+}
+
+.content-detalhes-temporada {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    bottom: 0;
+    min-height: 100%;
+    max-height: 100%;
+    width: 100%;
+    max-width: 1920px;
+    overflow: auto;
+    background: #171717cc;
+    border: 1px solid #505050;
+    border-radius: 10px 10px 0 0;
+    border-bottom: none;
+    padding: 20px;
+    z-index: 2;
+}
+
+.div-img-titulo-serie-detalhes-temporada {
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+.section-img-detalhes-temporada img {
+    border-radius: 5px;
+    min-height: 300px;
+    max-height: 300px;
+    min-width: 200px;
+    max-width: 200px;
+    background: #404040;
+}
+
+.section-sobre-temporada-detalhes {
+    margin-left: 20px;
+}
+
+.header-detalhes-temporada {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.header-detalhes-temporada button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    font-size: 1rem;
+    border: 1px solid #fff;
+    background: #181818;
+    color: #fff;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+.header-detalhes-temporada button:hover {
+    background: #fff;
+    color: #181818;
+}
+
+.header-detalhes-temporada button:focus {
+    border: 1px solid #f00;
+    outline: 1px solid #f00;
+}
+
+.section-sobre-temporada-detalhes h2 {
+    font-size: 1.2rem;
+    margin-right: 10px;
+}
+
+.h2-numero-temporada {
+    text-transform: uppercase;
+    font-size: 1.2rem;
+}
+
+.div-sobre-temporada {
+    margin: 1.2rem 0;
+    border-radius: 50px;
+    max-width: max-content;
+}
+
+.div-sobre-temporada span {
+    margin-right: 10px;
+    border: 1px solid #aaa;
+    border-radius: 50px;
+    padding: 5px 7px;
+    font-weight: 700;
+    font-size: .9rem;
+    text-transform: uppercase;
+}
+
+.div-sobre-temporada span:last-child {
+    margin-right: 0;
+}
+
+.bt-fechar-detalhes-temporada {
+    cursor: pointer;
+    background: none;
+}
+
+.div-logo-imdb-detalhes-temporada span {
+    padding: 5px;
+}
+
+.div-logo-imdb-detalhes-temporada {
+    margin-bottom: 1rem;
+}
+
+.p-sobre-temporada-serie {
+    line-height: 110%;
+    font-size: .9rem;
+    color: #ccc;
+}
+
+@media (min-width: 2000px) {
+
+    .section-background-detalhes-temporada {
+        filter: blur(500px);
+    }
+}
+
+@media (max-width: 600px) {
+
+    .container-detalhes-temporada {
+        bottom: 60px;
+    }
+
+    .content-detalhes-temporada {
+        min-height: 90%;
+        max-height: 90%;
+        bottom: 0;
+    }
+    
+    .content-detalhes-temporada {
+        padding: 70px 10px 20px 10px;
+    }
+
+    .section-sobre-temporada-detalhes {
+        margin-left: 10px;
+    }
+
+    .section-img-detalhes-temporada img {
+        border-radius: 5px;
+        min-height: 200px;
+        max-height: 200px;
+        min-width: 130px;
+        max-width: 130px;
+    }
+
+    .div-sobre-temporada {
+        margin: .8rem 0;
+    }
+
+    .div-sobre-temporada span {
+        font-size: .7rem;
+    }
+
+    .section-sobre-temporada-detalhes h2 {
+        font-size: .8rem;
+    }
+    
+    .h2-numero-temporada {
+        font-size: 1rem;
+    }
+
+}
+
+@media (max-width: 400px) {
+
+    .content-detalhes-temporada {
+        padding: 70px 10px 20px 10px;
+    }
+
+    .content-detalhes-temporada::-webkit-scrollbar {
+        display: none;
+    }
+
+    .div-img-titulo-serie-detalhes-temporada {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .section-sobre-temporada-detalhes {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-left: 0;
+    }
+
+    .section-img-detalhes-temporada img {
+        border-radius: 5px;
+        min-height: 300px;
+        max-height: 300px;
+        min-width: 200px;
+        max-width: 200px;
+        margin-bottom: 10px;
+    }
+
+    .div-sobre-temporada {
+        display: flex;
+        margin: .7rem 0 0 0;
+        flex-flow: wrap;
+    }
+
+    .div-sobre-temporada span {
+        margin-right: 5px;
+        margin-bottom: .5rem;
+        padding: 3px 5px;
+        font-size: .7rem;
+        white-space: nowrap
+    }
+
+    .section-sobre-temporada-detalhes h2 {
+        font-size: .8rem;
+        text-align: center;
+    }
+    
+    .h2-numero-temporada {
+        font-size: 1rem;
+        margin-bottom: 3px;
+    }
+
+    .p-sobre-temporada-serie {
+        font-size: .8rem;
+    }
+
+}

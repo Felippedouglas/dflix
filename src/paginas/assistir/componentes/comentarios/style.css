@@ -40,19 +40,29 @@
 
 .comentario {
     margin: 1.5rem 0;
-    padding: .7rem;
+    padding: .7rem 0;
+    line-height: 110%;
 }
 
 .header-detalhes-usuario-comentario {
     display: flex;
     align-items: center;
     margin-bottom: .7rem;
+    background: #303030;
+    padding: 2px 10px 2px 2px;
+    border-radius: 50px;
+    max-width: max-content;
 }
 
 .header-detalhes-usuario-comentario .img-perfil-comentario {
-    max-width: 2.5rem;
+    min-width: 3rem;
+    min-height: 3rem;
+    max-width: 3rem;
+    max-height: 3rem;
+    object-fit: cover;
     border-radius: 50%;
     margin-right: .7rem;
+    background: #202020;
 }
 
 .header-detalhes-usuario-comentario .nome-autor-comentario {
@@ -77,7 +87,10 @@
 @media (max-width: 800px) {
 
     .header-detalhes-usuario-comentario .img-perfil-comentario {
-        max-width: 2rem;
+        min-width: 2.5rem;
+        min-height: 2.5rem;
+        max-width: 2.5rem;
+        max-height: 2.5rem;
     }
 
     .header-detalhes-usuario-comentario .nome-autor-comentario {
@@ -94,6 +107,17 @@
     }
 
     .comentario footer {
+        font-size: .8rem;
+    }
+}
+
+@media (max-width: 400px) {
+
+    .header-detalhes-usuario-comentario .img-perfil-comentario {
+        margin-right: 5px;
+    }
+
+    .span-erro-comentários-indisponiveis {
         font-size: .8rem;
     }
 }

@@ -33,7 +33,9 @@
 .content-movie-principal .div-video-background video {
     position: relative;
     width: 100%;
-    margin-top: -50px;
+    max-height: 110vh;
+    object-fit: cover;
+    margin-top: -40px;
     opacity: .4;
 }
 
@@ -79,11 +81,35 @@
 }
 
 .section-classificacao-movie-principal .span-classificacao-movie-principal {
-    background: #000;
     border-radius: 2px;
     font-size: 14px;
     font-weight: bold;
     padding: 5px 7px;
+}
+
+.span-classificacao-indicativa-L {
+    background: #009D4B;
+}
+
+.span-classificacao-indicativa-10 {
+    background: #00A2E5;
+}
+
+.span-classificacao-indicativa-12 {
+    background: #F2BF09;
+    color: #000;
+}
+
+.span-classificacao-indicativa-14 {
+    background: #EA7C1E;
+}
+
+.span-classificacao-indicativa-16 {
+    background: #E21C21;
+}
+
+.span-classificacao-indicativa-18 {
+    background: #000;
 }
 
 .content-movie-principal .div-detalhes-movie-principal {
@@ -99,7 +125,7 @@
 }
 
 .content-movie-principal .div-detalhes-movie-principal img {
-    max-width: 300px;
+    max-width: 400px;
     margin-bottom: 10px;
     -webkit-filter: drop-shadow(10px 10px 10px #181818);
     filter: drop-shadow(10px 10px 10px #181818);
@@ -112,6 +138,7 @@
 
 .informacoes-movie-principal span {
     margin-right: 10px;
+    white-space: nowrap;
 }
 
 .informacoes-movie-principal span:nth-child(1) {
@@ -122,7 +149,7 @@
     max-width: 600px;
 }
 
-.secion-avisos-movie-principal {
+.section-avisos-movie-principal {
     margin: 5px 0 15px 0;
 }
 
@@ -205,7 +232,7 @@
     }
 
     .content-movie-principal .div-detalhes-movie-principal {
-        top: 30%;
+        top: 40%;
     }
 
     .content-movie-principal .div-video-background video {
@@ -216,8 +243,8 @@
 @media (max-width: 1000px) {
 
     .content-movie-principal .div-detalhes-movie-principal img {
-        max-width: 350px;
-        height: 150px;
+        max-width: 370px;
+        height: 120px;
     }
     
     .content-movie-principal .div-detalhes-movie-principal span {
@@ -236,7 +263,7 @@
 @media (max-width: 800px) {
 
     .content-movie-principal {
-        margin-top: 80px;
+        margin-top: 90px;
     }
 
     .section-mute-movie-principal {
@@ -284,13 +311,12 @@
 @media (max-width: 600px) {
 
     .content-movie-principal .div-detalhes-movie-principal {
-        /*margin-top: 0;*/
         margin-top: 30px;
     }
 
     .content-movie-principal .div-detalhes-movie-principal img {
-        max-width: 270px;
-        height: 120px;
+        max-width: 330px;
+        height: 110px;
     }
 
     .informacoes-movie-principal {

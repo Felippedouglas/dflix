@@ -5,33 +5,31 @@ import MoviePrincipal from "./componentes/movie-principal";
 import { useEffect, useState } from "react";
 import PagMoviesFavoritos from "./componentes/movies-favoritos";
 import { useParams } from "react-router-dom";
+import PagAnimes from "../paginas-movie/anime";
+import Usuario from "../usuario";
 
 export default function Home() {
 
-    const [categoriaFilme, setCategoriaFilme] = useState('popular')
-    const [categoriaSerie, setCategoriaSerie] = useState('popular')
-    const [ favoritos, setFavoritos ] = useState([]);
+    const [ user, setUser ] = useState();
+
+    const [categoriaFilme, setCategoriaFilme] = useState('popular');
+    const [categoriaSerie, setCategoriaSerie] = useState('popular');
+    const [filmeSerieAnime, setFilmeSerieAnime] = useState('tv');
     const [ favoritosHome, setFavoritosHome ] = useState();
     const { preview } = useParams();
+    const [ economiaInternet, setEconomiaInternet ] = useState();
 
     useEffect(()=>{
         setTimeout(()=>{
             document.title = 'DFLIX'
             document.getElementById('container-home').style.display = 'block';
-            
-            if (!JSON.parse(localStorage.getItem('favoritos'))) {
-                localStorage.setItem('favoritos', '[]')
-            }
 
             setFavoritosHome(localStorage.getItem('FavoritoHome'))
-            
-            const favoritosLocalStorage = JSON.parse(localStorage.getItem('favoritos') || "[]");
-            setFavoritos(favoritosLocalStorage);
 
             setTimeout(()=> {
                 document.getElementById('container-home').style.opacity = '1';
             }, 200)
-
+            
             if (!localStorage.getItem('usuario')) {
                 localStorage.setItem('FavoritoHome', true)
                 localStorage.setItem('salvarHistorico', true)
@@ -41,19 +39,25 @@ export default function Home() {
                 localStorage.setItem('nomeUsuario', 'user' + (Math.random()*1000).toFixed())
             }
 
+            setEconomiaInternet(localStorage.getItem('economia'))
         }, 100)
-
-    }, [preview])
-
+        
+    }, [preview, filmeSerieAnime, economiaInternet, user])
 
     return (
         <div className="container-home" id="container-home">
+            <Usuario setUser={setUser}/>
             <MoviePrincipal/>
             <PagPopularSerie categoriaSerie={categoriaSerie} setCategoriaSerie={setCategoriaSerie}/>
-            {favoritos.length >= 1 && favoritosHome &&
+            {favoritosHome && user &&
                 <PagMoviesFavoritos categoriaSerie={categoriaSerie} setCategoriaSerie={setCategoriaSerie}/>
             }
             <PagPopularFilme categoriaFilme={categoriaFilme} setCategoriaFilme={setCategoriaFilme}/>
+            {!economiaInternet &&
+                <>
+                    <PagAnimes filmeSerieAnime={filmeSerieAnime} setFilmeSerieAnime={setFilmeSerieAnime}/>
+                </>
+            }
         </div>
     )
 }

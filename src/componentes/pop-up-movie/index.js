@@ -18,12 +18,6 @@ export default function PopUpMovie(props) {
             props.setPopUpMovie(false);
             document.title = 'DFLIX';
         }
-    
-        if (preview) {
-            document.getElementById("video-movie-principal").pause()
-        } else if (!preview) {
-            document.getElementById("video-movie-principal").play()
-        }
     }, 100);
 
     return (props.popUpMovie) ? (

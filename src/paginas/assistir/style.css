@@ -98,10 +98,22 @@
 }
 
 .container-assistir .div-imagem-movie-assistir #img-movie-assistir {
+    position: relative;
     height: 350px;
     width: 230px;
     border-radius: .5rem;
     background: #181818;
+    z-index: 1;
+}
+
+#img-movie-assistir-background {
+    position: absolute;
+    height: 370px;
+    width: 250px;
+    top: 90px;
+    left: 35px;
+    filter: blur(40px);
+    border-radius: 20px;
 }
 
 .container-assistir .detalhes-movie-assistir {
@@ -109,29 +121,55 @@
     flex-direction: column;
     align-items: flex-start;
     margin-left: 2rem;
-    max-width: 65%;
+    max-width: 70%;
+    z-index: 2;
 }
 
 .detalhes-movie-assistir .span-assistir-filmes-series {
-    font-size: 80%;
+    font-size: .7rem;
     text-transform: uppercase;
     color: #ccc;
     letter-spacing: 2px;
 }
 
 .detalhes-movie-assistir .titulo-movie-assistir {
-    margin: .5rem 0 1.1rem 0;
+    margin: .1rem 0 1.1rem 0;
     font-size: 2rem;
+}
+
+.span-login-assistir-add-favorito {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    color: #181818;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: .9rem;
+    margin-bottom: 20px;
+}
+
+.span-login-assistir-add-favorito:hover {
+    background: #ccc;
+}
+
+.span-login-assistir-add-favorito img {
+    width: 15px;
+    margin-right: 5px;
 }
 
 .detalhes-movie-assistir .informacoes-movie-assistir {
     display: flex;
-    margin: 1rem 0 1.1rem 0;
+    margin-bottom: 1.1rem;
     background: #202020;
     padding: .5rem .5rem;
     border-radius: 3rem;
     overflow-x: auto;
     max-width: 100%;
+}
+
+.swiper-wrapper {
+    align-items: center;
 }
 
 .detalhes-movie-assistir .informacoes-movie-assistir section {
@@ -204,7 +242,6 @@
 .detalhes-movie-assistir .generos-movie-assistir {
     padding: .7rem 0;
     max-width: 100%;
-    min-height: min-content;
     overflow-x: auto;
     margin-bottom: .7rem;
 }
@@ -239,9 +276,38 @@
 .div-compartilhar-e-favorito {
     display: flex;
     align-items: center;
+    margin-bottom: 1.1rem;
 }
 
-.botao-favorito, .bt-assitir-preview-movie {
+.div-logo-imdb {
+    display: flex;
+    align-items: center;
+    max-width: max-content;
+    border: 1px solid #E6B91E;
+    border-radius: 5px;
+    background: #E6B91E;
+}
+
+.div-logo-imdb i {
+    color: #000;
+    font-size: 2rem;
+    margin-right: 1px;
+}
+
+.div-logo-imdb span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #181818;
+    min-height: 100%;
+    text-align: center;
+    border-radius: 2px 5px 5px 2px;
+    padding: 0 5px;
+    font-weight: 600;
+    font-size: .8rem;
+}
+
+.botao-favorito, .bt-assistir-preview-movie {
     height: 2.4rem;
     width: 2.4rem;
     border-radius: 50px;
@@ -262,28 +328,31 @@
     border: 1px solid #fff;
 }
 
-.botao-remover-favorito, .bt-assitir-preview-movie {
+.botao-remover-favorito, .bt-assistir-preview-movie {
     color: #fff;
     background: #f00;
     border: 1px solid #fff;
 }
 
-.botao-remover-favorito:hover, .bt-assitir-preview-movie:hover {
+.botao-remover-favorito:hover, .bt-assistir-preview-movie:hover {
     color: #f00;
     background: #fff;
     border: 1px solid #f00;
 }
 
-.bt-assitir-preview-movie {
+.bt-assistir-preview-movie {
     display: flex;
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    margin-left: 15px;
+    margin-right: 15px;
+    min-width: min-content;
+    padding: 0 15px;
+    font-weight: 800;
 }
 
-.bt-assitir-preview-movie i {
-    margin-left: 2px;
+.bt-assistir-preview-movie i {
+    margin-right: 5px;
 }
 
 .div-temporadas-episodios-serie-assistir {
@@ -335,12 +404,12 @@
     scroll-behavior: smooth;
 }
 
-.bt-slide-section-serie-assitir {
+.bt-slide-section-serie-assistir {
     position: sticky;
     background: unset;
     border: none;
     color: #fff;
-    height: 55px;
+    height: 60px;
     font-size: 1.2rem;
     z-index: 1;
 }
@@ -359,7 +428,7 @@
     right: -2px;
 }
 
-.bt-slide-section-serie-assitir i {
+.bt-slide-section-serie-assistir i {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -371,7 +440,7 @@
     cursor: pointer;
 }
 
-.bt-slide-section-serie-assitir i:hover {
+.bt-slide-section-serie-assistir i:hover {
     background: #404040;
     border: 2px solid #606060;
 }
@@ -424,6 +493,25 @@
     border: rgb(100, 100, 100) solid 1px;
     cursor: pointer;
     transition: all .3s ease;
+}
+
+.bt-abrir-detalhes-temporada {
+    border-radius: 50px;
+    transition: all .3s ease;
+    text-transform: uppercase;
+    font-size: .8rem;
+    margin-top: 10px;
+    font-weight: 700;
+    color: #fff;
+    background: none;
+    border: 1px solid #404040;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.bt-abrir-detalhes-temporada:hover {
+    color: #181818;
+    background: #fff;
 }
 
 .section-episodios-serie-assistir, .section-opcoes-video {
@@ -605,10 +693,21 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
+    margin-bottom: 50px;
+}
+
+.div-iframe-movie-assistir-fixed {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    width: 400px;
+    height: 250px;
 }
 
 .container-assistir .div-iframe-movie-assistir iframe {
-    width: 100%;
+    max-height: 720px;
+    max-width: 100%;
+    aspect-ratio: 1/.56;
     margin-top: 20px;
 }
 
@@ -632,8 +731,23 @@
 }
 
 @media (max-width: 1000px) {
-    .div-imagem-movie-assistir #img-movie-assistir {
-        display: none;
+    .container-assistir .div-imagem-movie-assistir #img-movie-assistir {
+        height: 300px;
+        width: 180px;
+    }
+
+    #img-movie-assistir-background {
+        position: absolute;
+        height: 320px;
+        width: 200px;
+        top: 90px;
+        left: 40px;
+        filter: blur(30px);
+        border-radius: 20px;
+    }
+
+    .container-assistir .detalhes-movie-assistir {
+        margin-left: 1rem;
     }
 }
 
@@ -650,13 +764,13 @@
     }
 
     .container-assistir .detalhes-movie-assistir h1 {
-        font-size: 7vw;
+        font-size: 2rem;
         text-align: center;
         width: 100%;
         margin-bottom: 2rem;
     }
 
-    .section-serie-finalizada {
+    #img-movie-assistir, #img-movie-assistir-background {
         display: none;
     }
 }
@@ -664,7 +778,8 @@
 @media (max-width: 600px) {
 
     .nome-movie-scroll-ativado {
-        bottom: 10px;
+        bottom: 20px;
+        max-width: 75%;
     }
 
     .container-assistir .movie-assistir {
@@ -672,8 +787,13 @@
     }
 
     .container-assistir .detalhes-movie-assistir h1 {
-        font-size: 8vw;
+        font-size: 150%;
         width: 100%;
+    }
+
+    .detalhes-movie-assistir .descricao-movie-assistir {
+        font-size: .7rem;
+        margin-bottom: .5rem;
     }
 
     .detalhes-movie-assistir .informacoes-movie-assistir {
@@ -686,6 +806,14 @@
         font-size: .7rem;
     }
 
+    .div-logo-imdb img {
+        height: 25px;
+    }
+
+    .div-logo-imdb span {
+        font-size: .7rem;
+    }
+
     .detalhes-movie-assistir .generos-movie-assistir::-webkit-scrollbar, .detalhes-movie-assistir .informacoes-movie-assistir::-webkit-scrollbar {
         display: none;
     }
@@ -695,16 +823,16 @@
         margin-right: .5rem;
     }
     
-    .botao-favorito, .bt-assitir-preview-movie {
+    .botao-favorito, .bt-assistir-preview-movie {
         height: 2.2rem;
         width: 2.2rem;
     }
 
-    .bt-assitir-preview-movie {
-        margin-left: 7px;
+    .bt-assistir-preview-movie {
+        margin-right: 7px;
     }
     
-    .bt-slide-section-serie-assitir {
+    .bt-slide-section-serie-assistir {
         display: none;
     }
 
@@ -715,6 +843,10 @@
 
     .h2-titulo-temporada, .h2-titulo-episodio, .span-informacoes-video-assistir {
         font-size: .9rem;
+    }
+
+    .div-temporadas-episodios-serie-assistir {
+        margin: 15px 15px 10px 15px;
     }
     
     .section-temporadas-serie-assistir::-webkit-scrollbar, .section-episodios-serie-assistir::-webkit-scrollbar {
@@ -758,4 +890,15 @@
         padding: 7px 12px;
     }
     
+    .bt-abrir-detalhes-temporada {
+        font-size: .7rem;
+        padding: 3px 8px;
+    }
+
+    .container-assistir .div-iframe-movie-assistir iframe {
+        max-height: 400px;
+        max-width: 100%;
+        aspect-ratio: 1/.5;
+        margin-top: 20px;
+    }
 }

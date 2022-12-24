@@ -4,10 +4,10 @@
     <meta charset="utf-8" />
     <link rel="shortcut icon" href="https://dflix.netlify.app/imagens/icone%20d-dflix.png" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
+    <meta name="theme-color" content="#181818" />
     <meta
       name="description"
-      content="site de filmes e séries online"
+      content="A DFLIX é um site de informações de filmes, séries, atores e etc. online que utiliza informações do the movie database"
     />
     <link rel="apple-touch-icon" href="https://dflix.netlify.app/imagens/icone%20d-dflix.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
@@ -16,25 +16,33 @@
     <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/4ef9aa9cce.js" crossorigin="anonymous"></script> <!-- FONT AWESOME 5 -->
     <script src="https://kit.fontawesome.com/8a35ff9396.js" crossorigin="anonymous"></script> <!-- FONT AWESOME 6 -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script><link rel="stylesheet" type="text/css" charset="UTF-8" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" /> 
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script><link rel="stylesheet" type="text/css" charset="UTF-8" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" />
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
     <title>DFLIX</title>
     <link rel="stylesheet" href="./style.css">
     <script src="./script.js"></script>
-    <script src="https://unpkg.com/@popperjs/core@2"></script>
-    <script src="https://unpkg.com/tippy.js@6"></script>
   </head>
   <body>
     
     <div id="app"></div>
     
     <div class="loader-container" id="preloader">
-      <img src="./dflix.svg" height="50px" alt="logo dflix">
+      <video
+          id='video-movie-principal'
+          src="./dflix.mp4"
+          loop autoPlay muted width="200px">
+      </video>
       <div class="loader">
         <div></div>
         <div></div>
       </div>
-      <noscript>Olá, Você precisa ativar o javascript para utilizar este app.</noscript>
+      <noscript>
+        <div class="div-noscript">
+          <span>
+            Olá, Você precisa ativar o javascript para utilizar este app!</noscript>
+          </span>
+        </div>
     </div>
   </body>
 </html>

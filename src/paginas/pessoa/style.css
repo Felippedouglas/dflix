@@ -1,3 +1,80 @@
+.section-pop-up-foto-ator {
+    position: relative;
+    margin-top: -30px;
+    max-height: 2000px;
+    z-index: 1;
+}
+
+.bt-fechar-foto-pessoa {
+    position: absolute;
+    background: #404040;
+    color: #fff;
+    right: 5px;
+    top: 5px;
+    border: 1px solid #fff;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+.bt-fechar-foto-pessoa:hover {
+    background: #fff;
+    color: #181818;
+    font-size: 1.1rem;
+    border: 1px solid #181818;
+}
+
+.section-pop-up-foto-ator img {
+    display: flex;
+    justify-content: center;
+    max-width: 100%;
+    border-radius: 5px;
+    margin: 10px auto 20px auto;
+}
+
+.section-info-foto-pessoa {
+    margin-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #505050;
+}
+
+.section-info-foto-pessoa:first-child {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+}
+
+.section-info-foto-pessoa span {
+    display: block;
+    text-transform: uppercase;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.section-info-foto-pessoa p {
+    color: #ccc;
+    font-size: .9rem;
+}
+
+.section-info-foto-pessoa a {
+    background: #404040;
+    border-radius: 50px;
+    padding: 7px 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: .8rem;
+    color: #fff;
+}
+
+.section-info-foto-pessoa a:hover {
+    background: #Fff;
+    color: #181818;
+}
+
+.section-info-foto-pessoa:last-child {
+    border-bottom: none;
+}
+
 .section-pessoa {
     display: flex;
     flex-direction: column;
@@ -11,13 +88,12 @@
     width: 100%;
     z-index: 0;
     overflow: hidden;
-    margin-top: 55px;
 }
 
 .nome-movie-background {
     position: absolute;
     right: 15px;
-    top: 15px;
+    top: 70px;
     margin-left: 15px;
     text-decoration: none;
     color: #fff;
@@ -38,8 +114,8 @@
 }
 
 .section-background-pessoa img {
-    min-height: 350px;
-    max-height: 350px;
+    min-height: 450px;
+    max-height: 450px;
     min-width: 100%;
     object-fit: cover;
     -webkit-filter: blur(5px);
@@ -79,6 +155,7 @@
     background: #252525;
     box-shadow: -1px 1px 10px 1px rgba(0, 0, 0, 0.1);
     border-radius: 50%;
+    border: 1px solid #707070;
 }
 
 .div-sobre-pessoa {
@@ -87,9 +164,25 @@
     margin-left: 30px;
 }
 
+.nome-pessoa {
+    margin: 0 0 10px 10px;
+}
+
 .nome-pessoa h1 {
     font-size: 20px;
-    margin-bottom: 10px;
+}
+
+.span-carregando-exibir i {
+    font-size: 20px;
+}
+
+.section-categoria-exibir {
+    margin: 0 5px;
+    padding: 3px;
+}
+
+.div-escolher-categoria-exibir a {
+    color: unset;
 }
 
 .div-sobre-pessoa span {
@@ -115,15 +208,179 @@
     font-size: 15px;
 }
 
-@media (max-width: 800px) {
-
-    .section-background-pessoa img {
-        min-height: 300px;
-        max-height: 300px;
-    }
+.sobre-pessoa {
+    margin: 10px 30px 30px 30px;
 }
 
-@media (max-width: 600px) {
+.h2-movies-pessoa {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    margin-left: 2.5rem;
+    position: relative;
+}
+
+.h2-movies-pessoa::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -0.7rem;
+    height: 100%;
+    width: .25rem;
+    border-radius: 50px;
+    background-color: #fff;
+}
+
+.div-movie-pessoa {
+    position: relative;
+    display: flex;
+    flex-flow: wrap;
+    overflow-x: auto;
+    padding: 1.3rem 0 .7rem .7rem;
+    margin: 10px 30px 50px 30px;
+    margin-bottom: 2rem;
+}
+
+.div-movie-pessoa .movie {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 .95rem 2rem 0;
+    border-radius: 1rem;
+    transition: all 0.5s ease;
+}
+
+.div-movie-pessoa .movie:hover {
+    transform: scale(1.04);
+}
+
+.div-movie-pessoa .movie:nth-child(21) {
+    margin-right: -0.7rem;
+}
+
+.div-movie-pessoa .movie .section-informacoes-movie {
+    position: relative;
+    bottom: 3rem;
+    left: 50%;
+    height: 2.5rem;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 .7rem;
+    transform: translateX(-50%);
+    text-decoration: none;
+    color: #fff;
+    background-image: linear-gradient(to top, #000 60%, transparent);
+    border-radius: 0 0 1rem 1rem;
+}
+
+.div-avaliacao-movie {
+    display: flex;
+    flex-direction: row;
+}
+
+.div-movie-pessoa .movie .section-informacoes-movie span {
+    display: flex;
+    align-items: center;
+    margin-top: 0;
+    font-size: .8rem;
+    font-weight: 600;
+}
+
+.div-movie-pessoa .movie .section-informacoes-movie span i {
+    font-size: .7rem;
+    margin-right:.2rem;
+}
+
+.div-movie-pessoa .movie img {
+    min-width: 180px;
+    max-width: 180px;
+    min-height: 260px;
+    max-height: 260px;
+    margin-bottom: 1rem;
+    border-radius: .5rem;
+    background: #222222;
+    object-fit: cover;
+}
+
+.div-movie-pessoa .movie .span-titulo-movie {
+    font-weight: bold;
+    font-size: 1rem;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    max-width: 170px;
+    margin-top: -1.3rem;
+}
+
+.div-movie-pessoa .movie a {
+    max-height: 300px;
+    text-decoration: none;
+    transition: all 0.5s ease;
+}
+
+.link-exibir-mobile {
+    display: none;
+}
+
+.span-curtidas {
+    position: absolute;
+    bottom: 20px;
+    left: 5px;
+    display: flex;
+    align-items: center;
+    background: #252525;
+    width: max-content;
+    height: 30px;
+    border-radius: 50px;
+    padding: 5px 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: .1px solid #aaa;
+    cursor: pointer;
+}
+
+.span-curtidas:hover {
+    color: #181818;
+    background: #fff;
+    transition: all .3s ease;
+}
+
+.span-curtidas i {
+    margin-right: 5px;
+}
+
+.bt-abrir-info-foto {
+    position: absolute;
+    right: 5px;
+    bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background: #252525;
+    border: .1px solid #aaa;
+    border-radius: 50%;
+    font-size: 1rem;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.bt-abrir-info-foto:hover {
+    color: #181818;
+    background: #fff;
+    transition: all .3s ease;
+}
+
+@media (max-width: 800px) {
 
     .section-informacoes-pessoa {
         flex-direction: column;
@@ -135,9 +392,69 @@
         justify-content: center;
         margin: 0;
     }
-    
-    .div-sobre-pessoa .sobre-pessoa {
+
+    .nome-pessoa {
+        margin: 0 0 10px 0;
         text-align: center;
+    }
+
+    .div-movie-pessoa .movie {
+        margin-right: .7rem;
+    }
+
+    .div-movie-pessoa .movie img {
+        min-width: 130px;
+        max-width: 130px;
+        min-height: 200px;
+        max-height: 200px;
+        margin-bottom: 1rem;
+        border-radius: .5rem;
+    }
+
+    .section-background-pessoa img {
+        min-height: 300px;
+        max-height: 300px;
+    }
+
+    .div-movie-pessoa .movie .span-titulo-movie {
+        font-size: .8rem;
+        margin-top: -2.5rem;
+        max-width: 120px;
+    }
+
+    .bt-abrir-info-foto {
+        max-height: 210px;
+    }
+    
+    .h2-movies-pessoa {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 600px) {
+    
+    .div-movie-pessoa {
+        justify-content: center;
+        margin: 10px 10px 50px;
+    }
+
+    .section-categoria-exibir {
+        margin: 0;
+    }
+
+    .section-categoria-exibir label {
+        font-size: .9rem;
+        padding: 9px 12px;
+    }
+
+    .section-categoria-exibir label span {
+        padding: 5px 15px;
+        border-radius: 50px;
+    }
+
+    .section-categoria-movie label a {
+        font-size: 1rem;
+        padding: 0;
     }
 
     .section-biográfia-pessoa {
@@ -146,5 +463,21 @@
 
     .section-biográfia-pessoa h2 {
         font-size: 1.1rem;
+    }
+
+    .link-exibir-pc {
+        display: none;
+    }
+
+    .link-exibir-mobile {
+        display: block;
+    }
+
+    .div-escolher-categoria-exibir {
+        padding-right: 0;
+    }
+
+    .sobre-pessoa, .section-biográfia-pessoa {
+        margin: 10px 10px 30px 10px;
     }
 }

@@ -109,7 +109,7 @@ html {
   text-transform: uppercase;
   font-size: 1.2rem;
   font-weight: bold;
-  z-index: 9;
+  z-index: 5;
 }
 
 .h2-titulo-sections::after {
@@ -142,6 +142,10 @@ html {
     .h2-titulo-sections {
         font-size: 1rem;
     }
+
+    .alert-ativado {
+      bottom: 70px;
+    }
 }
 
 @media (max-width: 600px) {
@@ -161,8 +165,8 @@ html {
     max-width: 95%;
   }
 
-  .alert-ativado {
-    bottom: 10px;
-  }
+}
 
+.teste-git {
+  background: #f0f;
 }

@@ -23,8 +23,7 @@ Na página de filme ou série é possivel encontrar as suas principais informaç
 
 Na página 'pessoa' é possível encontrar informações do(a) ator/atriz, diretores e dubladores: Nome, biográfia, idade, ano de nascimento, cidade natal e filmes/séries participadas.
 
-<img src='./assets/imgs/pagina-pessoa.png' alt='página pessoa'>
-<img src='./assets/imgs/pagina-pessoa-fotos.png' alt='página pessoa' style='margin-bottom: 50px'>
+<img src='./assets/imgs/pagina-pessoa.png' alt='página pessoa' style='margin-bottom: 50px'>
 
 
 ## `|Página Pesquisar`
