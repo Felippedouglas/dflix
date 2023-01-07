@@ -20,7 +20,7 @@ export default function PagPopularSerie(props) {
         var idioma = localStorage.getItem('idioma') || 'portugues';
         setIdioma(idioma)
         
-        fetch(`https://api.themoviedb.org/3/tv/${props.categoriaSerie}?api_key=${APIKey}&language=${idioma == 'portugues' ? 'pt-BR' : 'en-US'}&page=${pagina}`)
+        fetch(`https://api.themoviedb.org/3/tv/${props.categoriaSerie}?api_key=${APIKey}&vote_average.gte=6&language=${idioma == 'portugues' ? 'pt-BR' : 'en-US'}&page=${pagina}`)
             .then(Response => Response.json())
             .then(data => {
                 setMovies(data.results)

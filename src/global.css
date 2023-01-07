@@ -80,7 +80,7 @@ html {
   min-width: 200px;
   max-width: 400px;
   padding: 5px 10px;
-  z-index: 99;
+  z-index: 9;
   transition: .5s;
 }
 
@@ -124,28 +124,24 @@ html {
 }
 
 .swiper {
-    width: 100%;
-    height: max-content;
+  width: 100%;
+  height: max-content;
 }
 
 .swiper-slide {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    max-width: max-content;
-    margin-right: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  max-width: max-content;
+  margin-right: 10px;
 }
 
 @media (max-width: 800px) {
     
-    .h2-titulo-sections {
-        font-size: 1rem;
-    }
-
-    .alert-ativado {
-      bottom: 70px;
-    }
+  .h2-titulo-sections {
+      font-size: 1rem;
+  }
 }
 
 @media (max-width: 600px) {
@@ -165,8 +161,8 @@ html {
     max-width: 95%;
   }
 
-}
+  .alert-ativado {
+    bottom: 70px;
+  }
 
-.teste-git {
-  background: #f0f;
 }

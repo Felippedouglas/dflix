@@ -24,6 +24,7 @@ export default function PesqusiarGenero() {
     const [ idioma, setIdioma ] = useState();
 
     document.title = `${definirFilmeSerie} ${idioma == 'portugues' ? 'de' : 'of'} ${generoPesquisado} - DFLIX`;
+    document.querySelector("meta[name=theme-color]").setAttribute("content", '#181818');
     if(Number(numeroPagina) == 0) {
         window.location.href = "/404"
     }

@@ -9,11 +9,14 @@ import BandeiraEua from './bandeira-eua.png';
 import BandeiraBrasil from './bandeira-brasil.png';
 import Login from "../../paginas/usuario";
 import Logout from "../../paginas/usuario/logout";
+import LogoGoogle from '../imgs/logo-google.png'
+import Usuario from "../../paginas/usuario";
 
 
 export default function Nav() {
 
     const [ user, setUser ] = useState({});
+    const [ imgUser, setImgUser ] = useState();
 
     const [ logout, setLogout ] = useState(false);
 
@@ -34,7 +37,8 @@ export default function Nav() {
     const [ idioma, setIdioma ] = useState();
     const [ novasNotificacoes, setNovasNotificacoes ] = useState(false);
 
-    useEffect(()=>{
+    useEffect(()=> {
+        
         setDia(TodasNotificacoes.ultima_atualizacao.dia);
         setMes(TodasNotificacoes.ultima_atualizacao.mes);
         setAno(TodasNotificacoes.ultima_atualizacao.ano);
@@ -50,11 +54,9 @@ export default function Nav() {
                 setNovasNotificacoes(false);
             }
         }, 100);
-
         
     }, [exibirNotificacoes, diaVisualizacaoNotificacao, mesVisualizacaoNotificacao, anoVisualizacaoNotificacao, widthClient])
-    
-    
+
     setInterval(()=>{
         setIdioma(localStorage.getItem('idioma') || 'portugues')
         setWidthClient(document.body.clientWidth);
@@ -114,9 +116,9 @@ export default function Nav() {
 
     return(
 
-        <div className='content-nav' id="content-nav">
+        <nav className='content-nav' id="content-nav">
 
-            <Login setUser={setUser}/>
+            <Usuario setUser={setUser}/>
             {logout &&
                 <Logout />
             }
@@ -151,6 +153,13 @@ export default function Nav() {
             <section className="section-lupa-menu-mobile">
                 <button onClick={abrirFecharNotificacoes} className="button-abrir-notificacoes"><i className="fa-solid fa-bell"></i> {novasNotificacoes ? <span className="span-novas-notificacoes"><i className="fa-solid fa-info"></i></span> : ''}</button>
                 <Link to={`/pesquisar/`} className='icone-lupa-pesquisar'><i className="fas fa-search"></i></Link>
+                
+                <div className="div-perfil-login-nav">
+                    {user.uid ?
+                        <img className="img-user-pergil-nav" src={user.photoURL} alt='usuario' onError={({ currentTarget }) => {currentTarget.onerror = null; currentTarget.src="https://dflix.netlify.app/imagens/img-avatar.png";}}/>
+                        : <Link to='/login'><img src={LogoGoogle}/> Entrar</Link>
+                    }
+                </div>
                 <div className='div-abrir-pop-up-nav' onClick={()=>abrirNav()}>
                     <i className="fa-solid fa-bars"></i>
                 </div>
@@ -163,19 +172,19 @@ export default function Nav() {
                 <div className="div-menu-hamburguer-mobile">
                     <section className="section-menu-hamburguer-nav-mobile">
                         <ul>
-                            {user.email == 'dfelipex18@gmail.com' &&
+                            {user.email == 'dfelipex18@gmail.com' || user.email == 'admin@dflix.com' &&
                                 <Link to='/keyword=207317&pagina=1' onClick={()=>fecharNav()}><i className="fa-solid fa-heart"></i> <span>Keyword</span></Link>
                             }
                             <Link to={`/conta/`} onClick={()=>fecharNav()}>
                                 <img className="img-perfil-nav" src={user.photoURL ? user.photoURL : 'https://dflix.netlify.app/imagens/img-avatar.png'} alt='user' onError={({ currentTarget }) => {currentTarget.onerror = null; currentTarget.src="https://dflix.netlify.app/imagens/img-avatar.png";}} />
-                                <span>{ user.displayName ? user.displayName.split(' ')[0] : 'Fazer Login'}</span>
+                                <span>{ user.uid && user.displayName ? user.displayName.split(' ')[0] : user.uid && !user.displayName ? "User 404" : 'Fazer Login'}</span>
                             </Link>
                             <Link to={`/conta/`} onClick={()=>fecharNav()}><i className="fa-solid fa-gear"></i> <span className="span-nav-menu-hamburguer">{idioma == 'portugues' ? 'configurações' : 'settings'}</span></Link>
                             {idioma == 'portugues' ?
                             <a><i className="fa-solid fa-wifi"></i> <span className="span-nav-menu-hamburguer">uso: {economiaInternet ? 'Reduzido' : 'Recomendado'}</span></a>
                             : <a><i className="fa-solid fa-wifi"></i> <span className="span-nav-menu-hamburguer">use: {economiaInternet ? 'reduced' : 'recommended'}</span></a>
                             }
-                            {user.email && user.displayName &&
+                            {user.uid &&
                                 <button className="bt-sair-conta-nav" onClick={()=>setLogout(true)}><i className="fa-sharp fa-solid fa-right-to-bracket"></i> Sair</button>
                             }
                             <h3 className="h3-idioma-nav">
@@ -200,6 +209,6 @@ export default function Nav() {
                 </div>
             </PopUpNav>
             <Notificacoes exibirNotificacoes={exibirNotificacoes} setExibirNotificacoes={setExibirNotificacoes}/>
-        </div>
+        </nav>
     )
 }

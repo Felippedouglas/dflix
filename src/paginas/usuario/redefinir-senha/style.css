@@ -1,0 +1,51 @@
+.email-redefinir-enviado p {
+    font-size: .9rem;
+    max-width: 80%;
+}
+
+.msg-sobre-redefinir-senha {
+    font-size: .8rem;
+    max-width: 70%;
+    margin: 10px auto 0 auto;
+}
+
+.link-home-email-enviado {
+    background: #e50914;
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 20px;
+    margin-top: 30px;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: all .3s ease;
+}
+
+.link-home-email-enviado:hover {
+    opacity: .8;
+}
+
+@media (max-width: 800px) {
+
+    .aside-img {
+        display: block;
+    }
+
+}
+
+@media (max-width: 400px) {
+
+    .msg-sobre-redefinir-senha {
+        max-width: 100%;
+        text-align: center;
+    }
+    
+    .email-redefinir-enviado p {
+        font-size: .8rem;
+        max-width: 90%;
+    }
+
+    .link-home-email-enviado {
+        font-size: .8rem;
+    }
+
+}

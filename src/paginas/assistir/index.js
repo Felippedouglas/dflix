@@ -114,9 +114,11 @@ export default function Assistir() {
         setIdioma(idioma);
         
         if (filmeSerie && id) {
-            fetch(`https://api.themoviedb.org/3/${filmeSerie}/${id}?api_key=${APIKey}&language=${idioma == 'portugues' ? 'pt-BR' : 'en-US'}`)
+            fetch(`https://api.themoviedb.org/3/${filmeSerie}/${id}?api_key=${APIKey}&vote_count.gte=10&language=${idioma == 'portugues' ? 'pt-BR' : 'en-US'}`)
             .then(Response => Response.json())
             .then(data => {
+
+                console.log(data)
                 
                 const database = getFirestore(AppFirebase);
                 const favoritosCollectionRef = collection(database, `users/${user.uid}/favoritos`);
@@ -148,6 +150,8 @@ export default function Assistir() {
                 setNomeMovieFavorito(movie.name)
             }
         }, 100);
+
+        document.querySelector("meta[name=theme-color]").setAttribute("content", '#181818');
 
         VerificarFavorito();
     }, [id, favoritoIsTrue, idioma, widthPagina, user]);
@@ -255,27 +259,42 @@ export default function Assistir() {
     function salvarFavoritos() {
 
         if (user.uid) {
-            async function adicionarFavoritos() {
-    
-                await setDoc(doc(database, 'users', user.uid, 'favoritos', idImdb), {
-                    name: nomeMovieFavorito,
-                    description: descriptionMovieFavorito,
-                    img: imgMovieFavorito,
-                    imgBackground: imgBackgroundMovieFavorito,
-                    type: tipoMovieFavorito,
-                    year: yearMovieFavorito,
-                    runtime: runTimeMovieFavorito,
-                    vote_average: voteAverageMovieFavorito,
-                    idMovie: idMovieFavorito,
-                    imdbId: imdbIdMovieFavorito,
-                });
-            }
-    
-            setFavoritoIsTrue(true);
+            if (idImdb) {
+                async function adicionarFavoritos() {
+        
+                    await setDoc(doc(database, 'users', user.uid, 'favoritos', idImdb), {
+                        name: nomeMovieFavorito,
+                        description: descriptionMovieFavorito,
+                        img: imgMovieFavorito,
+                        imgBackground: imgBackgroundMovieFavorito,
+                        type: tipoMovieFavorito,
+                        year: yearMovieFavorito,
+                        runtime: runTimeMovieFavorito,
+                        vote_average: voteAverageMovieFavorito,
+                        idMovie: idMovieFavorito,
+                        imdbId: imdbIdMovieFavorito,
+                        data: new Date()
+                    });
+                }
+        
+                setFavoritoIsTrue(true);
+
+                setTimeout(()=>{
+                    adicionarFavoritos();
+                }, 100)
+            } else {
+                if (!alert) {
+                    setAlert(true);
+                    setSpanFazerLogin(true);
+                    setTimeout(()=>{
+                        setAlert(false)
+                    }, 5000)
+                }
+
+                setAlertTitle(`${idioma == 'portugues' ? 'Erro' : 'Error'}`)
+                setAlertMessage(`${idioma == 'portugues' ? "Indisponível para adicionar aos favoritos!" : "Login required to add favorites!"}`);
+            }            
             
-            setTimeout(()=>{
-                adicionarFavoritos();
-            }, 100)
         } else {
             
             if (!alert) {
@@ -302,13 +321,14 @@ export default function Assistir() {
     }
 
     async function VerificarFavorito() {
-        
-        favoritos && favoritos.map(favorito => {
-            if (favorito.imdbId == idImdb) {
-                setFavoritoIsTrue(true)
-            }
-        })
 
+        if (user.uid) {
+            favoritos && favoritos.map(favorito => {
+                if (favorito.imdbId == idImdb) {
+                    setFavoritoIsTrue(true)
+                }
+            })
+        }
     }
 
     function definirTemporada(e) {
@@ -433,11 +453,13 @@ export default function Assistir() {
                                                 <button onClick={scrollAssitir} className="bt-assistir-preview-movie"><i className='fas fa-play'></i> <small>{idioma == 'portugues' ? 'Assistir' : 'Watch'}</small></button>
                                             </Tippy>
                                         }
-                                        <Tippy content={favoritoIsTrue && idioma == 'portugues' ? 'Remover dos favoritos' : !favoritoIsTrue && idioma == 'portugues' ? 'Adicionar aos favoritos' : favoritoIsTrue && idioma == 'ingles' ? 'Remove from favorites' : 'Add to Favorites'}>
-                                            {favoritoIsTrue ? <button className="botao-favorito botao-remover-favorito" onClick={()=>removerFavoritos(idImdb)}><i className="fa-solid fa-heart-circle-plus"></i></button>
-                                            : <button id="bt-remover-favorito-assistir" className="botao-favorito botao-adicionar-favorito" onClick={()=>salvarFavoritos()}><i className="fa-regular fa-heart"></i></button>
-                                            }
-                                        </Tippy>
+                                        {idImdb &&
+                                            <Tippy content={favoritoIsTrue && idioma == 'portugues' ? 'Remover dos favoritos' : !favoritoIsTrue && idioma == 'portugues' ? 'Adicionar aos favoritos' : favoritoIsTrue && idioma == 'ingles' ? 'Remove from favorites' : 'Add to Favorites'}>
+                                                {favoritoIsTrue ? <button className="botao-favorito botao-remover-favorito" onClick={()=>removerFavoritos(idImdb)}><i className="fa-solid fa-heart-circle-plus"></i></button>
+                                                : <button id="bt-remover-favorito-assistir" className="botao-favorito botao-adicionar-favorito" onClick={()=>salvarFavoritos()}><i className="fa-regular fa-heart"></i></button>
+                                                }
+                                            </Tippy>
+                                        }
                                     </div>
                                     {spanFazerLogin && 
                                         <Link to='/conta' className="span-login-assistir-add-favorito"><img src={LogoGoogle}/>Fazer Login</Link>

@@ -19,10 +19,11 @@ export default function Notificacoes(props) {
 
         const getNotifications = async () => {
             const data = await getDocs(notificationsCollectionRef);
-            setNotifications(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
+            setNotifications(data.docs.reverse().map((doc) => ({...doc.data(), id: doc.id})));
         }
         
         getNotifications();
+
     }, [])
 
     $(document).mouseup(function(e) {
@@ -41,22 +42,24 @@ export default function Notificacoes(props) {
                 <header>
                     <span>{idioma == 'portugues' ? 'Notificações' : 'Notifications'}</span>
                 </header>
-                <main className='notificacoes'>
-                    {notifications.reverse().map((notificacao, key)=>{
-                        return (
-                            <Link key={key} to={`assistir=${notificacao.tipo}&${notificacao.idMovie}`} onClick={()=>props.setExibirNotificacoes(!props.exibirNotificacoes)} className="link-movie-notificacao">
-                                <img loading="lazy"
-                                    src={notificacao.img}
-                                    alt={notificacao.nome} className="img-movie-notificacao"/>
-                                <section>
-                                    <p className="paragrafo-da-notificacao"><strong className='movie-name-strong'>{notificacao.nome}</strong><small>{notificacao.temporada}</small></p>
-                                    <p className="data-notificacao-enviada">{notificacao.data}</p>
-                                </section>
-                                <span className="ponto-notificacao"></span>
-                            </Link>
-                        )
-                    })}
-                </main>
+                {notifications.length >= 1 &&
+                    <main className='notificacoes'>
+                        {notifications.map((notificacao, key)=>{
+                            return (
+                                <Link key={key} to={`assistir=${notificacao.tipo}&${notificacao.idMovie}`} onClick={()=>props.setExibirNotificacoes(!props.exibirNotificacoes)} className="link-movie-notificacao">
+                                    <img loading="lazy"
+                                        src={notificacao.img}
+                                        alt={notificacao.nome} className="img-movie-notificacao"/>
+                                    <section>
+                                        <p className="paragrafo-da-notificacao"><strong className='movie-name-strong'>{notificacao.nome}</strong><small>{notificacao.temporada}</small></p>
+                                        <p className="data-notificacao-enviada">{notificacao.data}</p>
+                                    </section>
+                                    <span className="ponto-notificacao"></span>
+                                </Link>
+                            )
+                        })}
+                    </main>
+                }
                 
             </div>
         </>

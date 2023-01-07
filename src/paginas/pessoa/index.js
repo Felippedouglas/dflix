@@ -91,6 +91,7 @@ export default function Pessoa() {
             }, 300)
         }
         document.title = `DFLIX`;
+        document.querySelector("meta[name=theme-color]").setAttribute("content", '#181818');
     }, [idPessoa, stateExibir, exibir])
 
     useEffect(() => {

@@ -33,25 +33,35 @@ export default function PagMoviesFavoritos() {
         const storageOrganizarFavoritosPor = localStorage.getItem("organizarFavoritosPor") || 'recentes';
 
         const getFavoritos = async () => {
+
             const data = await getDocs(favoritosCollectionRef);
 
+            const arr = data.docs.map((doc) => ({...doc.data(), id: doc.id}));
+            arr.sort(function(a,b) {
+                return a.data.seconds - b.data.seconds
+            });
+
             if (storageOrganizarFavoritosPor == 'recentes') {
-                setFavoritos(data.docs.map((doc) => ({...doc.data(), id: doc.id})).reverse());
+                setTimeout(()=> {
+                    setFavoritos(arr.reverse());
+                }, 10)
             } else {
-                setFavoritos(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
+                setTimeout(()=> {
+                    setFavoritos(arr);
+                }, 10)
             }
             
-            setFavoritosLength(data.docs.map((doc) => ({...doc.data(), id: doc.id})).length);
+            setFavoritosLength(favoritos.length);
         }
-        
         
         setOrganizarFavoritosPor(storageOrganizarFavoritosPor)
         
         setIdioma(localStorage.getItem('idioma') || 'portugues')
         setTimeout(() => {
-            getFavoritos();
-            
-        }, 1000);
+            if (user && user.uid) {
+                getFavoritos();
+            }
+        }, 100);
 
     }, [preview, atualizarState, exibirApenas, user]);
 
@@ -114,7 +124,7 @@ export default function PagMoviesFavoritos() {
         <>
             <Usuario setUser={setUser}/>
             <>
-                {favoritos &&
+                {favoritos && favoritos.length >= 1 &&
                     <div className="content-movies content-movies-favoritos">
                     
                         <div className="div-name-categoria-movie div-name-categoria-movie-favoritos">
@@ -205,9 +215,6 @@ export default function PagMoviesFavoritos() {
                                         </div>
                                         )
                                     })
-                                }
-                                {favoritos && favoritos.length == 0 && 
-                                    <span className="span-sem-favoritos">Nâo há favoritos!</span>
                                 }
                             </div>
                             {favoritos.length >= 4 && 

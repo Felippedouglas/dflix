@@ -1,6 +1,6 @@
 export const TodasNotificacoes = {
     ultima_atualizacao: {
-        dia: 22,
+        dia: 27,
         mes: 12,
         ano: 2022
     }

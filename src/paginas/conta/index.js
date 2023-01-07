@@ -31,20 +31,9 @@ export default function Conta() {
 
     useEffect(()=> {
 
-        if (user.uid) {
-            const database = getFirestore(AppFirebase);
-                async function addUsuarioDb() {
-    
-                    await setDoc(doc(database, "users", user.uid), {
-                        nome: user.displayName,
-                        email: user.email,
-                        img: user.photoURL,
-                    });
-                    
-            }
-            
-            addUsuarioDb();
-        }
+        
+        document.title = 'Conta - DFLIX';
+        document.querySelector("meta[name=theme-color]").setAttribute("content", '#303030');
 
         setEconomiaInternet(localStorage.getItem('economia'));
         setFavoritosHome(localStorage.getItem('FavoritoHome'));
@@ -144,8 +133,11 @@ export default function Conta() {
         }
     }
 
-    function definirLoginLogout(loginLogout, ) {
+    function definirLoginLogout(loginLogout) {
         setLoginLogout(loginLogout);
+        setTimeout(()=>{
+            setLoginLogout('')
+        }, 1000)
     }
 
     return(
@@ -161,17 +153,19 @@ export default function Conta() {
             }
             <div className="div-conta">
                 <div className="div-informacoes-user">
-                    <img className="img-perfil" src={user.photoURL ? user.photoURL : 'https://dflix.netlify.app/imagens/img-avatar.png'} alt='user' onError={({ currentTarget }) => {currentTarget.onerror = null; currentTarget.src="https://dflix.netlify.app/imagens/img-avatar.png";}} />
+                    {user.uid && user.photoURL ? <img className="img-perfil" src={user.photoURL} alt='user' onError={({ currentTarget }) => {currentTarget.onerror = null; currentTarget.src="https://dflix.netlify.app/imagens/img-avatar.png";}}/>
+                    : <img className="img-perfil" src={'https://dflix.netlify.app/imagens/img-avatar.png'} alt='user'  onError={({ currentTarget }) => {currentTarget.onerror = null; currentTarget.src="https://dflix.netlify.app/imagens/img-avatar.png";}}/>
+                    }
                     {user.displayName &&
                         <h2 className="nome-usuario">{user.displayName ? user.displayName : "User 404"}</h2>
                     }
-                    {!user.displayName &&
-                        <button onClick={()=>definirLoginLogout('login', 'google')} className="bt-login-conta"><img className="logo-google-email" src={LogoGoogle} alt="google"/> Login com Google</button>
+                    {!user.uid &&
+                        <button onClick={()=>window.location.href = '/#/login'} className="bt-login-conta"><i className="fa-solid fa-right-from-bracket" style={{marginRight: '5px'}}></i>  Fazer Login</button>
                     }
                     {user.email &&
-                        <span className="span-email-usuario"><img className="logo-google-email" src={LogoGoogle} alt="google"/> {user.email}</span>
+                        <span className="span-email-usuario">{user.uid && user.providerData[0].providerId == 'google.com' && <img className="logo-google-email" src={LogoGoogle} alt="google"/>} {user.uid && user.providerData[0].providerId == 'password' && <i class="fa-solid fa-envelope" style={{marginRight: '5px'}}></i>} {user.email}</span>
                     }
-                    {user.email && user.displayName &&
+                    {user.uid &&
                         <button onClick={()=>definirLoginLogout('logout')} className="bt-sair-conta"><i className="fa-sharp fa-solid fa-right-to-bracket"></i> Sair</button>
                     }
                     <div className="div-idioma-configuracoes">

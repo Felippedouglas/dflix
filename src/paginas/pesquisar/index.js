@@ -14,6 +14,8 @@ export default function Pesquisar() {
     const [ alert, setAlert ] = useState(false);
     const [ alertTitle, setAlertTitle ] = useState();
     const [ alertMessage, setAlertMessage ] = useState();
+    const [ date, setDate ] = useState(new Date());
+    
 
     const [ exibirListaSugestoesPesquisar, setExibirListaSugestoesPesquisar ] = useState();
     const [ sugestoesNomesPesquisar, setSugestoesNomesPesquisar] = useState([]);
@@ -42,14 +44,10 @@ export default function Pesquisar() {
         setSalvarHistorico(localStorage.getItem('salvarHistorico'));
         setExibirHistorico(localStorage.getItem('exibirHistorico'));
 
-    }, [numeroPagina]);
-    
-    useEffect(() => {
-
         var idioma = localStorage.getItem('idioma') || 'portugues';
         setIdioma(idioma);
         
-        fetch(`https://api.themoviedb.org/3/search/${tipoPesquisa}?api_key=${APIKey}&language=${idioma == 'portugues' ? 'pt-BR' : 'en-US'}&page=${numeroPagina}&adult=false&query=${movieName}&sort_by=${sortType}`)
+        fetch(`https://api.themoviedb.org/3/search/${tipoPesquisa}?api_key=${APIKey}&vote_average.gte=1&language=${idioma == 'portugues' ? 'pt-BR' : 'en-US'}&page=${numeroPagina}&adult=false&query=${movieName}&sort_by=${sortType}`)
             .then(Response => Response.json())
             .then(data => {
                 setMovies(data.results);
@@ -62,44 +60,49 @@ export default function Pesquisar() {
                     }, 100)
                     setPaginasMovies(data.total_pages);
                 }
-            })
+        })
 
-            const pesquisasCollectionRef = collection(database, `users/${user.uid}/pesquisas`);
+        const pesquisasCollectionRef = collection(database, `users/${user.uid}/pesquisas`);
 
-            const getFavoritos = async () => {
-                const data = await getDocs(pesquisasCollectionRef);
-                setHistorico(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
-            }
-            
-            getFavoritos();
+        const getFavoritos = async () => {
+            const data = await getDocs(pesquisasCollectionRef);
+            const arr = data.docs.map((doc) => ({...doc.data(), id: doc.id}));
+            arr.sort(function(a,b) {
+                return a.dataPesquisa.seconds - b.data.seconds;
+            });
 
-            setEconomiaInternet(localStorage.getItem('economia'));
+            setTimeout(()=> {
+                setHistorico(arr.reverse());
+            }, 10)
+        }
+        
+        getFavoritos();
 
-            document.title = 'Pesqsuisar - DFLIX';
-    }, [tipoPesquisa, filmeSeriePessoa, movieName, numeroPagina, tipoPesquisa, user])
+        setEconomiaInternet(localStorage.getItem('economia'));
+
+        document.title = 'Pesqsuisar - DFLIX';
+        document.querySelector("meta[name=theme-color]").setAttribute("content", '#181818');
+    }, [tipoPesquisa, filmeSeriePessoa, movieName, numeroPagina, tipoPesquisa, user, date])
 
     function salvaHistorico(e) {
 
-        if(salvarHistorico == 'true') {
+        if (salvarHistorico == 'true' && user.uid) {
+            console.log("chamou salvar fav")
+            async function adicionarFavoritos() {
+    
+                await setDoc(doc(database, `users/${user.uid}/pesquisas`, e), {
+                    name: e,
+                    data: `${String(data.getDate()).padStart(2, '0')}/${String(data.getMonth() + 1).padStart(2, '0')}/${String(data.getFullYear()).padStart(2, '0')}`,
+                    hora: `${String(data.getHours()).padStart(2, '0')}:${String(data.getMinutes()).padStart(2, '0')}`,
+                    dataPesquisa: date
+                });
 
-            if (user.uid) {
-                async function adicionarFavoritos() {
-        
-                    await setDoc(doc(database, `users/${user.uid}/pesquisas`, e), {
-                        name: e,
-                        data: `${String(data.getDate()).padStart(2, '0')}/${String(data.getMonth() + 1).padStart(2, '0')}/${String(data.getFullYear()).padStart(2, '0')}`,
-                        hora: `${String(data.getHours()).padStart(2, '0')}:${String(data.getMinutes()).padStart(2, '0')}`
-                    });
-
-                    console.log('adicionou ao histórico')
-                }
-                
-                setTimeout(()=>{
-                    adicionarFavoritos();
-                }, 100)
-            } else {
-                window.location.href = '/#/conta'
+                console.log('adicionou ao histórico')
             }
+            
+            setTimeout(()=>{
+                adicionarFavoritos();
+            }, 100)
         }
     }
 
@@ -300,7 +303,7 @@ export default function Pesquisar() {
                                 <Link to='/conta'><i className="fa-solid fa-gear"></i></Link>
                             </section>
                         }
-                        {historico.slice(0).reverse().map((e, key)=>{
+                        {historico.map((e, key)=>{
                             return(
                                 <section className="section-item-historico" key={key} id={`item-historico-${e.name}`}>
                                     <a onClick={()=>pesquisarMovieHistorico(`/#/pesquisar/search=${e.name}&pagina=1`, e.name)}>

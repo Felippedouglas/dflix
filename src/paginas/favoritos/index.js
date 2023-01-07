@@ -24,6 +24,8 @@ export default function Favoritos() {
     const [ idioma, setIdioma ] = useState();
     
     useEffect(() => {
+        
+        document.querySelector("meta[name=theme-color]").setAttribute("content", '#181818');
 
         const database = getFirestore(AppFirebase);
         const favoritosCollectionRef = collection(database, `users/${user.uid}/favoritos`);
@@ -34,11 +36,20 @@ export default function Favoritos() {
 
         const getFavoritos = async () => {
             const data = await getDocs(favoritosCollectionRef);
-            setFavoritos(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
+            const arr = data.docs.map((doc) => ({...doc.data(), id: doc.id}));
+            arr.sort(function(a,b) {
+                return a.data.seconds - b.data.seconds
+            });
+            setTimeout(()=> {
+                setFavoritos(arr.reverse());
+            }, 10)
             setFavoritosLength(data.docs.map((doc) => ({...doc.data(), id: doc.id})).length);
         }
+
+        if (user && user.uid) {
+            getFavoritos();
+        }
         
-        getFavoritos();
 
         setIdioma(localStorage.getItem('idioma') || 'portugues')
     }, [user]);
@@ -49,10 +60,11 @@ export default function Favoritos() {
         const database = getFirestore(AppFirebase);
         setFavoritosLength(favoritosLength - 1);
         
-        setAlertTitle('Favoritos')
-        setAlertMessage(`Removido dos favoritos! `);
         
         await deleteDoc(doc(database, 'users', user.uid, 'favoritos', e));
+
+        setAlertTitle('Favoritos')
+        setAlertMessage(`Removido dos favoritos! `);
 
         if (!alert) {
             setAlert(true)
@@ -113,10 +125,9 @@ export default function Favoritos() {
                     )
                 })
             }
-            {favoritosLength == 0 && 
+            {favoritosLength == 0 || !user.uid && 
                 <div className="content-sem-favoritos">
                     <span>Não há favoritos!</span>
-                    <Link to='/conta'><img src={LogoGoogle} alt='google'/>Login com Google</Link>
                 </div>
             }
         </div>

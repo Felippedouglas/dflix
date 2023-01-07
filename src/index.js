@@ -12,7 +12,8 @@ import PesqusiarKeyword from './paginas/pesquisar/keyword';
 import Footer from './componentes/footer';
 import Conta from './paginas/conta';
 import './global.css';
-import Usuario from './paginas/usuario';
+import RedefinirSenha from './paginas/usuario/redefinir-senha';
+import Login from './paginas/usuario/login';
 
 setTimeout(()=> {
 
@@ -21,7 +22,6 @@ setTimeout(()=> {
       <BarraNav />
       <Routes>
         <Route path="/" element={<Home/>}/>
-        <Route path="/login" element={<Usuario/>}/>
         <Route path="/home" element={<Home/>}/>
         <Route path="/conta" element={<Conta/>}/>
         <Route path="/:preview/:filmeSerie&:id/" element={<Home/>}/>
@@ -35,6 +35,9 @@ setTimeout(()=> {
         <Route path="/keyword=:keyword&pagina=:numeroPagina/" element={<PesqusiarKeyword/>}/>
         <Route path="/pessoa=:idPessoa/bg=:backgroundMovie/:exibir/" element={<Pessoa/>}/>
         <Route path="/favoritos/" element={<Favoritos/>}/>
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/login/:cadastrar" element={<Login/>}/>
+        <Route path="/redefinir-senha" element={<RedefinirSenha/>}/>
       </Routes>
       <Footer />
     </HashRouter>,

@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import './style.css';
 
 export default function PopUp(props) {

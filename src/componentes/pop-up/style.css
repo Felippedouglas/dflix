@@ -34,8 +34,8 @@
     width: 500px;
     min-width: 250px;
     max-width: 800px;
-    max-height: 1000px;
-    overflow: auto;
+    max-height: 100%;
+    overflow-y: auto;
 }
 
 .pop-up::before {
@@ -103,5 +103,13 @@
 @media (max-width: 600px) {
     .container-pop-up {
         padding:  4rem 1.1rem 1.1rem 1.1rem;
+    }
+
+    .pop-up {
+        max-height: 90%;
+    }
+
+    .pop-up::after {
+        display: none;
     }
 }

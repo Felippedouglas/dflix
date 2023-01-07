@@ -128,7 +128,7 @@ export default function MoviePrincipal() {
 
     return(
         <>
-            <div className="content-movie-principal">
+            <main className="content-movie-principal">
                 <div className="div-video-background">
                     <video
                         src={sortearNumero == 5 && !economiaInternet ? Trailer : ''}
@@ -162,9 +162,9 @@ export default function MoviePrincipal() {
                         }
                         <span><i className="fas fa-star"></i> {Number(movie.vote_average).toFixed(1) || 5}/10</span>
                     </section>
-                    {sortearNumero == 5 &&
+                    {sortearNumero == 1 &&
                         <section className='section-avisos-movie-principal'>
-                            <span className='span-avisos-movie-principal'><i className="fa-solid fa-circle-exclamation"></i> {idioma == 'portugues' ? '2° temporada em 22/12' : '2° season in 22/12'}</span>
+                            <span className='span-avisos-movie-principal'><i className="fa-solid fa-circle-exclamation"></i> {idioma == 'portugues' ? ' Novos Episódios' : ' New episodes'}</span>
                         </section>
                     }
                     <section className='section-bts-assistir-movie-principal'>
@@ -172,7 +172,7 @@ export default function MoviePrincipal() {
                         <Link to={`/preview/${filmeSerie}&${id}`} className='bt-assistir-movie-principal'><i className="fa-solid fa-circle-info"></i> <span className='span-assistir-movie-principal'>{idioma == 'portugues' ? 'detalhes' : 'details'}</span></Link>
                     </section>
                 </div>
-            </div>
+            </main>
         </>
     )
 }

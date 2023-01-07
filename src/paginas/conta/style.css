@@ -35,6 +35,8 @@
     border-radius: 50%;
     object-fit: cover;
     transition: all 1s ease;
+    box-shadow: 0 5px 5px #101010;
+    margin-bottom: 10px;
 }
 
 .nome-usuario {
@@ -55,6 +57,7 @@
     border-radius: 5px;
     background: #fff;
     color: #181818;
+    border: none;
     text-decoration: none;
     font-weight: 600;
     margin-top: 10px;
@@ -72,8 +75,9 @@
 }
 
 .logo-google-email {
-    width: 12px;
+    width: 15px;
     margin-right: 5px;
+    border-radius: 50px;
 }
 
 .bt-sair-conta {
